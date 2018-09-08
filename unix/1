@@ -1,0 +1,10 @@
+#include <string.h>
+char *strerror(int errorno); //returns error string corresponding to errorno
+
+#include <stdio.h>
+void perror(const char *msg); //print msg onto std error
+
+Unix systems maintain three values for a process
+	1. Clock time
+	2. User CPU time
+	3. System CPU time

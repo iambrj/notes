@@ -1,0 +1,30 @@
+\command[optional argumet]{argument}
+\textup{Upright shape} {\upshape Upright shape}
+\textit{Italic shape} {\itshape Italic shape}
+\textsl{Slanted shape} {\slshape Slanted shape}
+\textsc{Small caps shape} {\scshape Small caps shape}
+\textmd{Medium series} {\mdseries Medium series}
+\textbf{Boldface series} {\bfseries Boldface series}
+\textrm{Roman family} {\rmfamily Roman family}
+\textsf{Sans serif family} {\sffamily Sans serif family}
+\texttt{Typewriter family} {\ttfamily Typewriter family}
+{\textit Effects on fonts can be delimited using brackets}
+\tiny
+\script
+\footnotesize
+\small
+\normalsize
+\large
+\big
+\Large
+\LARGE
+\huge
+\Huge
+\begin{<size specifier>}
+\end{<size specifier>}
+\newcommand{\<command name>}{<command>}
+\parbox[alignment]{width}{text}
+\mbox{indivisible}
+\begin{center} <text> \end{center} %center text
+\begin{quote} <quote> \end{quote}
+\begin{quotation} <quotation> \end{quotation} %longer quotes

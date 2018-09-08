@@ -1,0 +1,72 @@
+I/O on UNIX systems are performed with : open, read, write, lseek and close systemcalls
+unbuffered means that each read or write invokes a systemcall in the kernel
+
+/*To open files*/
+#include <fcntl.h>
+int open(const char *path, int oflag, ... /*mode_t mode*/);
+int openat(int fd, const char *path, int oflag, ... /*mode_t mode*/);
+oflag = O_RDONLY/O_WRONLY/O_RDWR/O_EXEC/O_SEARCH
+optional constants = O_APPEND/O_CLOEXEC/O_CREAT/O_DIRECTORY/O_EXCL/O_NOCTTY/O_NOFOLLOW/O_NONBLOCK/O_<D/R/ >SYNC/O_TRUNC/O_TTY_INIT
+/*Both return file descriptor if OK, -1 on error*/
+openat fd =
+	1. Ignored, path = absolute path
+	2. Starting directory, path = relative path
+	3. AT_FDCWD, path = relative to current working directory
+
+/*To create files*/
+#include <fnctl.h>
+int creat(const char *path, mode_t mode);
+/*Returns file descriptor opened for write-only if OK, -1 on error*/
+EQUIVALENT TO : open(path, O_WRONLY | O_CREAT | O_TURNC, mode);
+
+/*To close open files*/
+#include <unistd.h>
+int close(int fd);
+/*Returns 0 if OK, -1 otherwise*/
+
+/*Moving around in open files*/
+#include <unistd.h>
+off_t lseek(int fd, off_t offset, int whence);
+whence = SEEK_SET/(-)SEEK_CUR/(-)SEEK_END
+/*Returns new file offset if OK, -1 otherwise*/
+
+/*Reading from open files*/
+#include <unistd.h>
+ssize_t read(int fd, void *buf, size_t nbytes);
+Returns number of bytes read, 0 if EOF, -1 on error
+
+/*Writing to open files*/
+#include <unistd.h>
+ssize_t write(int fd, void *buf, size_t nbytes);
+Retruns number of bytes written of OK, -1 otherwise
+
+/*Reading from open files safely*/
+#include <unistd.h>
+ssize_t pread(int fd, void *buf, size_t nbytes, off_t offset);
+/*Returns number of bytes read, 0 if EOF, -1 on error*/
+
+/*Writing to open files safely*/
+#include <unistd.h>
+ssize_t pwrite(int fd, void *buf, size_t nbytes, off_t offset);
+/*Returns number of bytes written if OK, -1 otherwise*/
+
+#include <unistd.h>
+int dup(int fd);
+int dup2(int fd, int fd2); //explicitly ask for fd2
+/*Return new file descriptor if OK, -1 if error*/
+
+/*Flushing buffers*/
+#include <unistd.h>
+int fsync(int fd);
+int fdatasync(int fd);
+void sync(void);
+
+/*Change properties of a file already open*/
+#include <fcntl.h>
+int fcntl(int fd, int cmd, ... /* int arg*/);
+
+#include <sys/ioctl.h>
+int ioctl(int fd, int request)
+/*Returns -1 on error, something else if OK*/
+cmd = 	F_DUPFD/F_DUPFD_CLOEXEC/F_GETFD/F_SETFD/F_GETFL/F_SETFL/F_GETWON/F_SETOWN
+/*Returns value corresponding to cmd if successful, else -1*/

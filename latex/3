@@ -1,0 +1,16 @@
+\chapter{An interesting chapter title}
+\section{An interesting section title}
+\subsection{An interesting subsection title}
+
+\usepackage[a4paper, inner=1.5cm, outer=3cm, top=2cm, bottom=3cm, bindingoffset=1cm]{geometry} %specify margins
+papersize={width,height}
+landscape/potrait
+textwidth=140mm
+textheight=120mm
+includehead=true
+includefoot=true
+left=2cm right=2cm % for one side documents
+inner=2cm outr=2cm % for two side documents
+top=20mm bottom=20mm
+twocolumn %make two column
+\usepackage[singlespacing/onehalfspacing/doublespacing]{setspace}
