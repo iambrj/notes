@@ -54,7 +54,6 @@ Set set-user-ID and set-group-ID in st_mode if effective user id of process is t
 int access(const char *pathname, int mode); //mode = F_OK/R_OK/W_OK/X_OK
 int faccessat(int fd = AT_FDCWD, const char *pathname, int mode, int flag); //flag = AT_EACCESS => effective uid/gid checked
 /*Returns 0 if access allowed, -1 otherwise*/
-/* mode = F_OK/R_OK/W_OK/X_OK */
 
 /*Modify default permissions*/
 #include <sys/stat.h>
@@ -93,7 +92,7 @@ int unlink(const char *pathname);
 int unlinkat(int fd = AT_FDCWD, const char *pathname, int flag = AT_REMOVEDIR);
 /*Returns 0 if OK, -1 otherwise*/
 /*Need write and execute permission in directory (if sticky bit also set, the one of three condition must be met) */
-/*Kernel first checks number of process that have file open, then st_nlink*/
+/*Kernel first checks number of process that have file open, then updates st_nlink*/
 
 #include <stdio.h>
 int remove(const char *pathname);

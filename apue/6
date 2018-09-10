@@ -1,7 +1,7 @@
 #include <pwd.h>
 struct passwd *getpwuid(uid_t uid);
 struct passwd *getpwnam(const char *name);
-struct passwd *getpwend(void);
+struct passwd *getpwent(void);
 /*Return pointer if OK, NULL on error*/
 
 void setpwent(void);

@@ -31,9 +31,9 @@ int fclose(FILE *fp);
 /*Returns 0 if OK, EOF on error*/
 
 #include <stdio.h>
-int getc(FILE *fp); //can be a macro
-int putc(int c, FILE *fp); //has to be a function
-int fgetc(FILE *fp);
+int getc(FILE *fp); //can be implemented as a macro
+int putc(int c, FILE *fp);
+int fgetc(FILE *fp); //has to be a function
 itn fputc(int c, FILE *fp);
 int getchar(void); // = getc(stdin);
 int putchar(int c); // = putc(int c, stdout);
