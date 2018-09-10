@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <wchar.h>
+int fwide(FILE *fp, int mode);
+/*Returns + if wide oriented, - if byte oriented, 0 if no orientation*/
+mode = 
+	- => set byte oriented
+	+ => set wide oriented
+	0 => return orientation value (no change)
+
+stdin, stdout, stderr streams defined in stdio.h
+
+#include <stdio.h>
+void setbuf(FILE *restrict fp, char *restrict buf = BUFSIZ/NULL);
+int setvbuf(FILE *restrict fp, char *restrict buf = BUFSIZ/NULL, int mode = _IOFBF/_IOLBF/_IONBF, size_t size);
+/*Returns 0 if OK, nonzero otherwise*/
+
+#include <stdio.h>
+int fflush(FILE *fp);
+/*0 if OK, EOF on error*/
+/*fp = NULL => all buffers written*/
+
+#include <stdio.h>
+FILE *fopen(const char *restrict pathname, const char *restrict type);
+FILE *freopen(const char *restrict pathname, const char *restrict type, FILE *restrict fp); //open on a specified stream
+FILE *fdopen(int fd, const char *type);
+/*Return file pointer if OK, NULL on error*/
+type = r/rb | r+/r+b/rb+ | //replace r with w/a
+
+#include <stdio.h>
+int fclose(FILE *fp);
+/*Returns 0 if OK, EOF on error*/
+
+#include <stdio.h>
+int getc(FILE *fp); //can be a macro
+int putc(int c, FILE *fp); //has to be a function
+int fgetc(FILE *fp);
+itn fputc(int c, FILE *fp);
+int getchar(void); // = getc(stdin);
+int putchar(int c); // = putc(int c, stdout);
+/*All return char if OK, EOF otherwise*/
+
+#include <stdio.h>
+int ferror(FILE *fp);
+int	feof(FILE *fp);
+void clearerr(FILE *fp);
+/*Both return nonzero if true, 0 otherwise*/
+
+#include <stdio.h>
+int ungetc(FILE *fp);
+
+#include <stdio.h>
+char *fgets(char *restrict buf, int n, FILE *restrict fp);
+char *gets(char *buf);
+/*Return buf if OK, NULL otherwise*/
+
+#include <stdio.h>
+int fputs(const char *restrict str, FILE *restrict fp);
+int puts(const char *str);
+/*Return non-negative value if OK, EOF on error*/
+
+Do not use gets because there is no way to specify size of buffer
+
+#include <stdio.h>
+size_t fread(void *restrict ptr, size_t size, size_t nobj, FILE *restrict fp);
+size_t fwrite(const void *restrict ptr, size_t size, size_t nobj, FILE *restrict fp);
+/*Return number of objects read/written*/
+
+#include <stdio.h>
+long ftell(FILE *fp); //returns current position if OK, -1 otherwise
+int fseek(FILE *fp, long offset, int whence); //returns 0 if OK, -1 otherwise
+void rewind(FILE *fp);
+
+#include <stdio.h>
+off_t ftello(FILE* fp);
+int fseeko(FILE *fp, off_t offset, int whence);
+/*Returns 0 if OK, -1 otherwise*/
+
+#include <stdio.h>
+int fgetpos(FILE *restrict fp, fpost_t *restrict pos);
+int fsetpos(FILE *fp, const fpost_t *pos);
+/*Return 0 if OK, -1 otherwise*/
+
+#include <stdio.h>
+int printf(const char *restrict format, ...);
+int fprintf(FILE *restrict fp, const char *restrict format, ...);
+int dprintf(int fd, const char *restrict format, ...);
+/*Return number of chars output if OK, negative value if encoding error*/
+int sprintf(char *restrict buf, const char *restrict format, ...);
+/*Returns number of characters written to buf if OK, negative value if encoding error*/
+int snprintf(char *restrict buf, size_t n, const char *restrict format, ...);
+/*Returnns number of characters written to array if big enough, negative value for encoding error*/
+
+#include <stdio.h>
+int scanf(const char *restrict format, ...);
+int fscanf(FILE *restrict fp, cosnst char *restrict format, ...);
+int sscanf(const char *restrict buf, const char *restrict format, ...);
+/*Return number of input items assigned if OK, EOF otherwise*/
+
+#include <stdio.h>
+int fileno(FILE *fp);
+/*Returns file descriptor associated with fp*/
+
+#include <stdio.h>
+char *tmpnam(char *ptr);
+/*Returns pointer to unique pathname*/
+FILE *tmpfile(void);
+/*Returns file pointer if OK, NULL on error*/
+
+#include <stdlib.h>
+char *mkdtemp(car *template);
+/*Returns pointer to directory name if OK, NULL on error*/
+int mkstemp(char *template);
+/*Returns file descriptor if OK, -1 on error*/
+
+#include <stdio.h>
+FILE *fmemopen(void *restrict buf, size_t size, const char *restrict type);
+/*Returns stream pointer if OK, NULL otherwise*/
+
+#include <stdio.h>
+FILE *open_memstream(char **bufp, size_t *sizep);
+
+#include <wchar.h>
+FILE *open_wmemstream(wchar_t **bufp, size_t *sizep);
+/*Both return stream pointer if OK, NULL on error*/
+int mkstemp(char *template);
