@@ -1,0 +1,47 @@
+#include <stdlib.h>
+void exit(int status); /* cleans up before terminating */
+void _Exit(int status);
+
+#include <unistd.h>
+void _exit(int status);
+
+#include <stdlib.h>
+int atexit(void (*func)(void));
+/*Returns 0 if OK, nonzero otherwise*/
+
+argv[argc] == NULL
+
+#include <stdlib.h>
+void *malloc(size_t size); /* Initial value inderminate*/
+void *calloc(size_t nobj, size_t size); /* All bits set to zero*/
+void *realloc(void *ptr, size_t newsize);
+/* Return non-null pointer if OK, NULL on error*/
+
+void free(void *ptr);
+
+#include <stdlib.h>
+char *getenv(const char *name);
+/* Returns pointer to value associated with name, NULL if not found*/
+
+#include <stdlib.h>
+int putenv(char *str);
+/*Returns 0 if OK, nonzero on error*/
+int setenv(const char *name, const char *value, int rewrite = 0 / 1);
+int unsetenv(const char *name);
+/*Return 0 if OK, -1 on error*/
+
+#include <setjmp.h>
+int setjmp(jmp_buf env);
+/* Returns 0 if called directly, nonzero if returning from a call to longjmp*/
+void longjmp(jmp_buf env, int val);
+
+#include <sys/resource.h>
+int getrlimit(int resource, struct rlimit *rlptr);
+int setrlimit(int resource, const struct rlimit *rlptr);
+resource = RLIMIT_AS/CORE/CPE/DATA/FSIZE/MEMLOCK/MSGQUEUE/NICE/NOFILE/NPROC/NPROC/NPTSRSS/SBSIZE/SIGPENDING/STACK/SWAP/VMEM
+struct rlimit
+{
+	rlim_t rlim_cur; /* soft limit: current limit*/
+	rlim_t rlim_max; /* hard limit: ma value for rlim_cur */
+};
+Use limit = RLIM_INFINITY for infinite limit
