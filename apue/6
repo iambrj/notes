@@ -1,0 +1,90 @@
+#include <pwd.h>
+struct passwd *getpwuid(uid_t uid);
+struct passwd *getpwnam(const char *name);
+struct passwd *getpwend(void);
+/*Return pointer if OK, NULL on error*/
+
+void setpwent(void);
+void endpwent(void);
+
+#include <shadow.h>
+struct spwd *getspnam(const char *name);
+struct spwd *getspent(void);
+/*Return pointer if OK, NULL on error*/
+
+void setspend(void);
+void endspent(void);
+
+#include <grp.h>
+struct group *getgrgid(gid_t gid);
+struct group *getgrnam(const char *name);
+struct group *getgrent(void);
+/*Return pointer if OK, NULL otherwise*/
+
+void setgrent(void);
+void endgrent(void);
+
+#include <unistd.h>
+int getgroups(int gidsetsize, gid_t grouplist[]);
+/*Returns number of supplementary group IDs if OK, -1 otherwise*/
+
+#include <grp.h>
+int setgroups(int ngroups, const gid_t grouplist[]);
+int initgroups(const char *username, gid_t basegid);
+/*Return 0 if OK, -1 otherwise*/
+
+#include <sys/utsname.h>
+int uname(struct utsname *name);
+/*non-negative value if OK, -1 on error*/
+
+struct utsname
+{
+	char sysname[]; /*operating System name*/
+	char nodename[]; /*name of this node*/
+	char release[]; /*current release of operating system*/
+	char version[]; /*current version of this release*/
+	char machine[]; /*name of hardware type*/
+}
+
+#include <unistd.h>
+int gethostname(char *name, int namelen);
+
+#incude <time.h>
+time_t time(time_t *calptr);
+/*Returns vale of time of OK, -1 otherwise*/
+
+#include <sys/time.h>
+int clock_gettime(clockid_t clock_id, struct timespec *tsp);
+/*Returns 0 if OK, -1 on error*/
+clock_id = CLOCK_REALTIME/CLOCK_MONOTONIC/CLOCK_PROCESS_CPUTIME_ID/CLOCK_THREAD_CPUTIME_ID
+
+#include <sys/time.h>
+int clock_getres(clockid_t clock_id, struct timespec *tsp);
+int clock_settime(clockid_t clock_id, const struct timespec *tsp);
+/*Return 0 if OK, -1 otherwise*/
+
+#include <sys/time.h>
+int gettimeofday(struct timeval *restrict tp, void *restice tzp);
+Returns 0 always
+
+#include <sys/time.h>
+struct tm *gmtime(const time_t *calptr);
+struct tm *localtime(const time_t *calptr);
+/*Return pointer to broken down time if OK, NULL otherwise*/
+
+struct tm
+{
+	int tm_sec; /* seconds after the minute [0 - 60] */
+	int tm_min; /* minutes after the hour [0 - 59] */
+	int tm_hour; /* hours after midnight [0 - 23] */
+	int tm_mday; /* day of the month [1 - 31] */
+	int tm_mon; /* months since January [0 - 11] */
+	int tm_year; /* years since 1900 */
+	int tm_wday; /* days since Sunday [0 - 6] */
+	int tm_yday; /* days since January 1 [0 - 365] */
+	int tm_isdst; /* daylight saving time flag <0, 0, >0 */
+}
+
+#include <time.h>
+time_t mktime(struct tm *tmptr);
+/*Returns calendar time if OK, -1 otherwise*/
