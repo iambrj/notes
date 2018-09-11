@@ -1,0 +1,6 @@
+The process of separating your data into tables and creating primary keys is called normalization.
+
+First Normal Form:-
+1. There should be no repeating columns containing the same kind of data.
+2. All columns should contain a single value.
+3. Could any of this table's fields require a global update at any point?

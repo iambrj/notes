@@ -1,0 +1,70 @@
+\c to cancel a command
+commands case insensitive but tables case sensitive
+CREATE DATABASE databaseName;
+GRANT PRIVILEGES ON databaseName.objectName TO 'username'@'hostname' IDENTIFIED BY 'passwd';
+USE databaseName;
+CREATE TABLE tableName
+(
+col1 type(size), //note comma
+col2 type(size),
+col3 type(size)
+)
+ENGINE MyISAM;
+
+Data types:-
+(VAR)CHAR
+(VAR)BINARY
+TINYTEXT
+TEXT
+MEDIUMTEXT
+LONGTEXT
+FULLTEXT //for fast searches
+TINYBLOB
+BLOB
+MEDIUMBLOB
+LONGBLOB
+(UNSIGNED) TINYINT
+(UNSIGNED)SMALLINT
+(UNSIGNED)MEDIUMINT
+(UNSIGNED)INT
+(UNSIGNED)BIGINT
+(UNSIGNED)FLOAT
+(UNSIGNED)DOUBLE
+DATETIME
+DATE
+TIME
+TIMESTAMP
+YEAR
+
+FULLTEXT can be used for
+1. MyISAM tables
+2. CHAR, VARCHAR, TEXT
+3. Given at CREATE TABLE or ALTER TABLE ADD
+
+ALTER TABLE original RENAME final;
+ALTER TABLE tableName ADD columnName INT UNSIGNED ;
+
+INSERT INTO tableName(<columns>) VALUES(<values>);
+INSERT INTO classics(author, title, type, year)
+VALUES('Jane Austen','Pride and Prejudice','Fiction','1811');
+
+ALTER TABLE tableName MODIFY columnName newDataType;
+ALTER TABLE tableName DROP columnName;
+DROP TABLE tableName;
+ALTER TABLE tableName ADD PRIMARY KEY (columnName(<limit>))
+ALTER TABLE tableName ADD INDEX(columnName(<limit>));
+CREATE INDEX columnName ON tableName(columnName(<limit>));
+SELECT columnList FROM tableName;
+SELECT DISTINCT columnList FROM tableName;
+DELETE FROM tableName WHERE <condition>;
+SELECT columnNames FROM tableName WHERE columnName LIKE <regex>
+... LIMIT <offset>,<count> ;
+... MATCH(<columns>) AGAINST('<words>' <IN BOOLEAN MODE>); //if bool, + = include and - = exclude
+UPDATE tableName SET columnName='new name' WHERE columnName='old name';
+... ORDER BY columnName <DESC>;
+... GROUP BY columnName;
+SELECT columnNames FROM tableNames WHERE <condition>;
+SELECT columnNames FROM tableName1 NATURAL JOIN tableName2;
+SELECT columnNames FROM tableName1 JOIN tableName2 ON <condition>;
+... tableName AS alias ...
+AND, OR, NOT can be used in WHERE
