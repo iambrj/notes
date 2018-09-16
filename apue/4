@@ -19,7 +19,7 @@ struct stat
 	off_t	st_size; /*file size*/
 	struct timespec		st_atim; /*last access time*/
 	struct timespec		st_mtime; /*last modified time*/
-	struct timespe		cst_ctim; /*last file status change time*/
+	struct timespec		cst_ctim; /*last file status change time*/
 	blksize_t	st_blksize; /*best block io size*/
 	blkcnt_t	 st_blocks; /*number of disk blocks allowed*/
 }
@@ -47,7 +47,7 @@ st_mode // from <sys/stat.h>
 	S_IWOTH
 	S_IXOTH
 
-Set set-user-ID and set-group-ID in st_mode if effective user id of process is to checked as owner
+Set set-user-ID and set-group-ID in st_mode if effective user id of process is to be checked against owner
 
 /*Check if file is accessable*/
 #include <funistd.h>
