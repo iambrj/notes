@@ -1,0 +1,114 @@
+#include <unistd.h>
+pid_t getpid(void); /* Returns process ID of calling process*/
+pid_t getppid(void); /* Returns parent process ID of calling process*/
+uid_t getuid(void); /* Returns real user ID of calling process*/
+uid_t geteuid(void); /* Returns effective user ID of calling process*/
+gid_t getgid(void); /* Returns real group ID of calling process*/
+gid_t getegid(void); /* Returns effective group ID of calling process*/
+pid_t fork(void); /* Returns 0 in child, procss ID of child in parent, -1 on error*/
+pid_t vfork(void); /* Same as fork, but both child and parent process share common memory and child is executed before parent*/
+
+exit(); /* Calls atexit() handlers, performs flushing and other cleaning, then exits*/
+_exit(); /* exits directly */
+
+On Linux, fork() executes parent first, child next and vfork() executes child first and parent next
+
+#include <sys/wait.h>
+pid_t wait(int *statloc);
+pid_t waitpid(pid_t pid, int *statloc, int options);
+/* Return pid if OK, 0/-1 otherwise*/
+pid
+	== -1 : wait for any child process
+	> 0 : wait for child with pid
+	== 0 : wait for any child process whose gid == calling process gid
+	< -1 : wait for child with pid ==  absolute pid
+Useful macros in <sys/wait.h>
+	WIFEXITED(status) // true if normal exit
+		WEXITSTATUS(status) // fetch low-order 8 bits passed to exit/_exit/_Exit
+	WIFSIGNALED(status) // true if terminated via signal
+		WTERMSIG(status)
+		WCOREDUMP(status)
+	WIFSTOPPED(status) // true if process stopped
+		WSTOPSIGstatus)
+	WIFCONTINUED(status) // true if continued after a job control stop
+options = WCONTINUED | WNOHANG | WUNTRACED
+
+#include <unistd.h>
+int execl(const char *pathname, const char *arg0, ... /* (char *)0 */);
+int execv(const char *pathname, char *const argv[]);
+int execle(const char *pathname, const char *arg0, ... /* (char *)0, char *const envp[] */);
+int execve(const char *pathname, char *const argv[], char *const envp[]);
+int execlp(const char *filename, const char *arg0, ... /* (char *)0 */);
+int execvp(const char *filename, char *const argv[]);
+int fexecve(int fd, char *const argv[], char *const envp[]);
+/* All return -1 on error, nothing if OK */
+
+l = list of args
+v = vector of args
+e = custom environment
+p = pathname instead of filename
+f = file descriptor
+
+#include <unistd.h>
+int setuid(uid_t uid);
+int setgid(gid_t gid);
+/*Return 0 if OK, -1 otherwise*/
+
+#include <unistd.h>
+int setreuid(uid_t ruid, uid_t euid);
+int setregid(gid_t rgid, gid_t egid);
+/*Return 0 if OK, -1 otherwise*/
+
+#include <unistd.h>
+int seteuid(uid_t uid);
+int setegid(gid_t gid);
+/*Return 0 if OK, -1 otherwise*/
+
+#include <stdlib.h>
+int system(const char *cmdstring);
+
+#include <sys/acct.h>
+struct acct
+{
+	char ac_flag;
+	uid_t ac_uid;
+	gid_t ac_gid;
+	dev_t ac_tty;
+	comp_t ac_btime;
+	comp_t ac_utime;
+	comp_t ac_stime;
+	comp_t ac_etime;
+	comp_t ac_io;
+	comp_t ac_rw;
+	ac_comm[17];
+};
+ac_flag = AFORK / ASU / ACORE / AXSIG / AEXPND / ANVER
+
+#include <unistd.h>
+char *getlogin(void);
+/* Returns pointer to string if OK, NULL otherwise*/
+
+#include <unistd.h>
+int nice(int incr);
+/* Returns new nice value if OK, -1 otherwise*/
+
+#include <sys/resource.h>
+int getpriority(int which, id_t who);
+/* Returns nice value between NZERO and NZERO-1 if OK, -1 on error*/
+which = PRIO_PROCESS / PRIO_PGRP / PRIO_USER
+
+#include <sys/resource.h>
+int setpriority(int which, id_t who, int value);
+/* Returns 0 if OK, -1 on error*/
+
+#include <sys/times.h>
+clock_t times(struct tms *buf);
+/* Returns elapsed wall clock time in clock ticks if OK, -1 otherwise*/
+
+struct tms
+{
+	clock_t tms_utime;
+	clock_t tms_stime;
+	clock_t tms_cutime;
+	clock_t tms_cstime;
+};
