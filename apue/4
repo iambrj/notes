@@ -37,7 +37,7 @@ S_TYPEISSE() // semaphore // takes stat_object as parameter
 S_TYPEISSHM() // shard memory object // takes stat_object as parameter
 
 st_mode // from <sys/stat.h>
-	S_IRUSR
+	S_IRUSR //S = stat and I = inode
 	S_IWUSR
 	S_IXUSR
 	S_IRGRP
