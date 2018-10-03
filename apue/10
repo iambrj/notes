@@ -1,0 +1,90 @@
+#include <signal.h>
+void (*signal(int signo, void (*func)(int))) (int);
+/* Returns previous disposition of signal if OK, SIG_ERR on error */
+
+#include <signal.h> 
+int kill(pid_t pid, int signo); /* kill is a misnomer */
+int raise(int signo); /* same as kill(getpid(), signo) */
+/* Return 0 if OK, -1 otherwise*/
+
+pid == 0 => sent to all processes in group
+pid > 0 => sent to process with pid
+pid < 0 => sent to process with -1 * pid
+pid == -1 => sent to all permitted processes
+
+#include <unistd.h>
+unsigned int alarm(unsigned int seconds); /* DEFAULT: terminate process after seconds */
+/* Return 0 or number of seconds until previously set alarm */
+
+#include <unistd.h>
+int pause(void); /* Suspend process until a signal is caught */
+/* Returns -1 with errorno set to EINTR */
+
+#include <signal.h>
+int sigemptyset(sigset_t *set);
+int sigfillset(sigset_t *set);
+int sigaddset(sigset_t *set, int signo);
+int siddelset(sigset_t *set, int signo);
+/* Return 0 if OK, -1 on error */
+
+int sigismember(sigset_t *set, int signo);
+/* Returns 1 if true, 0 otherwise */
+
+#include <signal.h>
+itn sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oset);
+how = SIG_BLOCK/SIG_UNBLOCK/SIG_SETMASK
+
+#include <signal.h>
+int sigpending(sigset_t *set);
+/* Returns 0 if OK, -1 otherwise */
+
+#include <signal.h>
+int sigaction(int signo, const struct sigaction *restrict act, struct sigaction *restrict oact);
+/* Returns 0 if OK, -1 on error */
+
+struct sigaction {
+	void (*sa_handler)(int); /* Address of signal handler */
+							 /* or SIG_IGN or SIG_DFL */
+	sigset_t sa_mask; /* Additional signals to block */
+	int sa_flags; /* signal options */
+	void (*sa_sigaction)(int, siginfo_t *, void *); /* alternate handler */
+};
+sa_flags = SA_INTERRUPT/NOCLDSTOP/NOCLDWAIT/NODEFER/ONSTACK/RESETHAND/RESTART/SIGINFO
+
+struct siginfo {
+	int si_signo; /* signal number */
+	int si_errno; /* if nonzero, errno from errorno.h */
+	int si_code; /* additional info */
+	pid_t si_pid; /* sending pid */
+	uid_t si_uid; /* sending process real uid */
+	void *si_addr; /* address that caused the fault */
+	int si_status; /* exit value/signal number */
+	uion sigval si_val; /* application-specific value */
+	/* possibly others */
+};
+
+#include <signal.h>
+int sigsuspend(const sigset_t *sigmask);
+/* returns -1 with errorno set to EINTR */
+
+#include <signal.h>
+int sigqueue(pid_t pid, int signo, const union sigval value);
+/* returns 0 if OK, -1 otherwise */
+
+Job control signals
+SIGCHLD	child process has stopped
+SIGCONT continue process, if stopped
+SIGSTOP stop signal (cannot be ignored or caught)
+SIGTSTP interactive stop signal
+SIGTTIN read from controlling terminal for background process
+SIGTTOU	write to controlling terminal for background process
+
+extern char *sys_siglist[]; /* get char string name of signals indexed by signal numbers */
+
+#include <signal.h>
+void psignal(int signo, const car *msh);
+/* print char string corresponding to signo to stderr */
+
+#include <string.h>
+char *strsignal(int signo);
+/* return informative string for signo signal */
