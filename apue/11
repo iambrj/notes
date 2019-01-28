@@ -1,0 +1,31 @@
+#include <pthread.h>
+int pthread_equal(pthread_t tid1, pthread_t tid2); /* test if both are equal */
+/* nonzero if equal, 0 otherwise */
+
+#include <pthread.h>
+pthread_t pthread_self(void); 
+/* returns thread id of calling thread */
+
+#include <pthread.h>
+int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict attr, void *(*start_rtn)(void *), void *restrict arg);
+/* returns 0 if OK, error code on failure */
+
+#include <pthread.h>
+void pthread_exit(void *rval_ptr); /* exit current thread with rval_ptr return value */
+
+int pthread_join(pthread_t tid, void **rval_ptr); /* block current thread until tid finishes */
+/* returns 0 if OK, error number otherwise */
+
+#include <pthread.h>
+int pthread_cancel(pthread_t tid); /* request to cancel thread tid with rval_ptr = PTHREAD_CANCELLED*/
+/* returns 0 if OK, error no otherwise */
+
+#include <pthread.h>
+void pthread_cleanup_push(void (*rtn)(void *), void *arg);
+void pthread_cleanup_pop(int execute); /* set 0 to not call rtn */
+
+#include <pthread.h>
+int pthread_detach(pthread_t tid); 
+/* return 0 if OK, error number on failure */
+
+
