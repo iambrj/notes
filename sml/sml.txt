@@ -1,0 +1,108 @@
+type 
+	<newType> = <previouslyDefinedType> 
+	and ...
+
+
+
+val 
+	<variableName> : <previouslyDefinedType> = <expression> 
+	and ...
+
+
+
+let 
+	<declaration> 
+in 
+	<expression> 
+end 
+
+
+
+local 
+	<declaration> 
+in 
+	<declaration> 
+end
+
+
+
+Two types are equivalent iff they are the same when the type constructors defined in typenv are replaced by their bindings
+
+
+if 
+	<expression> 
+then 
+	<expression2> 
+else 
+	<expression1> //type same as expression1 and expression2 (both gotta have same type)
+
+
+Lambda expression
+fn <parameterIdentifier> : <parameterType> => <expression> //has type typ->typ1 provided expression has type <typ1> when <parameter> has type <typ>
+
+(fn <parameterIdentifier> : <parameterType> => <expession>) (<parameter>) //anonymous function
+
+val <functionIdentifier> : type->type1 = fn <parameterIdentifier> : <parameterType> => <expression>
+
+fun <functionIdentifier> (<parameterId>:<parameterType>):<funcType> = <expression>
+
+static scope - variables are taken to refer to the nearest enclosing binding value of that variable
+
+val <identifier> : (<types>) = (<expressions>) //tuple
+
+val <pattern> = <expression> //pattern and expression should have same type
+
+type <recordIdentifier> {<label>:<type>, ...}
+
+val <variableIdentifier> : <recordTypeName> = {<label>=<value>}
+
+val {<label> = <variableIdentifier>, <label> = _, ...} = <recordVariable>
+
+All values of that type have the same form (n tuples, for some n determined by the type) = homogeneous types
+Types with values of more than one form = heterogeneous types (ex: int, char)
+
+Clausal Function
+fn pat1 => exp1
+| .
+  .
+  .
+| patn => expn
+
+function has type typ1->typ2
+if no pattern found, application fails with an execution error called a match failure.
+
+fun <identifier> <pattern> = <expression>
+	| <identifier> <pattern> = <expression> ... //note use of = instead of =>
+
+case <expression>
+  of pattern1 => expression1
+	|...
+	|patternn => expressionn
+
+val rec <identifier> : typeDomain->typeRange = <function definiton>
+
+Tail recursive - recursive call is the last step of evaluation of an application of it to an argument
+
+Mutually recursive functions
+fun even 0 = true
+	| even n = odd (n - 1)
+and odd 0 = false (* and keyword indicates that they are defined simultaneously by mutual recursion*)
+	| odd n = even (n - 1)
+
+Principal typing property: whenver type information is omitted, there is always a most general 
+(i.e. least restrictive) way to recover the omitted type information. If there is no way to
+recover the omitted type information, the expression is ill-typed.
+
+polymorphic : same behaviour irrespective of type
+
+type scheme : a type expression involving on or more type variables standing for an unkown, but 
+arbitary type expression. an instance of a type scheme is obtained by replacing each occurance
+of type variables in it with a type scheme.
+
+principal type scheme : best/most general way to infer types for expressions that maximize 
+generality, hence maximizes flexibility
+
+value restriction : variables introduced by a val binding are allowed to be polymorphic only if
+the right-hand side is a value.
+
+
