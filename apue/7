@@ -6,7 +6,7 @@ void _Exit(int status);
 void _exit(int status);
 
 #include <stdlib.h>
-int atexit(void (*func)(void));
+int atexit(void (*func)(void)); /* maintained in stack */
 /*Returns 0 if OK, nonzero otherwise*/
 
 argv[argc] == NULL
