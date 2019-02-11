@@ -1,0 +1,59 @@
+BSD FFS - Berkeley Software Distribution Fast File System
+
+FFS consists of - a superblocm a block bitmap, an i-node map and an arry of 
+				  preallocated i-nodes
+
+To improve performance 
+	- read/write from contigious blocks
+	- minimize disk head movement - switching heads (electrical) faster than
+	  moving heads (mechanical)
+	- careful metadata writing - all done synchronously
+
+Linux ext2 
+	- fast implementation of classic Unix file system
+	- Access Control Lists - only nonstandard feature
+	- superior speed via consistency model and fsck
+	- divides disk into fixed-size block group - each minimal filesystem
+	- each block group gets its own superblock, bitmap, i-node map and table.
+	- performs all operations in memory until flushed
+	- lack of ordering may cause inconsistencies
+
+Macintosh HFS
+	- No i-node table, no explicit directories
+	- utilizes B*trees extensively to store file system structures
+	- two main structures: catalog file and extent overflow file
+	- catalog file: directory records, directory threads, file records and file threads
+	- file/director - record (last modification time, access time etc) + thread (name + directory)
+	- failed at scalability
+
+Irix XFS
+	- supports journaling, 64-bit files, highly parallel operation
+	- uses B+trees to manage free disk space
+	- allocation groups - maintain a pair of B+trees that record information
+	about free space in the group. One maintains sorted by block number and
+	other maintains sorted by length
+	- benefits: no disk space wasted for unneeded files, no limits on number
+	of files created
+	- drawbacks: looking up an i-node is a B+tree lookup (compared to constant
+			time on list)
+	- use B+tree for storing contents of a directory
+	- parallel operations - readers writers problem
+	- trades implementation complexity for performance gains
+
+Windows NTFS
+	- Master File Table: contains i-nodes for all files
+	- i-nodes also contains attributes (some optional, some required)
+	Following entries always in MFT as a file - i.e. even metadata is a file
+		- MFT
+		- Partial MFT copy
+		- Log file
+		- Volume file
+		- Attribute definition file
+		- Root directory
+		- Bitmap file
+		- Bootfile
+		- Bad cluster file
+	- Directories stored in B+trees with entries sorted by name
+	- Implements wirte-ahead-logging: write to log before perfoming operations
+	- Compression: sparse files (omit writing zeros) 
+				   + chunks of 16 file system blocks and compression on each
