@@ -101,4 +101,5 @@ Extended operations
 		Special hooks that allow applications to guarantee certain amount of 
 		I/O bandwidth.
 	- Access Control Lists
-		Refine classical POSIX security model
+		Refine classical POSIX security model, provide specialized permissions
+		for each individual user
