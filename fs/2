@@ -1,0 +1,104 @@
+Disk: A permanent storage medium of a certian size. It also has a sector or
+block size, which is the minimum unit that the disk can read or write. The
+block size of most modern hard disks is 512 bytes.
+
+Block: The smallest unit writable by a disk or a file system. A file system
+block is always the same size or larger (usually integers multiples) than
+the block size.
+
+Partition: A subset of all the blocks on a disk. A disk can have several
+paritions.
+
+Volume: A collection fo blocks on some storage medium. This may span across
+several disks.
+
+Superblock: Area of volume where filesystem stores critical volumewide 
+information - how large, name etc
+
+Metadata: A general term referring to information that is about something but 
+not a part of.
+
+Journaling: A method of ensuring the correctness of filesystem metadata in the
+presence of power failures or unexpected reboots.
+
+I-node: The place where a filesystems stores all the metadata about a file. 
+Also called as file control block (FCB)
+
+Extent: A starting block number and length of successive blocks on a disk
+
+Attribute: A name and value associated with the name
+
+File: An abstraction over a disk
+
+Directory: A collection of files - manages a list of files and connects the name
+in the directory with the associated file (i-node)
+
+Directories can be implemented as 
+	- Unsorted list of files
+		look up too slow
+	- B/B+/B* tree
+		on disk data structure
+		sorts keys by their name
+		also use hash tables, radix sort schemes etc to optimize lookup time
+
+Basic operations to implement
+	- Initilization
+		Free/used block map (bitmap), number of i-nodes, size of journal area.
+		Have to place all these into a superblock optimally. It must also 
+		create a root directory.
+	- Mounting
+		Access raw device, perform validation, read superblock and other metadata 
+		and prepare system for access to the volume. Construct in-memory data
+		structures using on disk data structures to allow volume access.
+	- Unmounting
+		Flush all in memory state to disk. Mark superblock indicating normal
+		shutdown.
+	- Creating files
+		Directory to create the file and name of the file. Create an i-node to
+		represent this information.
+	- Creating Directories
+		Create i-node and initialize.
+	- Opening files
+		First, lookup; second, verify permissions
+	- Writing to files
+		Reference, position, memory buffer and length of data. Update i-node to
+		block list. Map logical position to physical position.
+	- Reading files
+		Reference, position, memory buffer and lenght of data. 
+	- Deleting files
+		First - remove from directory. Second - free i-node.
+	- Rename
+		Needed - source directory handle, source file name, destination 
+		directory handle and destination file name.
+		Validation before operation - locking multithreading etc. 
+	- Reading metadata
+		stat() in POSIX world
+	- Writing metadata
+		chown(), chmod(), utimes() etc
+	- Opening Directories
+		opendir(), allocate a struct to return readdir() etc.
+	- Reading Directories
+		Enumerate directory contents.
+Extended operations
+	- Symbolic links
+		Reference to another file
+	- Hard links
+		Multiple names for same i-node
+	- Dynamic links
+		Like symbolic links, but points to different files based on access
+		permissions
+	- Memory mapping
+		Create a region of virtual memory in the address space of a program
+		where each byte corresponds to bytes in the file.
+	- Attributes
+		Name + value
+	- Indexing
+		Create indexes on attributes to create a powerful interface to fs.
+	- Journaling/logging
+		Batch groups of changes and  commits them all at once in a 
+		transaction log. Atomicity of multiple changes needs to be gauranteed.
+	- Guaranteed Bandwidth/Bandwidth Reservation
+		Special hooks that allow applications to guarantee certain amount of 
+		I/O bandwidth.
+	- Access Control Lists
+		Refine classical POSIX security model
