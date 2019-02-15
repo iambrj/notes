@@ -1,6 +1,6 @@
 BSD FFS - Berkeley Software Distribution Fast File System
 
-FFS consists of - a superblocm a block bitmap, an i-node map and an arry of 
+FFS consists of - a superblock, a block bitmap, an i-node map and an array of 
 				  preallocated i-nodes
 
 To improve performance 

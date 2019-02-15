@@ -9,7 +9,7 @@ the block size.
 Partition: A subset of all the blocks on a disk. A disk can have several
 paritions.
 
-Volume: A collection fo blocks on some storage medium. This may span across
+Volume: A collection of blocks on some storage medium. This may span across
 several disks.
 
 Superblock: Area of volume where filesystem stores critical volumewide 
