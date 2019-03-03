@@ -100,12 +100,12 @@ Use mutable keyword to make records mutable
     {
         mutable sum: float;
         mutable sum_sq: float;
-        mutabel samples: int;
+        mutable samples: int;
     }
 ```
 For syntax
 ```
-    let ar = Array.init 20 ~f:(fun i->i);;
+    let arr = Array.init 20 ~f:(fun i->i);;
     premute arr;;
 ```
 While syntax
