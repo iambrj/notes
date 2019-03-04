@@ -106,7 +106,6 @@ with the value returned by the callee except to return it.
 
 A `when` clause allows us to add an extra precondition to a pattern in the form
 of an arbitary OCaml expression.
-
 ```
 let rec destutter = function
 	| [] | [_] as l -> l
@@ -114,3 +113,21 @@ let rec destutter = function
 	| hd :: tl -> hd :: destutter tl
 ;;
 ```
+
+Use `|>` to chain successive calls. It is defined as
+
+```
+let (|>) x f = f x
+```
+
+The basic idea is that 
+```
+e |> f = f e
+```
+
+As an example
+```
+l2 |> fun x -> e
+let x = l2 in e
+```
+both are equivalent
