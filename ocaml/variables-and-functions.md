@@ -120,10 +120,52 @@ Labeled arguments allow you to identify function argument by name
 
 ```
 let ratio ~num ~denom = float num /. float denom;;
-ration ~denom:10 ~num:3;;
+ratio ~denom:10 ~num:3;;
 (\* label punning \*)
 let num = 3 in
 	let denom = 4 in
 		ratio ~num ~denom;;
+(\* syntactic sugar for \*)
+let concat ?(sep="") x y = x ^ sep ^ y;;
+```
+In higher order context (passing a function with labeled arguments to another
+function) order matters
+```
+let apply_to_tuple f (first,second) = f ~first ~second;;
+let apply_to_tuple_2 f (first,second) = f ~second ~first;;
+let divide ~first ~second = first / second;;
+apply_to_tuple divide (3,4);; (\* works \*) 
+apply_to_tuple_2 divide (3,4);; (\* does not work \*) 
 ```
 
+An optional argument is a labeled argument that the caller can choose whether
+or not to provide. It is syntactic sugar for passing None when the caller does
+not provide an argument and Some when done.
+```
+let concat ?sep x y = 
+	let sep = match sep with None -> "" | Some x -> x in
+		x ^ sep ^ y
+;;
+```
+Note the use of ? to mark an argument as optional
+
+Type inference
+```
+let numeric_deriv ~delta ~x ~y ~f =
+	let x' = x +. delta in
+	let y' = y +. delta in
+	let base = f ~x ~y in
+	let dx = (f ~x:x' ~y -. base) /. delta in
+	let dy = (f ~x ~y:y' -. base) /. delta in
+	(dx,dy)
+;;
+(\* Does not compile - use explicit type annotation \*)
+```
+An optional argument is erased as soon as the first positional (ie.e neither
+labeled nor optional) argument definedafter the optional argument is passed in.
+```
+let concat x ?(sep="") y = x ^ sep ^ y;;
+concat "a" "b" ~sep:"=";;
+```
+An optional argument that doesn't have any following positional arguments can't
+be erased.
