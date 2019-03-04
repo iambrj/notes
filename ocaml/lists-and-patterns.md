@@ -12,11 +12,11 @@ And they can also be generated using the equivalent :: notation:
 1 :: 2 :: 3 :: [];;
 ```
 
-:: operator is right-associative
+`::` operator is right-associative
 
-[] is polymorphic - it can be used with elements of any type.
+`[]` is polymorphic - it can be used with elements of any type.
 
-Use :: to extract elements from a list
+Use `::` to extract elements from a list
 
 ```
 let rec sum l = 
@@ -26,9 +26,9 @@ let rec sum l =
 ;;
 ```
 
-Use _ for denoting anything (wildcard).
+Use `_` for denoting anything (wildcard).
 
-List.map takes a list and a function for transforming elements of that list,
+`List.map` takes a list and a function for transforming elements of that list,
 and returns a new list with the transformed elements.
 
 ```
@@ -36,7 +36,7 @@ List.map ~f:String.length ["Hello"; ""World!];
 - : int list = [5; 6]
 ```
 
-List.map2_exn takes two lists and a function for combining them (exn indicates
+`List.map2_exn` takes two lists and a function for combining them (exn indicates
 exception on lists with mismatched lengths)
 
 ```
@@ -44,8 +44,8 @@ List.map2_exn ~f:Int.max [1; 2; 3] [3; 2; 1]
 - : int list = [3; 2; 3]
 ```
 
-List.fold takes three arguments: a list to process, an initial accumulator
-value, and a function for updating the accumulator. List.fold walks over the
+`List.fold` takes three arguments: a list to process, an initial accumulator
+value, and a function for updating the accumulator. `List.fold` walks over the
 list from left to right, updating accumulator at each step and returning the
 final value of the accumulator when it's done.
 
@@ -54,7 +54,7 @@ List.fold ~init:0 ~f:(+) [1;2;3;4];;
 - : int = 10
 ```
 
-List.reduce is a specialized version of List.fold that doesn't require an 
+`List.reduce` is a specialized version of List.fold that doesn't require an 
 explicit starting value, and whose accumulator has to consume and produce
 values of the same type as the elements fo the list it applies to. Its 
 signature is `'a list -> f:('a -> 'a -> 'a) -> 'a option = <fun>`
@@ -66,7 +66,7 @@ List.reduce ~f:(+) []
 - : int option = None
 ```
 
-List.filter lets you select a certain elements from a list. It takes two 
+`List.filter` lets you select a certain elements from a list. It takes two 
 arguments - a predicate f and a list
 
 ```
@@ -74,9 +74,9 @@ List.filter ~f:(fun x -> x mod 2 = 0) [1;2;3;4;5];;
 - : int list [2; 4]
 ```
 
-List.dedup removes duplicates from a list.
+`List.dedup` removes duplicates from a list.
 
-List.partition_tf takes a list and a function for computing a Boolean condition
+`List.partition_tf` takes a list and a function for computing a Boolean condition
 on the list elements and returns two lists
 
 ```
@@ -91,7 +91,7 @@ val ml_files : string list = ["example.mli"; "example.ml"]
 val other_files : string list = ["main.topscript"; "lists_layout.ascii"]
 ```
 
-List.append and @ operator concatenate pairs of lists:
+`List.append` and `@` operator concatenate pairs of lists:
 
 ```
 List.append [1;2;3] [4;5;6];;
