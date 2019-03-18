@@ -1,3 +1,5 @@
+Modules act as boundaries that divide your program into conceptual units
+
 To compile an ocaml file
 
 ```
