@@ -1,28 +1,47 @@
-#Various general purpose registers available for x86 are
+# Various general purpose registers available for x86 are
 
 `rax` - 64 bit accumulator: Used in I/O and arithmetic instructions
+
 `ebx` - 32 bit base register: Used for indexing
+
 `cx` - 16 bit count register: Used for count in looping
+
 `dl` - 8 bit data register: Also used for I/O
+
 `ip` - 16 bit Instruction Pointer: Points to next instruction
+
 `sp` - 16 bit Stack Pointer: Provides offset value within program stack
+
 `bp` - 16 bit Base Pointer: Used to get parameter location in functions
+
 `si` - 16 bit Source Index: Source index for string operations
+
 `di` - 16 bit Destination Index: Destination index for string operations
+
 `cs` - 16 bit Code Segment: Contains starting address of code segment
+
 `ds` - 16 bit Data Segment: Contains strating address of data segment
+
 `ss` - 16 bit Stack Segment: Contains starting address of stack segment
 
-#Flags
+# Flags
 
 `OF` - Overflow Flag: Indicates overflow of higher-order bit of data after a signed arithmetic operation
+
 `DF` - Direction Flag: If set, strings are processed right-to-left
+
 `IF` - Interrupt Flag: If set, enables interrupts
+
 `TF` - Trap Flag: If set, processor enters single-step execution
+
 `SF` - Sign Flag: Set if result of arithmetic operator negative
+
 `ZF` - Zero Flag: Set if result of arithmetic operator zero
+
 `AF` - Auxillary carry Flag: Contains carry from bit-3 to bit-4
+
 `PF` - Parity Flag: Set if odd number of 1-bits
+
 `CF` - Carry Flag: Contains carry from higher-order bit after arithmetic operation. It also contains last bit of shift or rotate
 
 # Using Linux system calls
