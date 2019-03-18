@@ -106,3 +106,57 @@ MOV [EBX], 123			; MY_TABLE[1] = 123
 |	DWORD		|		4			|
 |	QWORD		|		8			|
 |	TBYTE		|		10			|
+
+## Allocating memory for variables
+|	Keyword		|	Bytes allocated	|
+| ------------  |	---------------	|
+|	DB			|	1				|
+|	DW			|	2				|
+|	DD			|	4				|
+|	DQ			|	8				|
+|	DT			|	10				|
+
+Example:
+```
+section .text
+
+	global _start
+
+_start:
+   mov	edx,1		  ;message length
+   mov	ecx,choice    ;message to write
+   mov	ebx,1		  ;file descriptor (stdout)
+   mov	eax,4		  ;system call number (sys_write)
+   int	0x80		  ;call kernel
+
+   mov	eax,1		  ;system call number (sys_exit)
+   int	0x80		  ;call kernel
+
+section .data
+choice DB 'y'
+	
+```
+
+## Allocating space for uninitialized data
+|	Keyword	|	Bytes allocated	|
+|	-------	|	---------------	|
+|	RESB	|		1			|
+|	RESW	|		2			|
+|	RESD	|		4			|
+|	RESQ	|		8			|
+|	REST	|		10			|
+
+_NOTE_: Use `times` directive to for multiple instantiations for the same value
+```
+marks TIMES 9 DW 0
+```
+
+Use `equ` directive to declare immutable numeric constants using syntax `CONSTANT_NAME equ EXPRESSION`
+```
+totalStudents equ 45
+mov ax, totalStudents	; totalStudents = 45
+```
+
+Use `%assign` directive to declare mutable numeric constants using syntax `%assign CONSTANT_NAME EXPRESSION`
+
+Use `%define` directive to declare mutable numeric/string constants using syntax `%define PTR [EBP + 4]`
