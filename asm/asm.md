@@ -160,3 +160,119 @@ mov ax, totalStudents	; totalStudents = 45
 Use `%assign` directive to declare mutable numeric constants using syntax `%assign CONSTANT_NAME EXPRESSION`
 
 Use `%define` directive to declare mutable numeric/string constants using syntax `%define PTR [EBP + 4]`
+
+Length of string can be specified by
+	* Explicitly storing string length
+	* Using a sentinal character
+
+`$` symbol represents the current value of the location counter
+
+Use `cld` to clear direction flag and `sld` to set direction flag
+
+Declare arrays using comma separated lists
+
+```
+numbers dw 1, 2, 3, 4
+```
+
+Alternatively, use times
+```
+numbers times 8 dw 0 ; initialize 8 words to zeros
+```
+
+Define a procedure using the following syntax
+```
+proc_name:
+	procedure body
+	...
+	ret
+```
+
+Call a procedure using `call` instruction
+```
+call proc_name
+```
+
+Procedure example
+```
+section .text
+	global _start
+
+_start:
+	mov ecx, '4'
+	sub ecx, '0'
+	mov edx, '5'
+	sub edx, '0'
+	call sum
+	mov [res], eax
+	mov ecx, msg
+	mov edx, len
+	mov ebx, 1
+	mov eax, 4
+	int 0x80
+
+	mov ecx, res
+	mov edx, 1
+	mov ebx, 1
+	mov eax, 4
+	int 0x80
+
+	mov eax, 1
+	int 0x80
+
+sum:
+	mov eax, ecx
+	add eax, edx
+	add eax, '0'
+
+section .data
+msg db "The sum is:", 0xa, 0xd
+len equ $ - msg
+
+segment .bss
+res resb 1
+```
+
+Use stack to save register values for later use
+```
+push ax
+push bx
+
+mov ax, value1
+mov bx, value2
+...
+
+pop ax
+pop bx
+```
+
+Macro syntax in nasm
+```
+%macro macro_name number_of_params
+<macro body>
+%endmacro
+```
+
+Example of macro
+```
+%macro write_string 2
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, %1
+	mov edx, %2
+	int 0x80
+%endmacro
+
+section .text
+	global _start
+
+_start:
+	write_string msg1, len1
+
+	mov eax, 1
+	int 0x80
+
+section .data
+msg1 db 'Hello, world!', 0xa, 0xd
+len1 equ $ - msg1
+```
