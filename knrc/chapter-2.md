@@ -34,18 +34,18 @@ expression like `(i + j)++` is illegal.
 ## Precedence and Associativity of operators
 |				Operators				|	Associativity	|
 |				---------				|	-------------	|
-| `() [] -> .`							|	left to right	|
-| `! ~ ++ -- + _ * & (type) sizeof`		|	right to left	|
-| `* / %`								|	left to right	|
-| `+ - `								|	left to right	|
-| `<< >>`								|	left to right	|
-| `< <= > >=`							|	left to right	|
-| `== !=`								|	left to right	|
-| `&`									|	left to right	|
-| `^`									|	left to right	|
-| `|`									|	left to right	|
-| `&&`									|	left to right	|
-| `||`									|	left to right	|
-| `?:`									|	right to left	|
-| `= += -= *= /= %= &= ^= |= <<= >>=`	|	right to left	|
-| `,`									| 	left to right	|
+| () [] -> .							|	left to right	|
+| ! ~ ++ -- + _ * & (type) sizeof		|	right to left	|
+| * / %								|	left to right	|
+| + - 								|	left to right	|
+| << >>								|	left to right	|
+| < <= > >=							|	left to right	|
+| == !=								|	left to right	|
+| &									|	left to right	|
+| ^									|	left to right	|
+| \|									|	left to right	|
+| &&									|	left to right	|
+| \|\|									|	left to right	|
+| ?:									|	right to left	|
+| = += -= *= /= %= &= ^= |= <<= >>=	|	right to left	|
+| ,									| 	left to right	|
