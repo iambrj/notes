@@ -76,19 +76,21 @@ where `format specifiers` are the following:
 |	%s		|						Subject	|
 
 Some other common options for `git log` are
-|	Option			|	Description	|
-|	-----	|	--------------------------	|
-|	-p				|	Show the patch introduced with each commit	|
-|	--stat			|	Show statistics for files modified in each commit	|
+
+|	Option			|									Description								|
+|	-----			|								--------------------------					|
+|	-p				|					Show the patch introduced with each commit				|
+|	--stat			|			Show statistics for files modified in each commit				|
 |	--shortstat		|	Display only changed/insertions/deletions line from the `--stat`command	|
-|	--name-only		|	Show list of files modified after commit info	|
-|	--name-status	|	Show list of files with added/modified/deleted info	|
-|	--abbrev-commit	|	Show only first few characters of SHA-1 checksum	|
-|	--relative-date	|	Display date in relative format	|
-|	--graph			|	Display ASCII graph showing branch and merge history	|
-|	--pretty		|	Show commits in an alternate format	|
+|	--name-only		|				Show list of files modified after commit info				|
+|	--name-status	|			Show list of files with added/modified/deleted info				|
+|	--abbrev-commit	|				Show only first few characters of SHA-1 checksum			|
+|	--relative-date	|							Display date in relative format					|
+|	--graph			|			Display ASCII graph showing branch and merge history			|
+|	--pretty		|						Show commits in an alternate format					|
 
 Some options to limit output of `git log`
+
 |	Option	|	Description	|
 |	-----	|	--------------------------	|
 |	-(n)	|	Show only the last n commits	|
