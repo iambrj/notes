@@ -1,3 +1,6 @@
+# Running
+Use `nasm -f elf file.asm` to assemble to file and `ld -m elf_i386 -o executable
+file.o` to link and create executable.
 # Various general purpose registers available for x86 are
 
 `rax` - 64 bit accumulator: Used in I/O and arithmetic instructions
