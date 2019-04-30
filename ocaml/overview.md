@@ -118,7 +118,7 @@ premute arr;;
 ```
 let pos = ref 0 in
 while !pos < Array.length && array.(!pos) >= 0 do
-pos := !pos + 1
+	pos := !pos + 1
 done;
 if !pos = Array.length array then None else Some !pos
 ;;

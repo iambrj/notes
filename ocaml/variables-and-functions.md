@@ -14,7 +14,7 @@ let <variable> = <expr1> in <expr2>;;
 
 An inner binding shadows/hides an outer binding.
 
-`let` bindings are mutable (they cannot be changed)
+`let` bindings are immutable (they cannot be changed)
 
 `let` bindings support pattern matching
 
@@ -62,7 +62,7 @@ which is ofcourse, syntactic sugar for Currying
 let abs_diff = (fun x -> (fun y -> abs (x - y)));;
 ```
 
--> is right associative.
+`->` is right associative.
 
 Partial application - apply some of the arguments of a curried 
 function to get a new function.
@@ -80,7 +80,8 @@ let rec find_first_stutter list =
 ;;
 ```
 
-Use `let` and `rec` in conjunction with `and` to 
+Use `let` and `rec` in conjunction with `and` to create mutually recursive
+functions
 
 ```
 let rec is_even x = 
@@ -147,7 +148,7 @@ let concat ?sep x y =
 		x ^ sep ^ y
 ;;
 ```
-Note the use of ? to mark an argument as optional
+Note the use of `?` to mark an argument as optional
 
 Type inference
 ```
@@ -161,8 +162,8 @@ let numeric_deriv ~delta ~x ~y ~f =
 ;;
 (\* Does not compile - use explicit type annotation \*)
 ```
-An optional argument is erased as soon as the first positional (ie.e neither
-labeled nor optional) argument definedafter the optional argument is passed in.
+An optional argument is erased as soon as the first positional (i.e. neither
+labeled nor optional) argument defined after the optional argument is passed in.
 ```
 let concat x ?(sep="") y = x ^ sep ^ y;;
 concat "a" "b" ~sep:"=";;
