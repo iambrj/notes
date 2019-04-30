@@ -37,40 +37,40 @@ Use @ to concatenate two lists
 Use pattern matching (`match` keyword) to extract values form lists
 ```
 let my_favourite_langauge languages = 
-match langauges with
-| first :: the_rest -> first
-| [] -> "OCaml" (* A good default *)
+	match langauges with
+	| first :: the_rest -> first
+	| [] -> "OCaml" (* A good default *)
 ```
 Define recursive functions using `rec` and `match` keywords 
 ```
 let rec sum l =
 	match l with
 	| [] -> 0 (* base case *)
-| hd :: tl -> hd + sum tl (* inductive case *)
+	| hd :: tl -> hd + sum tl (* inductive case *)
 	;;
 ```
-Use None and Some to create options - lists with either 1 or 0 elements
+Use `None` and `Some` to create options - lists with either 1 or 0 elements
 ```
 let divide x y =
-if y = 0 then None else Some (x/y);;
+	if y = 0 then None else Some (x/y);;
 ```
-Some and None are constructors that build optional values, just as :: and []
-build lists
+`Some` and `None` are constructors that build optional values, just as `::` and
+`[]` build lists
 
 Use pattern matching to examine contents of an option
 ```
 let log_entry maybe_time message = 
-let time = 
-match maybe_time with
-	| Some x -> x
-| None -> Time.now()
-	in
-	Time.to_sec_string time ^ " -- " ^ message
+	let time = 
+		match maybe_time with
+			| Some x -> x
+			| None -> Time.now()
+		in
+			Time.to_sec_string time ^ " -- " ^ message
 	;;
 ```
 Use `in` to scope let bindings upto double semicolon
 
-Use {} to define record datatype
+Use `{}` to define record datatype
 ```
 let point2d = { x : float; y : float };;
 let p = { x = 3.; y = -4.};;
@@ -86,21 +86,21 @@ type circle_desc = { center: point2d; radius: float }
 type rect_desc = { lower_left: pont2d; width: float; height: float }
 type segment_desc = { endpoint1: point2d; endpoint2: point2d };;
 type scene_element = 
-| Circle of circle_desc
-| Rect of rect_desc
-| Segment of segment_desc
+	| Circle of circle_desc
+	| Rect of rect_desc
+	| Segment of segment_desc
 ;;
 ```
-| character separates different cases of the variant
+`|` character separates different cases of the variant
 
-Use case structure to deal with individual datatypes of a variant
+Use `case` structure to deal with individual datatypes of a variant
 
-Use [||] to create arrays, .() to access and <- to modify
+Use `[||]` to create arrays, `.()` to access and `<-` to modify
 ```
 let numbers = [| 1; 2; 3; 4 |];;
-numbers.(2) <- 4;; (* modification *)
+numbers.(2) <- 4;; (* access & modification *)
 ```
-Use mutable keyword to make records mutable
+Use `mutable` keyword to make records mutable
 ```
 type running_sum = 
 {
