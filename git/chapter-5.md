@@ -36,5 +36,3 @@ Use `git request-pull` to create a summary of changes.
 # Public project over Email
 Use `git format-patch` to generate mbox-formatted files to email developer
 mailing lists requesting merges. Subject is the first line of the commit message
-
-
