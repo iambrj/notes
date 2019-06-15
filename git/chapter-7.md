@@ -114,3 +114,48 @@ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
 ```
 The `--tree-filter` option runs the specified command after each checkout of the
 project and recommits the results
+
+#### Making a subdirectory the new root
+Use
+```
+git filter-branch --subdirectory-filter <subdir name> HEAD
+```
+## Reset
+__The HEAD__: The HEAD is the pointer to the current branch reference which is
+in turn a pointer to the last commit made on that branch. It is the snapshot of
+the last commit.
+
+__The INDEX__: The index is the proposed next commit, a.k.a "Staging Area"
+
+__The Working Directory__: The Working Directory unpacks the efficiently
+compressed files from the `.git` directory into actual files and acts as a
+sandbox where you can try out changes before committing.
+
+### The Role of Reset
+1. __Step 1: Move HEAD__ - The first thing `reset` will do is move what HEAD
+  points to. (stops here if `--soft` specified)
+2. __Step 2: Updating the INDEX__ - The next thing `reset` will do is update the
+   Index with the contents of whatever snapshot HEAD points to. (stops here if
+`--hard` not specified)
+3. __Step 3: Updating the Working Directory__ - The third thing that `reset`
+   will do is to make the Working Directory look like the Index. It will
+   continue to this stage only if you use the `--hard` option.
+
+### Checkout vs reset
+`git --reset hard [branch]` updates all three trees. However, `git --checkout
+[branch]` tries to do a trivial merge in the Working Directory, so all of the
+files that haven't changed in will be updated. Another difference is that
+`reset` move the branch that HEAD points to, `checkout` will move HEAD itself to
+point to another branch
+
+# Advanced Merging
+## Aborting a merge
+To back out of a merge, use `git merge --abort`. It reverts back to the state
+before the merge was ran.
+## Ignoring whitespace
+To ignore whitespace __completely__ use the `-Xignore-all-space` option. To
+treat sequenecs of one or more whitespace characters as equivalent, use
+`-Xignore-space-change`
+## Undoing merges
+To make a new commit which undoes all the changes from an existing one, use `git
+revert [commit]`
