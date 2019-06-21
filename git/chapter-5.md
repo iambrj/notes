@@ -36,3 +36,21 @@ Use `git request-pull` to create a summary of changes.
 # Public project over Email
 Use `git format-patch` to generate mbox-formatted files to email developer
 mailing lists requesting merges. Subject is the first line of the commit message
+
+# Maintainence
+
+Use `git apply filename.patch` to apply patches.
+
+To see if a patch applies cleanly before actually applying it, use `git apply
+--check filename.patch`
+
+To apply mbox patches, use `git am`
+```
+git am filename.patch
+```
+# Adding changes from a remote branch
+```
+git remote add (shortname) (url)
+git fetch (shortname)
+git checkout -b (local-branch) (shortname)/(remote-branch)
+```

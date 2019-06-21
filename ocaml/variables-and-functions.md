@@ -14,7 +14,7 @@ let <variable> = <expr1> in <expr2>;;
 
 An inner binding shadows/hides an outer binding.
 
-`let` bindings are immutable (they cannot be changed)
+`let` bindings are mutable (they can be changed)
 
 `let` bindings support pattern matching
 
