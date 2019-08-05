@@ -64,4 +64,105 @@ Content-Length: 35
 Connection: Keep-Alive
 Keep-Alive: timeout=15, max=100
 ```
+## "GET" request method
+Clients use GET request methods to request for a piece of resource
 
+Syntax:-
+```
+GET request-URI HTTP-version
+(optional request headers)
+(blank line)
+(optional request body)
+```
+where
+* GET is case sensitive and must be in uppercase
+* request-URI specifies the path of resource requested, which must begin from
+the root "/" of the document base directory
+* HTTP-version specifies version of HTTP being used
+* The client uses optional request headers (Accept, Accept-Language etc)
+* optional request body contains the query string
+
+## Response status codes
+|		Code		|		Meaning		|
+|		----		|		-------		|
+| 1xx (Informational) | Request received, server is continuing the process |
+| 2xx (Success)		| Request successfully received, understood, accepted and serviced |
+| 3xx (Redirection)	| Further action must be taken to complete the request |
+| 4xx (Client error) | Request contains bad syntax or cannot be understood |
+| 5xx (Server error) | Server failed to fulfill an apparently valid reqeust | 
+
+## HTTP/1.1 GET request
+HTTP/1.1 server supports virtual hosts - multiple hosts on the same server each
+with their own root directory. Thus, a HTTP/1.1 GET request need a request
+header called "Host" to select one of the virtual hosts.
+
+## Conditional GET requests
+* If-Modified-Since
+* If-Unmodified-Since
+* If-Match
+* If-None-Match
+* If-Range
+
+## Request headers
+* Host: domain-name
+* Accept: mime-type-1, mime-type-2, ...
+* Accept-Language: lang-1, lang-2, ...
+* Accept-Charset: Charset-1, Charset-2, ...
+* Accept-Encoding: encoding-method-1, encoding-method-2, ...
+* Connection: Close|Keep-Alive
+* Referer: referer-URL
+* User-Agent: browser-type
+* Content-Length: number-of-bytes
+* Cache-Control: no-cache|...
+* Authorization: used by client to supply its credential
+* Cookie: cookie-name-1, cookie-name-2, ...
+* If-Modified-Since: date
+
+## GET for Directory
+If a client issues a GET request to "/testdir/"
+1. The server will return "/testdir/index.html" if it exists
+2. Otherwise, the server returns the directory listing, if directory listing is
+   enabled in the server configuration
+3. Otherwise, the server returns "404 Page Not Found"
+
+If the trailing '/' is not specified (i.e. request is for "/testdir" and not
+"/testdir/"), the server requests an additional GET command with "301 Move
+Permanently" with new "Location" as "/testdir/"
+
+# HEAD Request Method
+HEAD is like GET, but server returns only the header and not the actual document
+Syntax:
+```
+HEAD request-URI HTTP-version
+(other optional request headers)
+(blank line)
+(optional request body)
+```
+
+# OPTIONS Request Method
+OPTIONS is used to query the server which request methods are supported
+Syntax:
+```
+OPTIONS request-URI|* HTTP-version
+(other optional headers)
+(blank line)
+```
+
+# TRACE Request Method
+TRACE is used to ask the server to return a diagnostic trace
+```
+TRACE / HTTP-version
+(blank line)
+```
+
+# POST Request Method
+POST request method is used to "additional" data up to the server
+Syntax:
+```
+POST request-URI HTTP-version
+Content-Type: mime-type
+Content-Length: number-of-bytes
+(other optional request headers)
+
+(URL-encoded query string)
+```
