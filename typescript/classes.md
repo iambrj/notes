@@ -174,3 +174,5 @@ abstract class Animal {
 	}
 }
 ```
+* Methods can be marked `abstract` in an abstract class. Such methods should be
+	implemented in derived classes.
