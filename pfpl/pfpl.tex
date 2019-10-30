@@ -1,0 +1,121 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+
+\title{Notes on PFPL}
+
+\author{Bharathi Ramana Joshi}
+
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Syntactic Objects}
+
+\begin{enumerate}
+
+	\item Surface/Concrete syntax : concerned with how phrases are entered and
+		displayed on a computer
+
+	\item Structural/Abstract Syntax : concerned with the structure of phrases,
+		specifically how they are composed from other phrases
+
+		\begin{enumerate}
+			
+			\item Abstract Syntax Trees : nodes are operators that combine
+				several phrases to form another phrase
+
+			\item Abstract Binding Trees : enrich ASTs with the concepts of
+				binding and scope (how identifiers are declared and how they are
+				to be used)
+
+		\end{enumerate}
+
+\end{enumerate}
+
+\subsection{Abstract Syntax Trees}
+
+An ordered tree whose leaves are \textit{variables}, and whose interior nodes
+are \textit{operators} whose arguments are its children.
+
+\begin{enumerate}
+
+	\item Variable : an unspecified/generic piece of syntax of specified sort
+
+	\item Operator : a sort and an arity - a finite sequence of sorts specifying
+		the number and sort of its arguments
+
+\end{enumerate}
+
+A variable is given meaning by substitution.
+
+\subsubsection{Structural Induction}
+If
+$\{\mathcal{O}_s\}_{s\in \mathcal{S}}$ is a sort-indexed family of
+		operators and
+$\{\mathcal{X}_s\}_{s\in \mathcal{S}}$ is a sort-indexed family of
+		variables
+then, the family $\mathcal{A}[\mathcal{X}] = \{ \mathcal{A}[\mathcal{X}]_s
+\}_{s\in \mathcal{S}}$ of ASTs of sort s is defined to be the smallest family
+satisfying
+
+\begin{enumerate}
+
+	\item If $x\in\mathcal{X}_s$ then $x\in \mathcal{A}[\mathcal{X}]_s$
+
+	\item If $o\in \mathcal{O}_s$ such that ar($o$) = ($s_1,\ldots,s_n$) and if
+		$a_1\in\mathcal{A}[\mathcal{X}]_{s_1},\ldots,a_n\in\mathcal{A}[\mathcal{X}]_{s_n}$
+		then $o(a_1;\ldots;a_n)\in\mathcal{A}[\mathcal{X}]_s$
+
+\end{enumerate}
+
+\textbf{Principle of Structural Induction}: To show that $\mathcal{P}(a)$ holds
+for every $a\in\mathcal{A}[\mathcal{X}]$, it is sufficient to show that
+
+\begin{enumerate}
+
+	\item If $x\in\mathcal{X}_s$, then $\mathcal{P}_s(x)$
+
+	\item If $o\in\mathcal{O}_s$ and $ar(o) = (s_1,\ldots,s_n)$, then if
+		$\mathcal{P}_{s_1}(a_1),\ldots,\mathcal{P}_{s_n}(a_n)$ then
+		$\mathcal{P}_s(o(a_1;\ldots;a_n))$
+
+\end{enumerate}
+
+Intuitively, show that the property holds in all the ways in which an AST may be
+generated, under the assumption that it holds for each of its constituent ASTs.
+
+\subsubsection{Substitution}
+
+Variables are given meaning by substitution.
+
+If $x$ is a variable of sort $s$, $a\in\mathcal{A}[\mathcal{X}, x]_{s\prime}$
+and $b\in\mathcal{A}[\mathcal{X}]_s$, then
+$[b/x]a\in\mathcal{A}[\mathcal{X}]_{s\prime}$ is defined to be the result of
+substituting $b$ for every occurrence of $x$ in $a$. $a$ is called the
+\textit{target} and $x$ is called the \textit{subject} of substitution. More
+precisely,
+
+\begin{enumerate}
+
+	\item$[b/x]x = b$ and $[b/x]y = y$, if $x\neq y$
+
+	\item$[b/x]o(a_1;\ldots;a_n) = o([b/x]a_1;\ldots;[b/x]a_n])$
+
+\end{enumerate}
+
+Theorem - Substitution on ASTs in well defined (proof idea - structural
+induction)
+
+\subsection{Abstract Binding Trees}
+
+
+
+\end{document}
+
