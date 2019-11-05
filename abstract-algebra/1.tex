@@ -1,0 +1,76 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{wasysym}
+\usepackage{pifont}
+
+\begin{document}
+
+\title{Abstract Algebra: Chapter 1}
+
+\author{Bharathi Ramana Joshi}
+
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+\section{Basic Axioms}
+
+\begin{enumerate}
+
+	\item A \textit{binary operation} \ding{72} on a set $G$ is a function
+		\ding{72}:$G\times G\rightarrow G$.
+
+	\item A binary operation \ding{72} on a set $G$ is \textit{associative} if
+		$\forall a, b, c\in G$ we have $a$\ding{72}$(b$\ding{72}$c)$ =
+		$(a$\ding{72}$ b)$\ding{72}$ c$
+
+	\item If \ding{72} is a binary operator on set $G$, we say elements $a$
+		and $b$ of $G$ \textit{commute} if $a$\ding{72}$b$  = $b$\ding{72}$a$.
+		We say \ding{72} is commutative if for all $a, b\in G$, $a$\ding{72}$b =
+		b$\ding{72}$a$.
+
+\end{enumerate}
+
+Definitions
+
+\begin{enumerate}
+
+	\item A group is an ordered pair $(G,$\ding{72}$)$, where $G$ is a set and
+		\ding{72} is a binary operator such that
+
+		\begin{enumerate}
+
+			\item $a$\ding{72}$(b$\ding{72}$c)$ = $(a$\ding{72}$b)$\ding{72}$c$
+				- \ding{72} is associative
+
+			\item $\exists e\in G$ such that $\forall a\in G$ we have
+				$a$\ding{72}$e$ = $e$\ding{72}$a$ = a - identity existence
+
+			\item $\forall a\in G$, $\exists a^{-1}\in G$ such that
+				$a$\ding{72}$a^{-1}$ = $a^{-1}$\ding{72}$a = e$ - inverse
+				existence
+
+		\end{enumerate}
+
+	\item A group $(G,$ \ding{72}) is called an \textit{Abelian/Commutative} if
+		it also satisfies the commutative property - $a$\ding{72}$b$ =
+		$b$\ding{72}$a$, $\forall a, b\in G$
+
+	\item For a group $G$ and $x\in G$ the \textit{order} of $x$ is the smallest
+		positive integer $n$ such that $x^n = 1$, denoted by $|x|$. $n$ is
+		called the order of $x$. If no positive $n$ exists, $x$ is said to be of
+		order infinity.
+
+	\item Let $G = {g_1, g_2,\ldots}$ be a finite group with $g_1 = 1$. The
+		\textit{multiplication table}/\textit{group table} of $G$ is the
+		$n\times n$ matrix whose $i, j$ entry is the group element $g_ig_j$.
+
+\end{enumerate}
+
+\end{document}
+
