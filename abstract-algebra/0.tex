@@ -1,0 +1,78 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+
+\begin{document}
+
+\title{Abstract Algebra: Chapter 0}
+
+\author{Bharathi Ramana Joshi}
+
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Basics}
+A function $f:A\rightarrow B$
+\begin{enumerate}
+
+	\item is injective if $\forall a_1\neq a_2$,
+		$f(a_1)\neq f(a_2)$.
+
+	\item is surjective if range = co-domain
+		($\forall b\in B, \exists a\in A$ such that $f(a) = b$).
+
+	\item is bijective if it is both injective and
+		surjective.
+
+	\item has a \textit{left inverse} if $\exists g:B\rightarrow A$ such that
+		$g\circ f:A\rightarrow A$ is the identity map on $A$.
+
+	\item has a \textit{right inverse} if $\exists h:B\rightarrow A$ such that
+		$f\circ h:B\rightarrow B$ is the identity map on $B$.
+
+\end{enumerate}
+
+A binary relation
+
+\begin{enumerate}
+
+	\item is defined as a subset $R$ of $A\times A$ and written as $a\sim b$ if
+		$(a, b)\in R$.
+
+	\item is \textit{reflexive} if $\forall a\in A$, $a\sim a$.
+
+	\item is \textit{symmetric} if $\forall a\sim b$, $b\sim a$.
+
+	\item is \textit{transitive} if $\forall a\sim b$ and $b\sim c$,
+		$a\sim c$.
+ 
+	\item is a \textit{equivalence relation} if it is reflexive, symmetric and
+		transitive.
+
+\end{enumerate}
+
+If $\sim$ is an equivalence relation on $A$, then the \textit{equivalence class}
+of $a\in A$ is defined as $\{x\in A\mid x\sim a\}$
+
+If $C$ is an equivalence class, any element of $C$ is called a
+\textit{representative} element of the class $C$.
+
+A \textit{partition} of $A$ is any collection nonempty subsets $\{A_i\mid i\in
+I\}$ (for some indexing set $I$) such that
+
+	\begin{enumerate}
+
+		\item $A = \cap_{i\in I} A_i$
+
+		\item $A_i\cap A_j = \phi$, $\forall i, j\in I$ such that $i\neq j$
+
+	\end{enumerate}
+
+	Notions of equivalence class and partition are the same (proof idea: ).
+
+\end{document}
+
