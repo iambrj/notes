@@ -1,0 +1,2 @@
+- name: Github Action for LaTeX
+  uses: xu-cheng/latex-action@1.0
