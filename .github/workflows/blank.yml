@@ -9,4 +9,4 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
-          root_file: abstract-algebra/*.tex
+          root_file: abstract-algebra/0.tex
