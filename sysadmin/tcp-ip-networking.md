@@ -65,3 +65,8 @@ Several addressing schemes are used in combination
 * IPv4: addresses 4 bytes long, boundary set administratively
 * IPv6: 16 bytes long, each 8 bytes
 ## IPv4
+* IPv4 addresses are written as decimal numbers, one for each byte, separated by
+	periods (`209.85.171.147`)
+* When `127` is the first byte of an address, it denotes a "loopback newtork" -
+	a fictitious network that has no real hardware interface and only one host
+* The loopback address `127.0.0.1` always refers to current host
