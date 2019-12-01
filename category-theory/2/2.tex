@@ -1,0 +1,46 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{listings}
+
+\begin{document}
+
+\title{Category Theory Unit 2}
+
+\author{Bharathi Ramana Joshi}
+
+\date{\today}
+
+\maketitle
+
+\newpage
+
+\section{Book}
+\begin{enumerate}
+	\item Monkeys banging at the keyboard:
+		\begin{itemize}
+			\item Machine language $\Rightarrow$ any combination produced should be run
+			\item High level language $\Rightarrow$ lexical and grammatical errors detected
+			\item Type checking further removes errors
+			\item Question: Make monkeys happy or produce correct programs?
+		\end{itemize}
+	\item Intuitively, types are (finite or infinite) sets of values.
+	\item A category of sets, \textbf{Set} has objects as sets and morphisms
+		(arrows) as functions
+	\item To overcome infinite recursion, a new type $\perp$ (bottom) is introduced
+	\item \textbf{Operational semantics} describes the mechanics of program execution in
+		terms of a formalized idealized interpreter
+	\item \textbf{Denotational semantics} gives every programming construct its
+		mathematical interpretation - proving a property of a program is same as
+		proving a mathematical theorem
+	\item Functions that always produce the same result given the same input and
+		have no side effects are called \textbf{pure functions}
+	\item The type corresponding to an empty set is \lstinline{Void} - it's a
+		type that's not inhabited by any values
+	\item The type corresponding to a singleton set is \lstinline{()}
+	\item Functions from unit to any type $A$ are in one-to-one correspondence
+		with the elements of that set $A$
+	\item The type corresponding to a two element set is \lstinline{Bool}
+\end{enumerate}
+
+\end{document}
+
