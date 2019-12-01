@@ -1,5 +1,6 @@
 \documentclass[titlepage, 12pt]{article}
 \usepackage[parfill]{parskip}
+\usepackage{amsmath}
 
 \begin{document}
 
@@ -28,12 +29,54 @@
 
 \section{Lecture 1}
 
-	\begin{enumerate}
-		\item OOPS problem: data race - mutation vs data sharing. No
-			concurrency => no composition.
-		\item Assembly -> Procedural -> OOPS -> Functional
-		\item Category theory - language to express highly abstract ideas
-	\end{enumerate}
+\begin{enumerate}
+	\item OOPS problem: data race - mutation vs data sharing. No
+		concurrency => no composition.
+	\item Assembly -> Procedural -> OOPS -> Functional
+	\item Category theory - language to express highly abstract ideas
+	\item Complex situation? Decompose into smaller solutions
+	\item Simpler chunks should be simpler to solve
+\end{enumerate}
+
+\section{Lecture 2}
+
+\subsection{Abstraction}
+
+\begin{enumerate}
+	\item Abstraction - get rid of unnecessary details
+	\item Equal (exactly) or almost equal (for all intents and purposes) -
+		homotopy type theory?
+\end{enumerate}
+
+\subsubsection{Category}
+Categories deal with
+\begin{enumerate}
+
+	\item Composition
+
+	\item Identity
+
+\end{enumerate}
+
+A category is defined as
+\begin{enumerate}
+	\item A "bunch" of objects (dots)
+	\item Morphisms (arrows between dots)
+\end{enumerate}
+
+An object is a primitive - no structure - atomic
+
+Arrows should be such that
+\begin{gather*}
+	a\rightarrow b \textrm{ and } b\rightarrow c \Rightarrow a\rightarrow
+	c\textrm{ (transitivity) }\\
+	\forall a, a\rightarrow a\textrm{ (identity) }\\
+	h\odot(g\odot f) = (h\odot g)\odot f\textrm{ (associativity) }
+\end{gather*}
+
+\verb#Set# - consider a function form set $A$ to set $B$. Now abstract out the
+elements of $A$ and $B$. Just look at the mappings. We have a category - the
+objects are $A$ and $B$ and the morphisms are the mappings.
 
 \end{document}
 
