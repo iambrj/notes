@@ -1,0 +1,49 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Term Rewriting and All That\\Chapter 1 notes}
+
+\author{Bharathi Ramana Joshi}
+
+\date{Compiled: \today}
+
+\newpage
+
+\begin{itemize}
+
+  \item First-order language: collection $S$ of symbols for relations, functions and
+    constants, which, in combination with the symbols of elementary logic,
+    single out certain combinations of symbols as sentences.
+
+  \item Define addition using constant $0$ and successor function $s$
+    \begin{gather*}
+      x + 0 \approx x\\
+      x + s(y) \approx s(x + y)
+    \end{gather*}
+
+  \item\textbf{Terms}: built from \textbf{variables}, \textbf{constant symbols}
+    and \textbf{function symbols}.
+
+  \item\textbf{Termination}: Is it always the case that after finitely many rule
+    applications we reach an expression to which no more rules apply?
+
+  \item\textbf{Confluence}: If there are different ways of applying rules to a
+    given term leading to different terms $t_1$ and $t_2$, can $t_1$ and $t_2$
+    can be joined, i.e. can we always find a common term $s$ that can be reached
+    both from $t_1$ and $t_2$ by rule application?
+
+  \item\textbf{Completion}: Can we always make a non-confluent system confluent
+    by adding implied rules?
+
+  \item\textbf{Word problem}: given a set of identities $E$ and two terms $s$
+    and $t$, is it possible to transform the term $s$ into the term $t$, using
+    the identities in $E$ as rewrite rules that can be applied in both
+    directions?
+
+\end{itemize}
+
+\end{document}
+
