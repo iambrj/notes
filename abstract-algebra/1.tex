@@ -1,7 +1,8 @@
 \documentclass[titlepage, 12pt]{article}
 \usepackage[parfill]{parskip}
-\usepackage{wasysym}
+\usepackage[nointegrals]{wasysym}
 \usepackage{pifont}
+\usepackage{amsmath}
 
 \begin{document}
 
@@ -22,17 +23,17 @@
 
 \begin{enumerate}
 
-	\item A \textit{binary operation} \ding{72} on a set $G$ is a function
-		\ding{72}:$G\times G\rightarrow G$.
+  \item A \textit{binary operation} \ding{72} on a set $G$ is a function
+    \ding{72}:$G\times G\rightarrow G$.
 
-	\item A binary operation \ding{72} on a set $G$ is \textit{associative} if
-		$\forall a, b, c\in G$ we have $a$\ding{72}$(b$\ding{72}$c)$ =
-		$(a$\ding{72}$ b)$\ding{72}$ c$
+  \item A binary operation \ding{72} on a set $G$ is \textit{associative} if
+    $\forall a, b, c\in G$ we have $a$\ding{72}$(b$\ding{72}$c)$ =
+    $(a$\ding{72}$ b)$\ding{72}$ c$.
 
-	\item If \ding{72} is a binary operator on set $G$, we say elements $a$
-		and $b$ of $G$ \textit{commute} if $a$\ding{72}$b$  = $b$\ding{72}$a$.
-		We say \ding{72} is commutative if for all $a, b\in G$, $a$\ding{72}$b =
-		b$\ding{72}$a$.
+  \item If \ding{72} is a binary operator on set $G$, we say elements $a$
+    and $b$ of $G$ \textit{commute} if $a$\ding{72}$b$  = $b$\ding{72}$a$.
+    We say \ding{72} is commutative if for all $a, b\in G$, $a$\ding{72}$b =
+    b$\ding{72}$a$.
 
 \end{enumerate}
 
@@ -40,39 +41,228 @@ Definitions
 
 \begin{enumerate}
 
-	\item A group is an ordered pair $(G,$\ding{72}$)$, where $G$ is a set and
-		\ding{72} is a binary operator such that
+  \item A group is an ordered pair $(G,$\ding{72}$)$, where $G$ is a set and
+    \ding{72} is a binary operator such that
 
-		\begin{enumerate}
+    \begin{enumerate}
 
-			\item \ding{72} is closed under $G$
+      \item \ding{72} is closed under $G$
 
-			\item $a$\ding{72}$(b$\ding{72}$c)$ = $(a$\ding{72}$b)$\ding{72}$c$
-				- \ding{72} is associative
+      \item $a$\ding{72}$(b$\ding{72}$c)$ = $(a$\ding{72}$b)$\ding{72}$c$
+        - \ding{72} is associative
 
-			\item $\exists e\in G$ such that $\forall a\in G$ we have
-				$a$\ding{72}$e$ = $e$\ding{72}$a$ = a - identity existence
+      \item $\exists e\in G$ such that $\forall a\in G$ we have
+        $a$\ding{72}$e$ = $e$\ding{72}$a$ = a - identity existence
 
-			\item $\forall a\in G$, $\exists a^{-1}\in G$ such that
-				$a$\ding{72}$a^{-1}$ = $a^{-1}$\ding{72}$a = e$ - inverse
-				existence
+      \item $\forall a\in G$, $\exists a^{-1}\in G$ such that
+        $a$\ding{72}$a^{-1}$ = $a^{-1}$\ding{72}$a = e$ - inverse
+        existence
 
-		\end{enumerate}
+    \end{enumerate}
 
-	\item A group $(G,$ \ding{72}) is called an \textit{Abelian/Commutative} if
-		it also satisfies the commutative property - $a$\ding{72}$b$ =
-		$b$\ding{72}$a$, $\forall a, b\in G$
+  \item A group $(G,$ \ding{72}) is called an \textit{Abelian/Commutative} if
+    it also satisfies the commutative property - $a$\ding{72}$b$ =
+    $b$\ding{72}$a$, $\forall a, b\in G$.
 
-	\item For a group $G$ and $x\in G$ the \textit{order} of $x$ is the smallest
-		positive integer $n$ such that $x^n = 1$, denoted by $|x|$. $n$ is
-		called the order of $x$. If no positive $n$ exists, $x$ is said to be of
-		order infinity.
+  \item For a group $G$ and $x\in G$ the \textit{order} of $x$ is the smallest
+    positive integer $n$ such that $x^n = 1$, denoted by $|x|$. $n$ is
+    called the order of $x$. If no positive $n$ exists, $x$ is said to be of
+    order infinity.
 
-	\item Let $G = {g_1, g_2,\ldots}$ be a finite group with $g_1 = 1$. The
-		\textit{multiplication table}/\textit{group table} of $G$ is the
-		$n\times n$ matrix whose $i, j$ entry is the group element $g_ig_j$.
+  \item Let $G = {g_1, g_2,\ldots}$ be a finite group with $g_1 = 1$. The
+    \textit{multiplication table}/\textit{group table} of $G$ is the
+    $n\times n$ matrix whose $i, j$ entry is the group element $g_ig_j$
+    (analogue - table of all the distances between pairs of cities in the
+    country).
+
+  \item If $(A, \circ)$ and $(B, \bullet)$ are groups, then the new group $A\times B$ is defined as
+    \begin{gather}
+      A\times B = \{(a, b)\mid a\in A, b\in B\}
+    \end{gather}
+    and whose operation is defined component wise
+    \begin{gather}
+      (a_1, b_1)(a_2, b_2) = (a_1\circ a_2, b_1\bullet b_2)
+    \end{gather}
+
+  \item If $H$ is a nonempty subset of $G$ such that $\forall h, k\in H, hk$ and
+    $h^{-1}\in H$ then $H$ is called the \textbf{subgroup} of $G$
 
 \end{enumerate}
+
+\section{Dihederal groups}
+
+\begin{enumerate}
+
+  \item $D_{2n}$, the \textbf{dihederal} group of order $2n$, is the set of
+    symmetries of a regular $n$-gon. Each symmetry $s$ can be described uniquely
+    by the corresponding parameter $\sigma$ of $\{1,2,\dots,n\}$ and $st$, for
+    $s, t\in D_{2n}$ is defined as applying $t$ and then $s$ (function
+    application).
+
+    Define $r$ as a clockwise rotation through the origin by $2\pi/n$ radians
+    and $s$ as the reflection about the line of symmetry through vertex 1 and
+    the origin. Then
+
+    \begin{enumerate}
+
+      \item $1,r,r^2,\dots,r^{n-1}$ are all distinct and $r^n=1$, so $|r| = n$
+
+      \item $|s| = 2$
+
+      \item $s\neq r^i,\forall i$
+
+      \item $sr^i\neq sr^j, \forall i, j$; so
+        \begin{gather*}
+          D_{2n} = \{1,r,r^2,\dots,r^{n-1},s,sr,sr^2,\dots,sr^{n-1}\}
+        \end{gather*}
+
+      \item $rs=sr^{-1}$
+
+      \item $r^is=sr^{-i}$
+
+    \end{enumerate}
+
+  \item A subset $S\subset G$ with the property that all elements of $G$ can be
+    written as a finite product of elements of $S$ is called the
+    \textbf{generator} of $G$.
+
+  \item Any equations in a general group $G$ that the generators satisfy are
+    called \textbf{relations}.
+
+  \item In general, if some group $G$ is generated by a subset $S$ and there is
+    some collection of relations, $R_1,\dots,R_m$, such that any other relation
+    among the elements of $S$ can be deduced from these, such generators and
+    relations are called a \textbf{presentation} of $G$ and written as
+    \begin{gather*}
+      G = \langle S\mid R_1, R_2,\dots, R_m\rangle
+    \end{gather*}
+    for example
+    \begin{gather*}
+      D_{2n} = \langle r, s\mid r^n = s^2 = 1, rs = sr^{-1}\rangle
+    \end{gather*}
+
+\end{enumerate}
+
+\section{Symmetric groups}
+
+\begin{enumerate}
+
+  \item The set of all bijections from a set $\Omega$ onto itself, $S_\Omega$,
+    is a group under function composition, $\circ$, called the \textbf{symmetric
+    group} on $\Omega$
+
+  \item The special case when $\Omega = \{1,\dots,n\}$ is denoted with $S_n$,
+    the \textbf{symmetric group of degree} $n$, with order $n!$
+
+  \item A \textbf{cycle} is a string of integers which represents the element of
+    $S_n$ which cyclically permutes these integers and leaves the rest
+    unchanged. For instance, the permutation \{12, 13, 3, 1, 11, 9, 5, 10, 6, 4,
+    7, 8, 2\} has the cycle decomposition (1 12 8 10 4)(2 13)(5 11 7)(6 9).
+
+  \item The \textit{length} of a cycle is the number of integers that occur in
+    it
+
+  \item Two cycles are called \textit{disjoint} if they have no numbers in
+    common
+
+  \item Since disjoint cycles permute numbers which lie in disjoint sets, it
+    follows that disjoint sets commute
+
+  \item The order of a permutation is the l.c.m of the lengths of the cycles in
+    its cycle decomposition
+
+\end{enumerate}
+
+\section{Matrix groups}
+\subsection{Field}
+\begin{enumerate}
+  \item A \textit{field} is a set $F$ together with two commutative binary
+    operators + and . on $F$ such that $(F, +)$ is an Abelian group (with
+    identity 0) and $(F-\{0\}, 0)$ is also an Abelian group, with the following
+    \textit{distributive} law
+    \begin{gather*}
+      a.(b+c) = (a.b)+(a.c)
+    \end{gather*}
+  \item For any field $F$ let $F^\times = F-\{0\}$
+\end{enumerate}
+\subsection{General Linear group}
+\begin{gather*}
+  GL_n(F) = \{A\mid A \textrm{ is a } n\times n\textrm{ matrix with entries from }
+  F\textrm{ and det(}A)\neq 0\}
+\end{gather*}
+$GL_n(F)$ is a group under matrix multiplication, called \textit{general linear
+group of degree n}
+
+Useful facts
+\begin{enumerate}
+
+    \item If $F$ is a field and $|F| < \infty$, then $|F| = p^m$ for some prime
+        $p$ and integer $m$
+
+    \item If $|F| = q < \infty$, then $|GL_n(F)| = (q^n - 1)(q^n -
+        q)\dots(q^n-q^{n - 1})$
+
+\end{enumerate}
+
+
+\section{Homomorphisms and isomorphisms}
+If $(G, \star)$ and $(H, \diamond)$ are groups then $\phi:G\rightarrow H$ such
+that
+\begin{gather*}
+    \phi(x\star y) = \phi(x)\diamond\phi(y), \forall x, y\in G
+\end{gather*}
+is called a \textbf{homomorphism}.
+
+A homomorphism is called an \textbf{isomorphism} if it is a bijection.
+
+Common techniques to prove two groups, $G$ and $H$, aren't isomorphic
+
+\begin{itemize}
+
+    \item $\mid G\mid \neq \mid H\mid$
+        
+    \item $G$ is abelian iff $H$ is abelian
+
+    \item $\forall x\in G, \mid x\mid = \mid\phi(x)\mid$
+\end{itemize}
+\subsection{Miscellaneous}
+\begin{itemize}
+    \item\textbf{Classification theorem}:What are the objects of a given type, up to some
+    equivalence? For instance to prove that if $G$ is an object of with some
+    structure and $G$ has some property $P$ then any other similarly structured
+    object with property $P$ is isomorphic to $G$.
+
+    \item If $\phi:G\rightarrow H$ is a homomorphism, the \textbf{kernel} of $\phi$ is
+    defined as $\{g\in G\mid\phi(g) = 1_H\}$, i.e. set of those elements in $G$ that
+    are mapped to the identity element in $H$.
+
+    \item\textbf{Automorphism group}: set of all isomorphisms from $G$ onto $G$
+\end{itemize}
+
+\section{Group Actions}
+\textbf{Definition}: A \textbf{group action} of a group $G$ on a set $A$ is a
+map from $G\times A$ to $A$ satisfying the folllowing properties
+\begin{enumerate}
+
+    \item $g_1(g_2.a) = (g_1g_2).a$, for all $g_1, g_2\in G, a\in A$
+
+    \item $1.a = a$, for all $a\in A$
+
+\end{enumerate}
+
+Intuitively, a group action of $G$ on $A$ just means that every element $g\in G$
+acts as a permutation on $A$ in a manner consistent with the group operations in
+$G$.
+
+Actions of a group $G$ on a set $A$ and the homomorphisms from $G$ into the
+symmetric group $S_A$ are in bijective correspondence.
+
+If $G$ acts on a set $A$ and distinct elements of $G$ induce distinct
+permutations of $A$, the action is said to be \textbf{faithful}, i.e. associated
+permutation representation is injective.
+
+The \textbf{kernel} of the action of $G$ on $A$ is defined to be $\{g\in G\mid
+gb = b\ \forall b\in B\}$
 
 \end{document}
 
