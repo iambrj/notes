@@ -1,47 +1,62 @@
 \documentclass[titlepage, 12pt]{article}
 \usepackage[parfill]{parskip}
-\usepackage[nointegrals]{wasysym}
-\usepackage{pifont}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{epigraph}
+
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\newtcbtheorem[]{definition}{Definition}%
+{colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+{colback=cyan!5,colframe=cyan!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+{colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
+
+\newcommand*{\logo}{\fbox{$\mathfrak{BRJ}$}}
 
 \begin{document}
 
-\title{Abstract Algebra: Chapter 1}
+\begin{titlepage} % Suppresses headers and footers on the title page
 
-\author{Bharathi Ramana Joshi}
+	\raggedleft% Right align everything
 
-\date{\today}
+	\vspace*{\baselineskip} % Whitespace at the top of the page
 
-\maketitle
+	{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}} % Author name
 
-\tableofcontents
+	\vspace*{0.167\textheight} % Whitespace before the title
 
-\newpage
+	\textbf{\LARGE Notes on}\\[\baselineskip] % First title line
 
+	\textbf{\textcolor{teal}{\huge Introduction to Groups}}\\[\baselineskip] % Main title line which draws the focus of the reader
 
-\section{Basic Axioms}
+    {\Large \textit{Chapter 1 from Dummit \& Foote, $3^{rd}$ Ed.}} % Subtitle
 
-\begin{enumerate}
+	\vfill % Whitespace between the titles and the publisher
 
-  \item A \textit{binary operation} \ding{72} on a set $G$ is a function
-    \ding{72}:$G\times G\rightarrow G$.
+	{\large \logo} % Publisher and logo
 
-  \item A binary operation \ding{72} on a set $G$ is \textit{associative} if
-    $\forall a, b, c\in G$ we have $a$\ding{72}$(b$\ding{72}$c)$ =
-    $(a$\ding{72}$ b)$\ding{72}$ c$.
+	\vspace*{3\baselineskip} % Whitespace at the bottom of the page
 
-  \item If \ding{72} is a binary operator on set $G$, we say elements $a$
-    and $b$ of $G$ \textit{commute} if $a$\ding{72}$b$  = $b$\ding{72}$a$.
-    We say \ding{72} is commutative if for all $a, b\in G$, $a$\ding{72}$b =
-    b$\ding{72}$a$.
-
-\end{enumerate}
-
-Definitions
-
-\begin{enumerate}
-
-  \item A group is an ordered pair $(G,$\ding{72}$)$, where $G$ is a set and
+\end{titlepage}
+\begin{definition}{Group}{}
+  A group is an ordered pair $(G,$\ding{72}$)$, where $G$ is a set and
     \ding{72} is a binary operator such that
 
     \begin{enumerate}
@@ -59,41 +74,55 @@ Definitions
         existence
 
     \end{enumerate}
+\end{definition}
 
-  \item A group $(G,$ \ding{72}) is called an \textit{Abelian/Commutative} if
+If $G$ is a group under the operation \ding{72}, then
+\begin{enumerate}
+    \item the identity element of $G$ is unique
+    \item $\forall a\in G$, $a^{-1}$ is unique
+    \item $(a^{-1})^{-1} = a$, $\forall a\in G$
+    \item $(a$\ding{72}$b)^{-1} = b^{-1}$\ding{72}$a^{-1}$
+\end{enumerate}
+
+\begin{definition}{Abelian group}{}
+    A group $(G,$ \ding{72}) is called an \textit{Abelian/Commutative} if
     it also satisfies the commutative property - $a$\ding{72}$b$ =
     $b$\ding{72}$a$, $\forall a, b\in G$.
+\end{definition}
 
-  \item For a group $G$ and $x\in G$ the \textit{order} of $x$ is the smallest
+\begin{definition}{Order}{}
+    For a group $G$ and $x\in G$ the \textit{order} of $x$ is the smallest
     positive integer $n$ such that $x^n = 1$, denoted by $|x|$. $n$ is
     called the order of $x$. If no positive $n$ exists, $x$ is said to be of
     order infinity.
+\end{definition}
 
-  \item Let $G = {g_1, g_2,\ldots}$ be a finite group with $g_1 = 1$. The
+\begin{definition}{Multiplication/Group table}{}
+  Let $G = {g_1, g_2,\ldots}$ be a finite group with $g_1 = 1$. The
     \textit{multiplication table}/\textit{group table} of $G$ is the
     $n\times n$ matrix whose $i, j$ entry is the group element $g_ig_j$
     (analogue - table of all the distances between pairs of cities in the
     country).
+\end{definition}
 
-  \item If $(A, \circ)$ and $(B, \bullet)$ are groups, then the new group $A\times B$ is defined as
-    \begin{gather}
+\begin{definition}{Cross product of groups}{}
+  If $(A, \circ)$ and $(B, \bullet)$ are groups, then the new group $A\times B$ is defined as
+    \begin{gather*}
       A\times B = \{(a, b)\mid a\in A, b\in B\}
-    \end{gather}
+    \end{gather*}
     and whose operation is defined component wise
-    \begin{gather}
+    \begin{gather*}
       (a_1, b_1)(a_2, b_2) = (a_1\circ a_2, b_1\bullet b_2)
-    \end{gather}
+    \end{gather*}
+\end{definition}
 
-  \item If $H$ is a nonempty subset of $G$ such that $\forall h, k\in H, hk$ and
+\begin{definition}{Subgroup}{}
+  If $H$ is a nonempty subset of $G$ such that $\forall h, k\in H, hk$ and
     $h^{-1}\in H$ then $H$ is called the \textbf{subgroup} of $G$
+\end{definition}
 
-\end{enumerate}
-
-\section{Dihederal groups}
-
-\begin{enumerate}
-
-  \item $D_{2n}$, the \textbf{dihederal} group of order $2n$, is the set of
+\begin{definition}{Dihederal group}{}
+    $D_{2n}$, the \textbf{dihederal} group of order $2n$, is the set of
     symmetries of a regular $n$-gon. Each symmetry $s$ can be described uniquely
     by the corresponding parameter $\sigma$ of $\{1,2,\dots,n\}$ and $st$, for
     $s, t\in D_{2n}$ is defined as applying $t$ and then $s$ (function
@@ -103,8 +132,7 @@ Definitions
     and $s$ as the reflection about the line of symmetry through vertex 1 and
     the origin. Then
 
-    \begin{enumerate}
-
+  \begin{enumerate}
       \item $1,r,r^2,\dots,r^{n-1}$ are all distinct and $r^n=1$, so $|r| = n$
 
       \item $|s| = 2$
@@ -119,17 +147,23 @@ Definitions
       \item $rs=sr^{-1}$
 
       \item $r^is=sr^{-i}$
+  \end{enumerate}
 
-    \end{enumerate}
+\end{definition}
 
-  \item A subset $S\subset G$ with the property that all elements of $G$ can be
+\begin{definition}{Generator}{}
+  A subset $S\subset G$ with the property that all elements of $G$ can be
     written as a finite product of elements of $S$ is called the
     \textbf{generator} of $G$.
+\end{definition}
 
-  \item Any equations in a general group $G$ that the generators satisfy are
+\begin{definition}{Relations}{}
+  Any equations in a general group $G$ that the generators satisfy are
     called \textbf{relations}.
+\end{definition}
 
-  \item In general, if some group $G$ is generated by a subset $S$ and there is
+\begin{definition}{Presentation of a group}{}
+  In general, if some group $G$ is generated by a subset $S$ and there is
     some collection of relations, $R_1,\dots,R_m$, such that any other relation
     among the elements of $S$ can be deduced from these, such generators and
     relations are called a \textbf{presentation} of $G$ and written as
@@ -140,58 +174,65 @@ Definitions
     \begin{gather*}
       D_{2n} = \langle r, s\mid r^n = s^2 = 1, rs = sr^{-1}\rangle
     \end{gather*}
+\end{definition}
 
-\end{enumerate}
-
-\section{Symmetric groups}
-
-\begin{enumerate}
-
-  \item The set of all bijections from a set $\Omega$ onto itself, $S_\Omega$,
+\begin{definition}{Symmetric group}{}
+  The set of all bijections from a set $\Omega$ onto itself, $S_\Omega$,
     is a group under function composition, $\circ$, called the \textbf{symmetric
     group} on $\Omega$
 
-  \item The special case when $\Omega = \{1,\dots,n\}$ is denoted with $S_n$,
-    the \textbf{symmetric group of degree} $n$, with order $n!$
+  The special case when $\Omega = \{1,\dots,n\}$ is denoted with $S_n$,
+    the \textbf{symmetric group of degree} $n$, with order $n$!
+\end{definition}
 
-  \item A \textbf{cycle} is a string of integers which represents the element of
+\begin{definition}{Cycle}{}
+  A \textbf{cycle} is a string of integers which represents the element of
     $S_n$ which cyclically permutes these integers and leaves the rest
     unchanged. For instance, the permutation \{12, 13, 3, 1, 11, 9, 5, 10, 6, 4,
     7, 8, 2\} has the cycle decomposition (1 12 8 10 4)(2 13)(5 11 7)(6 9).
+\end{definition}
 
-  \item The \textit{length} of a cycle is the number of integers that occur in
+\begin{definition}{Length of a cycle}{}
+  The \textit{length} of a cycle is the number of integers that occur in
     it
+\end{definition}
 
-  \item Two cycles are called \textit{disjoint} if they have no numbers in
+\begin{definition}{Disjoint cycles}{}
+  Two cycles are called \textit{disjoint} if they have no numbers in
     common
+\end{definition}
 
-  \item Since disjoint cycles permute numbers which lie in disjoint sets, it
-    follows that disjoint sets commute
+\begin{proposition}{}{}
+Since disjoint cycles permute numbers which lie in disjoint sets, it
+follows that disjoint sets commute
+\end{proposition}
 
-  \item The order of a permutation is the l.c.m of the lengths of the cycles in
-    its cycle decomposition
+\begin{proposition}{}{}
+The order of a permutation is the l.c.m of the lengths of the cycles in
+its cycle decomposition
+\end{proposition}
 
-\end{enumerate}
 
-\section{Matrix groups}
-\subsection{Field}
-\begin{enumerate}
-  \item A \textit{field} is a set $F$ together with two commutative binary
-    operators + and . on $F$ such that $(F, +)$ is an Abelian group (with
-    identity 0) and $(F-\{0\}, 0)$ is also an Abelian group, with the following
+\begin{definition}{Field}{}
+    A \textit{field} is a set $F$ together with two commutative binary
+    operators + and $\times$ on $F$ such that $(F, +)$ is an Abelian group (with
+    identity 0) and $(F-\{0\}, \times)$ is also an Abelian group, with the following
     \textit{distributive} law
     \begin{gather*}
-      a.(b+c) = (a.b)+(a.c)
+        a.(b+c) = (a.b)+(a.c)
     \end{gather*}
-  \item For any field $F$ let $F^\times = F-\{0\}$
-\end{enumerate}
-\subsection{General Linear group}
+\end{definition}
+As a matter of convention, for any field $F$ let $F^\times = F-\{0\}$
+
+\begin{definition}{General Linear group}{}
+    Let
 \begin{gather*}
-  GL_n(F) = \{A\mid A \textrm{ is a } n\times n\textrm{ matrix with entries from }
-  F\textrm{ and det(}A)\neq 0\}
+GL_n(F) = \{A\mid A \textrm{ is a } n\times n\textrm{ matrix with entries from }
+F\textrm{ and det(}A)\neq 0\}
 \end{gather*}
-$GL_n(F)$ is a group under matrix multiplication, called \textit{general linear
+$GL_n(F)$ is a group under matrix multiplication, called \textbf{general linear
 group of degree n}
+\end{definition}
 
 Useful facts
 \begin{enumerate}
@@ -205,42 +246,50 @@ Useful facts
 \end{enumerate}
 
 
-\section{Homomorphisms and isomorphisms}
-If $(G, \star)$ and $(H, \diamond)$ are groups then $\phi:G\rightarrow H$ such
+\begin{definition}{Homomorphism}{}
+If $(G, \star)$ and $(H, \diamond)$ are groups, then $\phi:G\rightarrow H$ such
 that
 \begin{gather*}
     \phi(x\star y) = \phi(x)\diamond\phi(y), \forall x, y\in G
 \end{gather*}
 is called a \textbf{homomorphism}.
+\end{definition}
 
+\begin{definition}{Isomorphism}{}
 A homomorphism is called an \textbf{isomorphism} if it is a bijection.
+\end{definition}
 
-Common techniques to prove two groups, $G$ and $H$, aren't isomorphic
+Common techniques to prove two groups, $G$ and $H$, aren't isomorphic is to
+disprove the following
 
 \begin{itemize}
 
-    \item $\mid G\mid \neq \mid H\mid$
+    \item $\mid G\mid = \mid H\mid$
         
     \item $G$ is abelian iff $H$ is abelian
 
     \item $\forall x\in G, \mid x\mid = \mid\phi(x)\mid$
 \end{itemize}
-\subsection{Miscellaneous}
-\begin{itemize}
-    \item\textbf{Classification theorem}:What are the objects of a given type, up to some
-    equivalence? For instance to prove that if $G$ is an object of with some
-    structure and $G$ has some property $P$ then any other similarly structured
-    object with property $P$ is isomorphic to $G$.
 
-    \item If $\phi:G\rightarrow H$ is a homomorphism, the \textbf{kernel} of $\phi$ is
-    defined as $\{g\in G\mid\phi(g) = 1_H\}$, i.e. set of those elements in $G$ that
-    are mapped to the identity element in $H$.
+\begin{definition}{Classification theorem}{}
+{Classification theorem}:What are the objects of a given type, up to some
+equivalence? For instance to prove that if $G$ is an object of with some
+structure and $G$ has some property $P$ then any other similarly structured
+object with property $P$ is isomorphic to $G$.
+\end{definition}
 
-    \item\textbf{Automorphism group}: set of all isomorphisms from $G$ onto $G$
-\end{itemize}
+\begin{definition}{Kernel of a homomorphism}{}
+$phi:G\rightarrow H$ is a homomorphism, the \textbf{kernel} of $\phi$ is
+defined as $\{g\in G\mid\phi(g) = 1_H\}$, i.e. set of those elements in $G$ that
+are mapped to the identity element in $H$.
+\end{definition}
 
-\section{Group Actions}
-\textbf{Definition}: A \textbf{group action} of a group $G$ on a set $A$ is a
+\begin{definition}{Automorphism group}{}
+\textbf{Automorphism group} is set of all isomorphisms from $G$ onto $G$
+\end{definition}
+
+\begin{definition}{Group action}{}
+A \textbf{group action} of a group $G$ on a set $A$ is a
 map from $G\times A$ to $A$ satisfying the folllowing properties
 \begin{enumerate}
 
@@ -249,20 +298,53 @@ map from $G\times A$ to $A$ satisfying the folllowing properties
     \item $1.a = a$, for all $a\in A$
 
 \end{enumerate}
+\end{definition}
 
 Intuitively, a group action of $G$ on $A$ just means that every element $g\in G$
 acts as a permutation on $A$ in a manner consistent with the group operations in
 $G$.
 
+\begin{proposition}{}{}
 Actions of a group $G$ on a set $A$ and the homomorphisms from $G$ into the
 symmetric group $S_A$ are in bijective correspondence.
+\end{proposition}
 
+\begin{definition}{Faithful action}{}
 If $G$ acts on a set $A$ and distinct elements of $G$ induce distinct
 permutations of $A$, the action is said to be \textbf{faithful}, i.e. associated
 permutation representation is injective.
+\end{definition}
 
+\begin{definition}{Kernel}{}
 The \textbf{kernel} of the action of $G$ on $A$ is defined to be $\{g\in G\mid
-gb = b\ \forall b\in B\}$
+gb = b\ \forall b\in B\}$, i.e. all the elements in $G$ that fix \textit{all}
+the elements of $A$.
+\end{definition}
+
+\begin{definition}{Stabilizer}{}
+If $G$ is a group acting on a set $A$, then for some fixed $a\in A$, the
+subgroup $\{g\in G\mid ga=a\}$ is called the \textbf{stabilizer} of $a$ in $G$.
+\end{definition}
+
+Intuitively, it is the ssubgroup of those elements of $G$ that fix $a$.
+
+\begin{definition}{Left regular action}{}
+    For any group $G$ and $A = G$, the map from $G\times A$ to $A$ defined by
+    $g.a = ga$ is called the \textbf{left regular action} of $G$ on itself.
+\end{definition}
+
+\begin{definition}{Conjugation}{}
+    If $G$ is any group then the action defined by $g.a = gag^{-1}$ is called
+    the \textbf{conjugation}.
+\end{definition}
+
+
+\begin{definition}{Orbit}{}
+    If $G$ is a group acting on a set $X$, the \textbf{orbit} of an element
+    $x\in X$ is defined as $\{y\in X\mid\exists g\in G$ such that $y = g$ \ding{72}
+    $x\}$
+\end{definition}
+Intuitively, the orbit of an element is the set of all those elements that can
+be reached using the group action
 
 \end{document}
-
