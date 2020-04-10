@@ -187,6 +187,20 @@ Note that centralizer, normalizer and stabilizer are all subgroups of $G$.
         \end{gather*}
         i.e. it is the set of all finite products (called \textbf{words}) of
         elements of $A$ and inverses of elements of $A$
+\end{definition}
+\begin{definition}{Lattice}{}
+    The \textbf{lattice} of subgroups of a given finite group $G$ is constructed
+    by plotting all subgroups of $G$ starting at the bottom with 1, ending at
+    the top with $G$ and with subgroups of larger order positioned higher on the
+    page than those of smaller order. There is a line upward from $A$ to $B$ if
+    $A\le B$ and there are no subgroups properly between $A$ and $B$.
+\end{definition}
+Thus for any pair of subgroups $H$ and $K$ of $G$ the unique smallest subgroup
+which contains both of them, $\langle H, K\rangle$ (called the \textbf{join} of
+$H$ and $K$) is first common ancestor.
+\begin{proposition}{}{}
+    Isomorphic groups have same lattices.
 \end{proposition}
-
+However, nonisomorphic groups may also have identical lattices (i.e. don't fall
+for the converse error).
 \end{document}
