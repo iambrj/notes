@@ -1,0 +1,60 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\newtcbtheorem[]{technique}{Technique}%
+{colback=magenta!5,colframe=teal!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{tip}{Tip}%
+{colback=magenta!5,colframe=violet!100!black,fonttitle=\bfseries}{th}
+
+\newcommand*{\logo}{\fbox{$\mathfrak{BRJ}$}}
+
+\begin{document}
+
+\begin{titlepage}
+
+	\raggedleft
+
+	\vspace*{\baselineskip}
+
+	{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}}
+
+	\vspace*{0.167\textheight}
+
+	\textbf{\LARGE Notes on}\\[\baselineskip]
+
+	\textbf{\textcolor{teal}{\huge Algebra Problem Solving}}\\[\baselineskip]
+
+    {\Large \textit{Techniques \& tips}}
+
+	\vfill
+
+	{\large \logo}
+
+	\vspace*{3\baselineskip}
+
+\end{titlepage}
+
+\newpage
+
+\begin{technique}{}{}
+    \textbf{Identity ignition}: try inserting $e$ as $g^{-1}g$ for arbitrary
+    elements of a group $G$.
+\end{technique}
+
+\end{document}
+
