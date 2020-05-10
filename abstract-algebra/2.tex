@@ -123,9 +123,10 @@ Note that centralizer, normalizer and stabilizer are all subgroups of $G$.
 \begin{proposition}{}{}
     For any element $x\in G$ of an arbitrary group $G$, and $m, n\in
         \mathbb{Z}$,
-        if $x^n = 1$ and $x^m = 1$, then $x^{GCD(m, n)} = 1$. In particular, if
+        if $x^n = 1$ and $x^m = 1$, then $x^{(m, n)} = 1$. In particular, if
         $x^m = 1$ for some $m\in \mathbb{Z}$, then $|x|$ divides $m$.
 \end{proposition}
+Intuitively, $x^m = 1$ iff $m$ is a multiple of $|x|$
 \begin{proposition}{}{}
     Any two cyclic groups of same order are isomorphic
 \end{proposition}
@@ -139,6 +140,11 @@ Note that centralizer, normalizer and stabilizer are all subgroups of $G$.
                 dividing $n$, then $|x^a| = \frac{n}{a}$.
         \end{enumerate}
 \end{proposition}
+Proof sketch (2) - Firstly, observe that $|x^a|$ divides $n/(n, a)$. Secondly,
+$n$ divides $a|x^a|\implies$ $n/(n, a)$ divides $a|x^a|/(n, a)$ but since $n/(n,
+a)$ and $a/(n, a)$ are coprime, $n/(n, a)$ divides $|x^a|$. Since they divide
+each other, they are equal.
+
 \begin{proposition}{}{}
     If $H = |x|$ then
         \begin{enumerate}
