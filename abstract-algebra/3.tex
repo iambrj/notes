@@ -67,7 +67,7 @@
 If $G$ and $H$ are groups and $\phi:G\rightarrow H$ is a homomorphism
 then
 \begin{enumerate}
-    \item$\phi(1_G) = \phi(1_H)$.
+    \item$\phi(1_G) = 1_H$.
     \item$\phi(g^{-1}) = \phi(g)^{-1}$, $\forall g\in G$.
     \item$\phi(g^n) = \phi(g)^n$, $\forall n\in\mathbb{Z}$.
     \item ker$\phi$ is a subgroup of $G$.
@@ -118,8 +118,14 @@ to the same element in $H$ and group operation is as defined above.
     representatives of the same coset.
 \end{proposition}
 \textbf{Proof sketch:} $1\in N$ therefore $\bigcup\limits_{g\in G} gN = G$ and
-$uN\cap vN = \phi$ for distinct $u$ and $v$ since otherwise $uN\subseteq vN$ and
-$vN\subseteq uN$ implying $uN = vN$.
+$uN\cap vN = \phi$ for distinct $u$ and $v$ since otherwise
+\begin{align*}
+    un_1 &= vn_2\\
+    u(n_1n_2^{-1}) &= v\\
+    un' &= v\\
+    un'\in vN &\implies u\in vN\;\textrm(contradiction!)
+\end{align*}
+
 \begin{proposition}{}{}
     If $G$ is a group, then $\forall N\le G$,
     \begin{enumerate}
@@ -134,7 +140,10 @@ $vN\subseteq uN$ implying $uN = vN$.
             $(gN)^{-1} = g^{-1}N$. This group is denoted by $G/N$.
     \end{enumerate}
 \end{proposition}
-\textbf{Proof sketch:} 
+\textbf{Proof sketch:} Observe that $uvN = u_1v_1N, \forall u_1\in uN \textrm{
+and } \forall v_1\in vN$. Put $u = 1, u_1 = n, v = v_1 = g^{-1}$ to get forward
+proof. For backwards
+
 \begin{definition}{Conjugate}{}
     The element $gng^{-1}$ is called the \textbf{conjugate} of $n\in N$ by $g$
     and the set $gNg^{-1} = \{gng^{-1}\;|\;n\in N\}$ is called the
@@ -207,9 +216,17 @@ A few corollaries that follow
         |HK| = \frac{|H||K|}{|H\cap K|}
     \end{gather*}
 \end{proposition}{}{}
+\textbf{Proof sketch}: $|HK|$ = number of distinct left cosets of $H$ in $K$
+$\times$ size of each coset = $\frac{|H|}{|H\cap K|}\times |K|$
 \begin{proposition}{}{}
     If $H$ and $K$ are subgroups of a group, $HK$ is a subgroup iff $HK = KH$.
 \end{proposition}
+\textbf{Proof sketch}: For the backward implication, observe that for some $a =
+h_1k_1$ and $b = h_2k_2$ in $HK$, it suffices to show $ab^{-1} =
+h_1k_1k_2^{-1}h_2\in HK$. For the forward implication, show that $HK\subseteq
+KH$ and $KH\subseteq HK$. For instance for arbitrary $hk\in HK$, $\exists h'k'\in HK$
+such that $hk = (h'k')^{-1} = k'^{-1}h'^{-1}\in KH$.
+
 An interesting corollary is that if $H$ and $K$ are subgroups of $G$ and $H$ and
 $H\le N_G(K)$, then $HK$ is a subgroup of $G$ and in particular if
 $K\trianglelefteq G$ then $HK\le G$, $\forall H\le G$.
@@ -223,8 +240,8 @@ $K\trianglelefteq G$ then $HK\le G$, $\forall H\le G$.
 \end{theorem}
 \begin{theorem}{Second Isomorphism Theorem/\\Diamond Isomorphism Theorem}{}
     If $G$ is a group, $A$ and $B$ are subgroups of $G$ and $A\le N_G(B)$, then
-    $AB$ is a subgroup of $G$, $B\trianglelefteq AB$, $A\cup B\trianglelefteq$
-    and $AB/B\cong A/A\cup B$.
+    $AB$ is a subgroup of $G$, $B\trianglelefteq AB$, $A\cap B\trianglelefteq A$
+    and $AB/B\cong A/A\cap B$.
 \end{theorem}
 \begin{theorem}{Third Isomorphism Theorem}{}
     If $G$ is a group, $A$ and $B$ are normal subgroups of $G$ such that $A\le

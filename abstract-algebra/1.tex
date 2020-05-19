@@ -28,8 +28,6 @@
 \newtcbtheorem[]{theorem}{Theorem}%
 {colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
 
-\newcommand*{\logo}{\fbox{$\mathfrak{BRJ}$}}
-
 \begin{document}
 
 \begin{titlepage} % Suppresses headers and footers on the title page
@@ -49,8 +47,6 @@
     {\Large \textit{Chapter 1 from Dummit \& Foote, $3^{rd}$ Ed.}} % Subtitle
 
 	\vfill % Whitespace between the titles and the publisher
-
-	{\large \logo} % Publisher and logo
 
 	\vspace*{3\baselineskip} % Whitespace at the bottom of the page
 
@@ -304,12 +300,22 @@ map from $G\times A$ to $A$ satisfying the folllowing properties
 
 Intuitively, a group action of $G$ on $A$ just means that every element $g\in G$
 acts as a permutation on $A$ in a manner consistent with the group operations in
-$G$.
+$G$. Proof: let $g\in G$ be arbitrary but fixed element, then $gA\subseteq
+A$ by definition and for arbitrary but fixed $a\in A$,
+\begin{align*}
+    a &= 1 . a \textrm{ (by 1)}\\
+      &= (gg^{-1}) . a\\
+      &= g . (g^{-1} . a) \textrm{ (by 2)}\\
+      &\in gA  \textrm{ (since } g' . a' \in A, \forall g\in G, a\in A)
+\end{align*}
+thus proving $A\subseteq gA$. Since both belong to each other, both are equal.
 
 \begin{proposition}{}{}
 Actions of a group $G$ on a set $A$ and the homomorphisms from $G$ into the
 symmetric group $S_A$ are in bijective correspondence.
 \end{proposition}
+Proof: for any homomorphism $\phi: G\rightarrow S_A$, the map $g . a =
+\phi(g)(a), \forall g\in G, a\in A$ is a group action.
 
 \begin{definition}{Faithful action}{}
 If $G$ acts on a set $A$ and distinct elements of $G$ induce distinct

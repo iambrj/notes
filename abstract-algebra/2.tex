@@ -27,8 +27,6 @@
 \newtcbtheorem[]{theorem}{Theorem}%
 {colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
 
-\newcommand*{\logo}{\fbox{$\mathfrak{BRJ}$}}
-
 \begin{document}
 
 \begin{titlepage} % Suppresses headers and footers on the title page
@@ -48,8 +46,6 @@
     {\Large \textit{Chapter 2 from Dummit \& Foote, $3^{rd}$ Ed.}} % Subtitle
 
 	\vfill % Whitespace between the titles and the publisher
-
-	{\large \logo} % Publisher and logo
 
 	\vspace*{3\baselineskip} % Whitespace at the bottom of the page
 
@@ -146,7 +142,7 @@ a)$ and $a/(n, a)$ are coprime, $n/(n, a)$ divides $|x^a|$. Since they divide
 each other, they are equal.
 
 \begin{proposition}{}{}
-    If $H = |x|$ then
+    If $H = \langle x\rangle$ then
         \begin{enumerate}
             \item If $|x| = \infty$ then $H = \langle x^a\rangle$ iff $a =
                 \pm 1$
