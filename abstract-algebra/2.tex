@@ -68,13 +68,13 @@
     \item $\forall x, y\in H, xy^{-1}\in H$
 \end{enumerate}
 Furthermore, if $H$ is finite it sufficies to check that $H$ is nonempty and
-closed under multiplication.
+closed under the group operation.
 
 \begin{definition}{Centralizer}{}
-    $C_G(A) = \{g\in G| gag^{-1} = a,\forall a\in A\}$ is a subset of $G$ and
-    is called the \textbf{centralizer} of $A$ in $G$. Since $gag^{-1} = a$ iff
-    $ga = ag$, $C_G(A)$ is the set of elements of $G$ which commute with every
-    element of $A$.
+    $\forall A\subseteq G, C_G(A) = \{g\in G| gag^{-1} = a,\forall a\in A\}$ is
+    a subset of $G$ and is called the \textbf{centralizer} of $A$ in $G$. Since
+    $gag^{-1} = a$ iff $ga = ag$, $C_G(A)$ is the set of elements of $G$ which
+    commute with every element of $A$.
 \end{definition}
 Intuitively, the centralizer of $A$ measures how inside the center $Z(G)$ $A$
 is.
@@ -86,8 +86,8 @@ is.
 The center of a set is just the centralizer with $A = G$
 
 \begin{definition}{Normalizer}{}
-    If $gAg^{-1} = \{gag^{-1}| a\in A\}$, the \textbf{normalizer}  of $A$ in
-    $G$ is defined as $N_G(A) = \{g\in G| gAg^{-1} = A \}$
+    If $gAg^{-1} = \{gag^{-1}| a\in A\}$, the \textbf{normalizer}  of $A
+    (\subseteq G)$ in $G$ is defined as $N_G(A) = \{g\in G| gAg^{-1} = A \}$
 \end{definition}
 Intuitively, the normalizer of a set $A$ measures how normal the set $A$ is.
 
@@ -159,7 +159,7 @@ each other, they are equal.
             \item If $|H| = \infty$ then for all $a, b\in\mathbb{Z}$ such that
                 $a\neq b$, $\langle x^a\rangle\neq\langle x^b\rangle$ and for
                 every $m\in\mathbb{Z}$, $\langle x^m\rangle = \langle
-                |x^m|\rangle$, i.e.\ nontrivial subgroups of $H$ are in a
+                x^{|m|}\rangle$, i.e.\ nontrivial subgroups of $H$ are in a
                 bijective correspondence with the natural numbers.
             \item If $|H| = n < \infty$ then for all $a\in\mathbb{Z}$ such that
                 $a|n$, $\exists$ unique subgroup $H$ of order $a$ (which is the
