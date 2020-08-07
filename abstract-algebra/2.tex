@@ -137,7 +137,8 @@ Intuitively, $x^m = 1$ iff $m$ is a multiple of $|x|$
         \end{enumerate}
 \end{proposition}
 Proof sketch (2) - Firstly, observe that $|x^a|$ divides $n/(n, a)$. Secondly,
-$n$ divides $a|x^a|\implies$ $n/(n, a)$ divides $a|x^a|/(n, a)$ but since $n/(n,
+$n$ divides $a|x^a| (\because (x^a)^{|x^a|} = 1)\implies$ $n/(n, a)$ divides
+$a|x^a|/(n, a)$ but since $n/(n,
 a)$ and $a/(n, a)$ are coprime, $n/(n, a)$ divides $|x^a|$. Since they divide
 each other, they are equal.
 
@@ -169,6 +170,17 @@ each other, they are equal.
                 correspondence with the positive divisors of $n$.
         \end{enumerate}
 \end{proposition}
+\textbf{Proof sketch}: Consider a nontrivial subgroup $K\leq H$ and let\newline
+$\mathcal{P} = \{b\;|\;b\in\mathbb{Z^+}\textrm{ and } x^b\in K\}$. By the well
+ordering principle, $\mathcal{P}$ has a minimum element, call it $d$. Now,
+$\langle x^d\rangle\leq K$. Also $K\leq\langle x^d\rangle$ since
+\begin{align*}
+    \forall a\in\mathcal{P}, a &= dq+r\textrm{ , for appropriate $r\in [0, d)$}\\
+    \implies x^r &= x^{a-dq} = x^a (x^d)^{-q}\in K.\\
+    \because d\textrm{ is minimum }, r &= 0\\
+    \implies x^a &= (x^d)^q \in \langle x^d\rangle
+\end{align*}
+
 \begin{proposition}{}{}
     If $\mathcal{A}$ is any nonempty collection of subgroups of $G$, then
         the intersection of all members of $\mathcal{A}$ is also a subgroup of

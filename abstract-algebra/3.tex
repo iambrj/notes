@@ -27,8 +27,6 @@
 \newtcbtheorem[]{theorem}{Theorem}%
 {colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
 
-\newcommand*{\logo}{\fbox{$\mathfrak{BRJ}$}}
-
 \begin{document}
 \begin{titlepage} % Suppresses headers and footers on the title page
 
@@ -47,8 +45,6 @@
     {\Large \textit{Chapter 3 from Dummit \& Foote, $3^{rd}$ Ed.}} % Subtitle
 
 	\vfill % Whitespace between the titles and the publisher
-
-	{\large \logo} % Publisher and logo
 
 	\vspace*{3\baselineskip} % Whitespace at the bottom of the page
 
@@ -118,12 +114,10 @@ to the same element in $H$ and group operation is as defined above.
     representatives of the same coset.
 \end{proposition}
 \textbf{Proof sketch:} $1\in N$ therefore $\bigcup\limits_{g\in G} gN = G$ and
-$uN\cap vN = \phi$ for distinct $u$ and $v$ since otherwise
+$uN\cap vN = \phi$ for $u$ and $v$ from different cosets since otherwise
 \begin{align*}
     un_1 &= vn_2\\
-    u(n_1n_2^{-1}) &= v\\
-    un' &= v\\
-    un'\in vN &\implies u\in vN\;\textrm(contradiction!)
+    \iff u(n_1n_2^{-1}) &= v\implies v\in uN\;\textrm(contradiction!)
 \end{align*}
 
 \begin{proposition}{}{}
@@ -140,9 +134,17 @@ $uN\cap vN = \phi$ for distinct $u$ and $v$ since otherwise
             $(gN)^{-1} = g^{-1}N$. This group is denoted by $G/N$.
     \end{enumerate}
 \end{proposition}
-\textbf{Proof sketch:} Observe that $uvN = u_1v_1N, \forall u_1\in uN \textrm{
-and } \forall v_1\in vN$. Put $u = 1, u_1 = n, v = v_1 = g^{-1}$ to get forward
-proof. For backwards
+\textbf{Proof sketch:} For the forward proof, we want to prove $gNg^{-1} = N$
+from $uN.vN=(uv)N$. Multiplying both sides by $N$,
+\begin{align*}
+    &gNg^{-1} = N\\
+    \iff &gN^{-1}N = N\\
+    \iff &N = N
+\end{align*}
+For the backward proof we just show $uN.vN = (uv)N$ from $gN = Ng$.
+
+Corollary: a subgroup $N$ of $G$ is normal iff it is the kernel of some
+homomorphism.
 
 \begin{definition}{Conjugate}{}
     The element $gng^{-1}$ is called the \textbf{conjugate} of $n\in N$ by $g$
@@ -161,11 +163,9 @@ proof. For backwards
         \item The operation on left (right) cosets defined above makes it a
             group.
         \item $gNg^{-1}\subseteq N,\;\forall g\in G$.
+        \item $N$ is the kernel of some homomorphism from $G$
     \end{enumerate}
 \end{theorem}
-\begin{proposition}{}{}
-    A subgroup $N$ of $G$ is normal iff it is the kernel of some homomorphism.
-\end{proposition}
 Tips to minimize computations necessary to determine whether a subgroup $N$ of
 $G$ is normal
 \begin{enumerate}
@@ -191,6 +191,9 @@ $G$ is normal
     divides the order of $G$ and the number of left cosets of $H$ in $G$ is
     $|G|/|H|$.
 \end{theorem}
+\textbf{Proof sketch:} By Proposition 2, the left (right) cosets of $H$ form a
+partition of $G$. Furthermore, $\forall g\in G$, $|gH| = |H|$ since otherwise
+$gh_1$ = $gh_2$ (for distinct $h1, h2\in H$) $\implies h_1 = h_2$.
 \begin{definition}{Index}{}
     If $G$ is a group and $H\le G$, the number of left cosets of $H$ in $G$ is
     called the \textbf{index} $H$ in $G$ and is denoted by $|G:H|$.
@@ -200,12 +203,13 @@ A few corollaries that follow
     \item If $G$ is a finite group, then $\forall x\in G$ $|x|\mid |G|$ and in
         particular $x^{|G|} = 1$.
     \item If $G$ is a group of prime order $p$, then $G$ is cyclic (and $G\cong
-        Z_n$)
+        Z_p$)
 \end{enumerate}
 \begin{theorem}{Cauchy's Theorem}{}
     If $G$ is a finite group and $p$ is a prime dividing $|G|$, then $G$ has an
     element of order $p$.
 \end{theorem}
+\textbf{Proof sketch}: case wise induction on $G$
 \begin{theorem}{Sylow's Theorem}{}
     If $G$ is a finite group of order $p^\alpha m$ where $p$ is a prime and
     $p\nmid m$, then $G$ has a subgroup of order $p^\alpha$.
@@ -221,13 +225,13 @@ $\times$ size of each coset = $\frac{|H|}{|H\cap K|}\times |K|$
 \begin{proposition}{}{}
     If $H$ and $K$ are subgroups of a group, $HK$ is a subgroup iff $HK = KH$.
 \end{proposition}
-\textbf{Proof sketch}: For the backward implication, observe that for some $a =
-h_1k_1$ and $b = h_2k_2$ in $HK$, it suffices to show $ab^{-1} =
-h_1k_1k_2^{-1}h_2\in HK$. For the forward implication, show that $HK\subseteq
-KH$ and $KH\subseteq HK$. For instance for arbitrary $hk\in HK$, $\exists h'k'\in HK$
-such that $hk = (h'k')^{-1} = k'^{-1}h'^{-1}\in KH$.
+\textbf{Proof sketch}:  For the forward implication, show that $HK\subseteq KH$
+and $KH\subseteq HK$. For instance for arbitrary $h_1k_1\in HK$, $\exists
+h_2k_2\in HK$ such that $h_1k_1 = (h_2k_2)^{-1} = k_2^{-1}h_2^{-1}\in KH$. For
+the backward implication, observe that for some $a = h_1k_1$ and $b = h_2k_2$ in
+$HK$, it suffices to show $ab^{-1} = h_1k_1k_2^{-1}h_2^{-1}\in HK$.
 
-An interesting corollary is that if $H$ and $K$ are subgroups of $G$ and $H$ and
+An interesting corollary is that if $ K \le H \le G$ and
 $H\le N_G(K)$, then $HK$ is a subgroup of $G$ and in particular if
 $K\trianglelefteq G$ then $HK\le G$, $\forall H\le G$.
 \begin{definition}{}{}
@@ -235,26 +239,38 @@ $K\trianglelefteq G$ then $HK\le G$, $\forall H\le G$.
     \textbf{normalize} (\textbf{centralize}) K.
 \end{definition}
 \begin{theorem}{First Isomorphism Theorem/\\Fundamental Theorem of Homomorphisms}{}
-    If $\phi:G\rightarrow H$ is a homomorphism of groups, then
-    ker$\phi\trianglelefteq G$ and $G/\text{ker}\phi\cong \phi(G)$.
+    If $\phi:G\rightarrow H$ is a homomorphism, then ker$\phi\trianglelefteq G$
+    und $G/\text{ker}\phi\cong \phi(G)$.
 \end{theorem}
 \begin{theorem}{Second Isomorphism Theorem/\\Diamond Isomorphism Theorem}{}
     If $G$ is a group, $A$ and $B$ are subgroups of $G$ and $A\le N_G(B)$, then
     $AB$ is a subgroup of $G$, $B\trianglelefteq AB$, $A\cap B\trianglelefteq A$
     and $AB/B\cong A/A\cap B$.
 \end{theorem}
+Intuition: We have a subgroup $S$ and a normal subgroup $N$ of $G$. Now, we want
+to quotient out $N$ from $S$ - however, we do not know if $N$ is also a subgroup
+of $S$. Thus, there are two options:
+\begin{enumerate}
+    \item Quotient out $N$ from the smallest subgroup of $G$ containing both
+        $S$\&$N$
+    \item Quotient out the intersection from $S$
+\end{enumerate}
 \begin{theorem}{Third Isomorphism Theorem}{}
     If $G$ is a group, $A$ and $B$ are normal subgroups of $G$ such that $A\le
-    B$, then $B/A\trianglelefteq G/A$.
+    B$, then $B/A\trianglelefteq G/A$ and 
+    \begin{align*}
+        (G/A)/(B/A) \cong G/B
+    \end{align*}.
 \end{theorem}
 \begin{theorem}{Fourth Isomorphism Theorem/\\Lattice Isomorphism Theorem}{}
     If $G$ is a group and $N$ is a normal subgroup of $G$, then there is a
     bijection from the set of subgroups $A$ of $G$ which contain $N$ onto the
     set of subgroups $\overline A = A/N$ of $G/N$. In particular, every subgroup
     of $\overline G$ is of the form $A/N$ for some subgroup $A$ of $G$
-    containing $N$. This bijection has the following properties
+    containing $N$. This bijection has the following properties, $\forall$
+    subgroups $A, B$ containing $N$
     \begin{enumerate}
-        \item $A\le B$ iff $\overline A\le\overline B$
+        \item $A\le B \iff \overline A\le\overline B$
         \item $A\le B\implies |B:A| = |\overline B:\overline A|$
         \item $\overline{\langle A, B\rangle} = \langle\overline A, \overline
             B\rangle$
@@ -266,6 +282,7 @@ $K\trianglelefteq G$ then $HK\le G$, $\forall H\le G$.
     If $G$ is a finite abelian group and $p$ is a prime dividing $|G|$, then $G$
     contains an element of order $p$.
 \end{proposition}
+\textbf{Proof}: By induction on $G$
 \begin{definition}{Simple group}{}
     A group $G$ is called \textbf{simple} if $|G|\ge 1$ and the only normal
     subgroups of $G$ are 1 and $G$.
@@ -302,7 +319,7 @@ $K\trianglelefteq G$ then $HK\le G$, $\forall H\le G$.
     \end{enumerate}
 \end{center}
 \begin{theorem}{Feit-Thompson theorem}{}
-    If $G$ is a simple group or odd oreder, then $G\cong Z_p$ for some prime
+    If $G$ is a simple group of odd order, then $G\cong Z_p$ for some prime
     $p$.
 \end{theorem}
 \begin{quotation}
@@ -319,6 +336,10 @@ This proof takes 255 pages of hard mathematics
     A finite group $G$ is solvable iff for every divisor $n$ of $|G|$ such that
     $(n, \frac{|G|}{n}) = 1$, $G$ has a subgroup of order $n$.
 \end{theorem}
+\begin{proposition}{}{}
+    If $N\trianglelefteq G$ such that $N$ and $G/N$ are solvable, the $G$ is
+    solvable.
+\end{proposition}
 \begin{definition}{Transportation}{}
     A 2-cycle is called a \textbf{transportation}.
 \end{definition}
