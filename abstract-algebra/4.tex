@@ -1,0 +1,212 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\newtcbtheorem[]{definition}{Definition}%
+{colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+{colback=cyan!5,colframe=cyan!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+{colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
+
+\begin{document}
+
+\begin{titlepage}
+
+	\raggedleft
+
+	\vspace*{\baselineskip}
+
+	{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}}
+
+	\vspace*{0.167\textheight}
+
+	\textbf{\LARGE Notes on}\\[\baselineskip]
+
+	\textbf{\textcolor{teal}{\huge Group Actions}}\\[\baselineskip]
+
+    {\Large \textit{Chapter 4 from Dummit \& Foote, $3^{rd}$ Ed.}}
+
+	\vfill
+
+	\vspace*{3\baselineskip}
+
+\end{titlepage}
+
+\newpage
+
+\begin{proposition}{}{}
+    For any group $G$ and any nonempty set $A$ there is a bijection between the
+    actions of $G$ on $A$ and the Homomorphisms of $G$ into $S_A$
+\end{proposition}
+
+\begin{proposition}{}{}
+    If $G$ is a group acting on a nonempty set $A$ then the relation defined by
+    \begin{align*}
+        a\sim b\textrm{ iff } a = g.b,\textrm{ for some } g\in G
+    \end{align*}
+    is an equivalence relation. For each $a\in A$ the number of elements in the
+    equivalence class containing $a$ is $|G:G_a|$, the index of the stabilizer
+    of $a$
+\end{proposition}
+\textbf{Proof}: Observe that for each $a\in A$, the sets $G/$Stab$(a)$ and
+Orbit$(a)$ are isomorphic.
+
+\begin{definition}{}{}
+    If $G$ is a group acting on a nonempty set $A$
+    \begin{enumerate}
+        \item The equivalence class $\{g.a | g\in G\}$ is called the
+            \textbf{orbit} of $G$ containing $a$
+        \item The action of $G$ on $A$ is called \textbf{transitive} if there
+            is only one orbit, i.e., $\forall a, b\in A, \exists g\in G$ such
+            that $a = g.b$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}{}{}
+    If $G$ acts on its subgroup $H$ by left multiplication on its cosets, then
+    \begin{enumerate}
+        \item This action is transitive
+        \item The stabilizer is $H$
+        \item The kernel is $\cap_{x\in G} xHx^{-1}$ and is the largest normal
+            subgroup of $G$ contained in $H$
+    \end{enumerate}
+\end{theorem}
+\textbf{Proof:} $\cap_{x\in G} xHx^{-1}$ is a normal subgroup and every other
+normal subgroup contained in $H$ is also a subgroup of $\cap_{x\in G} xHx^{-1}$.
+
+\begin{theorem}{Cayley's theorem}{}
+    Every group is isomorphic to a subgroup of some symmetric group. If $|G| =
+    n$ then $G$ is isomorphic to some subgroup of $S_n$
+\end{theorem}
+\textbf{Proof:} Consider the group action by $G$ on its identity subgroup $\{e\}$
+by coset multiplication. $G$ is isomorphic to its image in $S_n$, by the First
+Isomorphism Theorem. The isomorphism is given by $T:G\rightarrow S_G$ where
+$T(g) = \sigma_g$
+
+\begin{theorem}{}{}
+    If $G$ is a finite group of order $n$ and $p$ is the smallest prime dividing
+    $n$, then any subgroup of index $p$ is normal
+\end{theorem}
+\textbf{Proof:} Let $G$ be the group whose order's smallest prime divisor is $p$
+and $H$ a subgroup of $G$ of index $p$. Let $\phi: G\rightarrow S_{G/H}$ be the
+permutation representation afforded by the group action and $ker(\phi)$ the
+kernel. We now show that $H = ker(\phi)$ as follows: by the First homomorphism
+theorem,
+\begin{align*}
+         &\frac{|G|}{|ker(\phi)|} = |\phi(G)|\\
+    \iff &|\phi(G)|\textrm{ divides } |G|
+\end{align*}
+By Lagrange's theorem, $|\phi(G)|$ divides $|S_{G/H}|$. Now, since it divides them
+both, it should also divide their GCD. But observe that, since $p$ is the
+\textit{smallest} prime, the GCD itself is $p$. Thus $|\phi(G)|$ is either 1 or
+$p$, both of which mean $ker(\phi) = H$ making it normal.
+
+\begin{proposition}{}{}
+    Number of conjugates of a subset $S$ of a group $G$ is $|G:N_G(S)|$. In
+    particular, the number of conjugates of an element $s$ is $|G:C_G(s)|$.
+\end{proposition}
+
+\begin{theorem}{Class Equation}{}
+    If $G$ is a finite group and $g_1\dots g_r$ are the representatives of the
+    distinct conjugacy classes not contained in $Z(G)$ then
+    \begin{gather*}
+        |G| = |Z(G)| + \sum_{i = 1}^r |G : C_G(g_i)|
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}{}{}
+    If $p$ is a prime and $|P| = p^\alpha$ for some $\alpha\geq 1$, then $P$ has
+    a nontrivial center, $Z(P)\neq 1$
+\end{theorem}
+Observe that this implies if $|P| = p^2$ for some prime $p$ then $P$ is abelian
+(specifically, either $Z_p\times Z_p$ or $Z_{p^2}$). Proof idea : use class
+equation.
+
+\begin{proposition}{}{}
+    If $|P| = p^2$ for some prime $p$, then $P$ is abelian (and isomorphic to
+    $Z_{p\times p}/Z_{p^2}$)
+\end{proposition}
+Proof sketch: By previous proposition, it has a nontrivial center making
+$P/Z(P)$ cyclic implying $P$ is abelian. If $x$ is a nonidentity element in $P$
+then it has order $p$ (if $p^2$ then we are done) and let $y\in P \setminus
+\langle x\rangle$. Then since $|\langle x, y\rangle | > |\langle x\rangle |$,
+the former must be $P$ itself and since each $x$ and $y$ have order $p$, we have
+$\langle x\rangle \times \langle y\rangle\cong Z_{p\times p}$.
+
+\begin{proposition}{}{}
+    Conjugations in $S_n$ are just relabelling, i.e. if $\sigma = (a_1\dots
+    a_n)$ then for any $\tau$,
+    \begin{gather*}
+        \tau\sigma\tau^{-1} = (\tau(a_1)\dots\tau(a_n))
+    \end{gather*}
+\end{proposition}
+
+\begin{definition}{Cycle type}{}
+    If $\sigma\in S_n$ is the product of disjoint cycles of lengths
+    $n_1,\dots,n_r$ in nondecreasing order, then the integers $n_1,\dots,n_r$
+    are called the \textbf{cycle type} of $\sigma$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Two elements of $S_n$ are conjugates in $S_n$ iff they have the same cycle
+    type.
+\end{proposition}
+\textbf{Proof:} For the forward proof, observe that conjugate permutations have
+the same cycle type as conjugation is just relabelling. For the backward proof,
+observe that ordering the cycles in nondecreasing length gives us a permutation
+mapping elements at corresponding positions in the two decompositions.
+
+Useful observation: Normal subgroups are union of conjugacy classes
+
+\begin{definition}{}{}
+    The set of all isomorphisms from a group $G$ to itself is called the
+    automorphism group, denoted by Aut$(G)$
+\end{definition}
+
+\begin{proposition}{}{}
+    If $H\trianglelefteq G$ then $G$ acts by conjugation on $H$ as automorphisms
+    of $H$, this action is defined by
+    \begin{gather*}
+        g.H\mapsto gHg^{-1}
+    \end{gather*}
+    Furthermore, the permutation representation afforded by this action is a
+    Homomorphism of $G$ into Aut($H$) with kernel $C_G(H)$ and $G/C_G(H)$ is
+    isomorphic to a subgroup of Aut($H$)
+\end{proposition}
+A few corollaries:
+\begin{enumerate}
+    \item $K\leq G\implies\forall g\in G, K\cong gKg^{-1}$
+    \item For any subgroup $H\leq G,$ the quotient group $N_G(H)/C_G(H)$ is
+        isomorphic to some subgroup of Aut$(G)$.
+\end{enumerate}
+
+\begin{definition}{}{}
+    If $G$ is a group and $g\in G$, conjugation by $g$ is called an
+    \textbf{inner automorphism} of $G$ and the subgroup of Aut$(G)$ consisting
+    of all inner automorphisms is denoted by Inn$(G)$
+\end{definition}
+
+
+\begin{definition}{}{}
+    A subgroup $H$ of $G$ is called \textbf{characteristic} in $G$, denoted $H$
+    char $G$, if every automorphism of $G$ maps $H$ onto itself -
+    $\forall\sigma\in$ Aut$(G)$, $\sigma(H) = H$
+\end{definition}
+\end{document}
+
