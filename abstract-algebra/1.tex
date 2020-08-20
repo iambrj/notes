@@ -319,14 +319,18 @@ Proof: for any homomorphism $\phi: G\rightarrow S_A$, the map $g . a =
 \begin{definition}{Faithful action}{}
 If $G$ acts on a set $A$ and distinct elements of $G$ induce distinct
 permutations of $A$, the action is said to be \textbf{faithful}, i.e. associated
-permutation representation is injective.
+permutation representation is injective. Also, faithful actions have the trivial
+kernel.
 \end{definition}
 
 \begin{definition}{Kernel}{}
 The \textbf{kernel} of the action of $G$ on $A$ is defined to be $\{g\in G\mid
 gb = b\ \forall b\in B\}$, i.e. all the elements in $G$ that fix \textit{all}
-the elements of $A$.
+the elements of $A$. The kernel is normal subgroup of $G$.
 \end{definition}
+
+Note: Two elements in the group induce the same permutation iff they are in the
+same coset of the kernel
 
 \begin{definition}{Stabilizer}{}
 If $G$ is a group acting on a set $A$, then for some fixed $a\in A$, the
