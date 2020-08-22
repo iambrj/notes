@@ -1,0 +1,126 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\newtcbtheorem[]{definition}{Definition}%
+{colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+{colback=cyan!5,colframe=cyan!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+{colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
+
+\begin{document}
+
+\begin{titlepage}
+
+	\raggedleft
+
+	\vspace*{\baselineskip}
+
+	{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}}
+
+	\vspace*{0.167\textheight}
+
+	\textbf{\LARGE Notes on}\\[\baselineskip]
+
+	\textbf{\textcolor{teal}{\huge Introduction to Rings}}\\[\baselineskip]
+
+    {\Large \textit{Chapter 7 from Dummit \& Foote, $3^{rd}$ Ed.}}
+
+	\vfill
+
+	\vspace*{3\baselineskip}
+
+\end{titlepage}
+
+\newpage
+
+\begin{definition}{Ring}{}
+    A \textbf{ring} $R$ is a set with two binary operations $+$ and $\times$
+    such that
+    \begin{enumerate}
+        \item $(R, +)$ is an abelian group
+        \item $\times$ is associative : $(a\times b)\times c = a\times (b\times
+            c)$
+        \item The following distributive laws hold
+            \begin{enumerate}
+                \item $(a+b)\times c = (a\times c) + (b\times c)$
+                \item $a\times (b+c) = (a\times b) + (a\times c)$
+            \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+A ring is commutative if multiplication is commutative
+
+A ring is said to have an identity if $\exists 1\in R$ such that
+\begin{gather*}
+    1\times a = a\times 1 = a, \forall a\in R
+\end{gather*}
+
+\begin{definition}{Division ring}{}
+    A ring $R$ with an identity element 1 ($\neq 0$) is called a
+    \textbf{division ring/skew field} if $\forall a\neq 0\in R, \exists b\in R$
+    such that $ab=ba=1$
+\end{definition}
+
+A commutative division ring is called a \textbf{field}
+
+\begin{proposition}{}{}
+    If $R$ is a ring then
+    \begin{enumerate}
+        \item $0a=a0=0, \forall a\in R$
+        \item $(-a)b=a(-b)=-(ab), \forall a,b\in R$
+        \item $(-a)(-b) = ab,\forall a,b\in R$
+        \item If $R$ has identity 1, then it is unique and $-a = (-1)a$
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}{Zero divisor, unit}{}
+    \begin{enumerate}
+        \item A nonzero element $a\in R$ is called a \textbf{zero divisor} if
+        $\exists b\neq 0\in R$ such that $ab=0$ or $ba=0$
+        \item If $R$ has an identity $1\neq 0$, then $u\in R$ is called
+        \textbf{unit} in $R$ if $\exists v\in R$ such that $uv=vu=1$. Set of
+        units is denoted by $R^\times$
+    \end{enumerate}
+\end{definition}
+ Note:
+\begin{enumerate}
+    \item The units in a ring $R$ form a group under multiplication
+    \item A zero divisor can never be a unit
+\end{enumerate}
+
+\begin{definition}{Integral domain}{}
+    A commutative ring with identity $1\neq 0$ is called an \textbf{integral
+    domain} if it has no zero divisors
+\end{definition}
+
+\begin{proposition}{}{}
+    If $a,b,c\in R$ and $a$ not a zero divisor, then $ab=ac\implies a = 0 \lor b =
+    c$, equivalent $ab=ac\implies a = 0\lor b = c$
+\end{proposition}
+
+Note that any finite integral domain is a field
+
+\begin{definition}{Subring}{}
+    A \textbf{subring} of a ring $R$ is a subgroup of $R$ closed under
+    multiplication
+\end{definition}
+
+\end{document}
+
