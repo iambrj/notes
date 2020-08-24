@@ -83,9 +83,7 @@ to the same element in $H$ and group operation is as defined above.
 
 \begin{proposition}{}{}
     If $\phi:G\rightarrow H$ is a homomorphism with kernel $K$ and $X\in G/K$
-    such that $X = \phi^{-1}(a)$ for some $a$ then
-    \begin{gather*}
-        \forall u\in X,\;X = \{uk | k\in K\} = \{ku | k\in K\}.
+    such that $X = \phi^{-1}(a)$ for some $a$ then \begin{gather*} \forall u\in X,\;X = \{uk | k\in K\} = \{ku | k\in K\}.
     \end{gather*}
 \end{proposition}
 \begin{definition}{Cosets}{}
@@ -209,7 +207,19 @@ A few corollaries that follow
     If $G$ is a finite group and $p$ is a prime dividing $|G|$, then $G$ has an
     element of order $p$.
 \end{theorem}
-\textbf{Proof sketch}: case wise induction on $G$
+\textbf{Proof sketch - 1}: case wise induction on $G$\\
+\textbf{Proof sketch - 2}: Consider the set
+\begin{gather*}
+    S = \{(g_1\dots g_p) | g_1\dots g_p = e\}
+\end{gather*}
+Then
+\begin{enumerate}
+    \item $|S| = |G|^{p-1}$
+    \item $S$ can be partitioned into equivalence classes based on cyclic
+        permutations
+    \item Each equivalence class either has 1 or $p$ elements
+    \item $|G|^{p-1} = s + kp$ and $p|s$ so $\exists x\in G$ such that $x^p = 1$
+\end{enumerate}
 \begin{theorem}{Sylow's Theorem}{}
     If $G$ is a finite group of order $p^\alpha m$ where $p$ is a prime and
     $p\nmid m$, then $G$ has a subgroup of order $p^\alpha$.
