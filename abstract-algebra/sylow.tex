@@ -1,0 +1,138 @@
+\documentclass{beamer}
+\title{Sylow's theorem \& unsolvability of the quintic}
+\author{Bharathi Ramana Joshi}
+\begin{document}
+\maketitle
+\begin{frame}
+    \frametitle{Disclaimers}
+    \begin{itemize}
+        \item Works for at most countable only
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Motivation}
+    \textbf{Lagrange's theorem} : $H\leq G\implies |H|\;\mid\;|G|$\\
+    (Nice proof : \url{https://youtu.be/TCcSZEL_3CQ})\\
+    \textbf{Example}: $Z_2\leq Z_4$ and $|Z_2|\;\mid\;|Z_4|$\\
+    \vspace{20pt}
+    \textbf{Converse}: $k\mid|G|\implies\exists H\leq G$ with $|H| = k$\\
+    \textbf{Counterexample:} $A_4$ order 12, but no subgroup of order 6
+\end{frame}
+
+\begin{frame}
+    \frametitle{Converse special case: Cauchy's theorem}
+    What if prime $p\mid|G|$?
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definitions}
+    $G$ group, $p$ prime
+    \begin{enumerate}
+        \item $p$-subgroup: order $p^\alpha$
+        \item Sylow $p$-subgroup: subgroup order $p^\alpha$, where group order
+            $p^\alpha m (p\nmid m)$
+        \item $Syl_p(G)$ set of Sylow $p$-subgroups
+        \item $n_p(G) = |Syl_p(G)|$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sylow's Theorems : Statement}
+    \begin{enumerate}
+        \item $n_p(G) \neq 0$
+        \item $P$ Sylow $p$-subgroup and $Q$ any $p$-subgroup\\
+            $\implies\exists g\in G$ such that $Q\leq gPg^{-1}$
+        \item $n_p(G)\equiv 1(mod\; p)$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sylow's Theorems : Application}
+    \begin{enumerate}
+        \item Simplicity of $A5$
+        \item 
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sylow's Theorems : Proof outline}
+    \begin{enumerate}
+        \item Induction to prove existence
+        \item Use orbit arguments for 3
+        \item Use 3 to show 2
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sylow's Theorems : Existence proof}
+    Cases
+    \begin{enumerate}
+        \item $p\mid |Z(G)|$
+        \item $p\nmid |Z(G)|$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Existence proof : $p\mid |Z(G)|$}
+    \begin{align*}
+        \iff&\exists\; P/Z\in G/Z\ni |P/Z| = p^{\alpha - 1}\\
+        \iff& |P| = p^{\alpha - 1}
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Existence proof : $p\nmid |Z(G)|$}
+    \begin{align*}
+        &|G| = |Z| + \sum\frac{|G|}{C_G(g_i)}\\
+        \iff&\exists C_G(g_i)\ni |C_G(n_i)| = p^\alpha k
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lemma : Orbit counting}
+    Statement: $P$ Sylow $p$-subgroup and $Q$ any $p$-subgroup $\implies\exists
+    g\in G$ such that $Q\leq gPg^{-1}$
+
+    \begin{gather*}
+        S = \{gPg^{-1} | g\in G\} = \{P_1,\dots,P_r\}
+    \end{gather*}
+    $Q$ acts on $S$ by conjugation
+    \begin{gather*}
+        S = O_1\cup\dots\cup O_s
+    \end{gather*}
+    Then
+    \begin{gather*}
+        |O_i| = |Q:N_Q(P_i)| = |Q:Q\cap N_G(P_i)| = |Q:Q\cap P_i|
+    \end{gather*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lemma : Orbit counting}
+    \begin{gather*}
+        |Q\cap N_G(P_i)| = |Q\cap P_i|\\
+        \iff |P_i(Q\cap N_G(P_i))| = \frac{|P||Q\cap N_G(P_i)|}{|P_i\cap(Q\cap N_G(P_i)|}
+    \end{gather*}
+    For the particular case $Q_i = P (= P_1)$
+    \begin{gather*}
+        |O_1| = 1, |O_i| = |P_1:P_1\cap P_i|
+    \end{gather*}
+    Thus \#orbits
+    \begin{gather*}
+        |O_1| + (|O_2|\dots|O_s|)\equiv 1 (mod\;p)
+    \end{gather*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sylow's Theorems : Containment \& Congruence to 1}
+    Aiming for contradiction, let $Q$ not be contained in any conjugate.
+    Then
+    \begin{gather*}
+        |O_i| = |Q:Q\cap P_i|
+    \end{gather*}
+    Thus $p$ divides \#orbits$\implies$ contradiction!\\
+    \vspace{10mm}
+    Since all Sylow $p$-subgroups are conjugates, $S = Syl_p(G)$
+
+\end{frame}
+
+\end{document}
