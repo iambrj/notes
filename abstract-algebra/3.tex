@@ -217,7 +217,13 @@ Then
     \item $|S| = |G|^{p-1}$
     \item $S$ can be partitioned into equivalence classes based on cyclic
         permutations
-    \item Each equivalence class either has 1 or $p$ elements
+    \item Each equivalence class either has 1 or $p$ elements, since otherwise
+        \begin{gather}
+            (g_1,\dots,g_p)>>k = (g_1,\dots,g_p)\\
+            (g_1,\dots,g_p)>>p = (g_1,\dots,g_p)
+        \end{gather}
+        $(1)$ and $(2)$ together would imply $k|p$ which is impossible since $p$
+        is a prime
     \item $|G|^{p-1} = s + kp$ and $p|s$ so $\exists x\in G$ such that $x^p = 1$
 \end{enumerate}
 \begin{theorem}{Sylow's Theorem}{}
