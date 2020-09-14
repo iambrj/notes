@@ -136,11 +136,15 @@ Intuitively, $x^m = 1$ iff $m$ is a multiple of $|x|$
                 dividing $n$, then $|x^a| = \frac{n}{a}$.
         \end{enumerate}
 \end{proposition}
-Proof sketch (2) - Firstly, observe that $|x^a|$ divides $n/(n, a)$. Secondly,
-$n$ divides $a|x^a| (\because (x^a)^{|x^a|} = 1)\implies$ $n/(n, a)$ divides
-$a|x^a|/(n, a)$ but since $n/(n,
-a)$ and $a/(n, a)$ are coprime, $n/(n, a)$ divides $|x^a|$. Since they divide
-each other, they are equal.
+Proof sketch (2) - The proof is broken down into two parts
+\begin{enumerate}
+    \item For any $y$ in any finite group, only order multiple powers $m =
+        k\times |y|$ can make $y^m = e$. Since $(x^a)^{\frac{n}{(n, a)}} = 1$,
+        $\frac{n}{(n, a)}$ must be a multiple of $|x^a|$ 
+    \item For any $m$ is such that $(x^a)^m = e$, $\frac{n}{(n, a)}$ divides
+        $m$, thus making $\frac{n}{(n, a)}$ the smallest multiple i.e. order of
+        $x^a$
+\end{enumerate}
 
 \begin{proposition}{}{}
     If $H = \langle x\rangle$ then
