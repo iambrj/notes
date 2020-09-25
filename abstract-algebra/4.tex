@@ -6,6 +6,7 @@
 \usepackage{setspace}
 \usepackage{hyperref}
 \usepackage{tcolorbox}
+\usepackage{amssymb}
 \tcbuselibrary{theorems}
 
 \hypersetup{
@@ -103,19 +104,9 @@ $T(g) = \sigma_g$
     If $G$ is a finite group of order $n$ and $p$ is the smallest prime dividing
     $n$, then any subgroup of index $p$ is normal
 \end{theorem}
-\textbf{Proof:} Let $G$ be the group whose order's smallest prime divisor is $p$
-and $H$ a subgroup of $G$ of index $p$. Let $\phi: G\rightarrow S_{G/H}$ be the
-permutation representation afforded by the group action and $ker(\phi)$ the
-kernel. We now show that $H = ker(\phi)$ as follows: by the First homomorphism
-theorem,
-\begin{align*}
-         &\frac{|G|}{|ker(\phi)|} = |\phi(G)|\\
-    \iff &|\phi(G)|\textrm{ divides } |G|
-\end{align*}
-By Lagrange's theorem, $|\phi(G)|$ divides $|S_{G/H}|$. Now, since it divides them
-both, it should also divide their GCD. But observe that, since $p$ is the
-\textit{smallest} prime, the GCD itself is $p$. Thus $|\phi(G)|$ is either 1 or
-$p$, both of which mean $ker(\phi) = H$ making it normal.
+If $\phi:G\rightarrow S_p$, then $|G/ker(\phi)|$ divides $|G|$ and also $|S_p|$.
+Therefore, it must divide $(|G|, p!) = p$ making it of order either 1 or $p$,
+both of which imply normality.
 
 \begin{proposition}{}{}
     Number of conjugates of a subset $S$ of a group $G$ is $|G:N_G(S)|$. In
@@ -199,7 +190,7 @@ A few corollaries:
 \begin{definition}{}{}
     If $G$ is a group and $g\in G$, conjugation by $g$ is called an
     \textbf{inner automorphism} of $G$ and the subgroup of Aut$(G)$ consisting
-    of all inner automorphisms is denoted by Inn$(G)$
+    of all inner automorphisms is denoted by Inn$(G) (= N_G(H)/C_G(H))$
 \end{definition}
 
 
@@ -208,5 +199,63 @@ A few corollaries:
     char $G$, if every automorphism of $G$ maps $H$ onto itself -
     $\forall\sigma\in$ Aut$(G)$, $\sigma(H) = H$
 \end{definition}
+
+\begin{proposition}{}{}
+    The automorphism group of the cyclic group of order $n$ is isomorphic to
+    $(\mathbb{Z}/\mathbb{Z})^\times$, an abelian group of order $\phi(n)$
+\end{proposition}
+
+\begin{proposition}{}{}
+    \begin{enumerate}
+        \item If $p$ is an odd prime and $n\in\mathbb{Z}^+$ then the
+            automorphism group of the cyclic group of order $p$ is cyclic of
+            order $p-1$ and of order $p^n$ is $p^{n-1}(p-1)$
+        \item $\forall n\geq 3$, Aut$(Z(2^n))\sim Z_2\times Z_{2^{n-2}}$ and in
+            particular is not cyclic but has a cyclic subgroup of index 2
+        \item 
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}{}{}
+    If $G$ is a group and $p$ a prime
+    \begin{enumerate}
+        \item A group of order $p^\alpha,\forall\alpha\geq 0$ is called a
+            \textbf{p-group}. Subgroups of $G$ which are p-groups are called
+            \textbf{p-subgroups}
+        \item If $G$ is of order $p^\alpha m$ such that $p\nmid m$, then a
+            subgroup of order $p^\alpha$ is called a \textbf{Sylow p-subgroup}
+            of $G$
+        \item The set of Sylow $p$-subgroups of $G$ will be denoted by
+            $Syl_p(G)$ and the number of Sylow $p$-subgroups by $n_p(G)$
+    \end{enumerate}
+\end{definition}
+
+\textbf{Lemma:} If $P\in Syl_p(G)$ and $Q$ is any $p$-subgroup of $G$, then
+\begin{gather*}
+Q\cap N_G(P) = Q\cap P
+\end{gather*}
+\textbf{Proof:} Right to left inclusion works as $P\leq N_G(P)$ and left to
+right as $P(N_G(P)\cap Q)$ is a $p$-subgroup containing $P$, but $P$ has largest
+possible order, so $Q\cap N_G(P)\leq P$.
+
+\begin{theorem}{Sylow's Theorem}{}
+    If $G$ is a group such that $|G| = p^\alpha m$ and $p\nmid m$ then
+    \begin{enumerate}
+        \item $Syl_p(G)\neq\phi$
+        \item If $P$ is a Sylow $p$-subgroup and $Q$ any $p$-subgroup of $G$
+            then $\exists g\in G$ such that $Q\leq gPg^{-1}$ ($Q$ is contained
+            in some conjugate of $P$). In particular, any two Sylow
+            $p$-subgroups of $G$ are conjugate in $G$.
+        \item The number of Sylow $p$-subgroups of $G$ is of the form $1+kp$,
+            i.e.
+            \begin{gather*}
+                n_p\equiv 1(mod\; p)
+            \end{gather*}
+            Furthermore, $n_p$ is the index in $G$ of the normalizer $N_G(P)$
+            for any Sylow $p$-subgroup $P$, hence $n_p$ divides $m$
+    \end{enumerate}
+\end{theorem}
+\textbf{Proof sketch:}
+
 \end{document}
 
