@@ -4,15 +4,9 @@
 \begin{document}
 \maketitle
 \begin{frame}
-    \frametitle{Disclaimers}
-    \begin{itemize}
-        \item Works for at most countable only
-    \end{itemize}
-\end{frame}
-\begin{frame}
     \frametitle{Motivation}
     \textbf{Lagrange's theorem} : $H\leq G\implies |H|\;\mid\;|G|$\\
-    (Nice proof : \url{https://youtu.be/TCcSZEL_3CQ})\\
+    (Nice visual proof : \url{https://youtu.be/TCcSZEL_3CQ})\\
     \textbf{Example}: $Z_2\leq Z_4$ and $|Z_2|\;\mid\;|Z_4|$\\
     \vspace{20pt}
     \textbf{Converse}: $k\mid|G|\implies\exists H\leq G$ with $|H| = k$\\
@@ -21,7 +15,18 @@
 
 \begin{frame}
     \frametitle{Converse special case: Cauchy's theorem}
+    \framesubtitle{\textit{Another Proof of Cauchy’s group theorem}, James H. McKay}
     What if prime $p\mid|G|$?
+    Consider set of tuples
+    \begin{gather*}
+        T = \{(g_1,\dots,g_p):g_1\dots g_p = e\}
+    \end{gather*}
+    \begin{enumerate}
+        \item $T$ partitioned into equivalence classes under cyclic permutations
+        \item Each class has either $1$ or $p$ elements $\implies$ $|G|^{p-1} =
+            k+pd$ (k = \# size-1 classes, d = \# size-p classes)
+        \item $p|k\implies\exists x\in G$ such that $x^p = e$
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -48,18 +53,22 @@
 
 \begin{frame}
     \frametitle{Sylow's Theorems : Application}
-    \begin{enumerate}
-        \item Simplicity of $A5$
-        \item 
-    \end{enumerate}
+    \framesubtitle{Simplicity of $A_5$}
+    $|A_5| = 60 = 2^2\times 3\times 5, n_5\in \{1,6\}, n_3\in \{1,4,10\}$\\
+    Aiming for contradiction, $N\trianglelefteq A_5$. Cases;
+    \begin{itemize}
+        \item $5 | |N|$ or $3 | |N|$
+        \item $|N| = 4\implies n_4 = 1, \textrm{ but } n_4 > 1$
+        \item $|N| = 2\implies N = \langle (a_1\;a_2)\rangle$.\\
+            But $(a_1\;a_2\;a_3)(a_1\;a_2)(a_1\;a_2\;a_3)^{-1} = (a_2\;a_3)\notin \langle (a_1\;a_2)\rangle$
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Sylow's Theorems : Proof outline}
     \begin{enumerate}
         \item Induction to prove existence
-        \item Use orbit arguments for 3
-        \item Use 3 to show 2
+        \item Use count conjugates for 2\& 3
     \end{enumerate}
 \end{frame}
 
@@ -75,23 +84,23 @@
 \begin{frame}
     \frametitle{Existence proof : $p\mid |Z(G)|$}
     \begin{align*}
-        \iff&\exists\; P/Z\in G/Z\ni |P/Z| = p^{\alpha - 1}\\
-        \iff& |P| = p^{\alpha - 1}
+        \iff&\exists\; P\leq Z\ni |P| = p\\
+        \iff& |G/P| = p^{\alpha - 1} m\\
+        \iff& \exists |P'/P| = p^{\alpha - 1}\\
+        \iff& |P'| = p^\alpha
     \end{align*}
 \end{frame}
 
 \begin{frame}
     \frametitle{Existence proof : $p\nmid |Z(G)|$}
     \begin{align*}
-        &|G| = |Z| + \sum\frac{|G|}{C_G(g_i)}\\
-        \iff&\exists C_G(g_i)\ni |C_G(n_i)| = p^\alpha k
+        &|G| = |Z| + \sum\frac{|G|}{|C_G(g_i)|}\\ \iff&\exists C_G(g_i)\ni |C_G(n_i)| = p^\alpha k
     \end{align*}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Lemma : Orbit counting}
-    Statement: $P$ Sylow $p$-subgroup and $Q$ any $p$-subgroup $\implies\exists
-    g\in G$ such that $Q\leq gPg^{-1}$
+    \frametitle{Lemma : Conjugate counting}
+    $P$ Sylow $p$-subgroup and $Q$ any $p$-subgroup
 
     \begin{gather*}
         S = \{gPg^{-1} | g\in G\} = \{P_1,\dots,P_r\}
@@ -107,18 +116,18 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Lemma : Orbit counting}
+    \frametitle{Lemma : Conjugate counting}
     \begin{gather*}
         |Q\cap N_G(P_i)| = |Q\cap P_i|\\
-        \iff |P_i(Q\cap N_G(P_i))| = \frac{|P||Q\cap N_G(P_i)|}{|P_i\cap(Q\cap N_G(P_i)|}
+        \iff |P_i(Q\cap N_G(P_i))| = \frac{|P_i||Q\cap N_G(P_i)|}{|P_i\cap(Q\cap N_G(P_i))|}
     \end{gather*}
-    For the particular case $Q_i = P (= P_1)$
+    For the particular case $Q = P (= P_1)$
     \begin{gather*}
-        |O_1| = 1, |O_i| = |P_1:P_1\cap P_i|
+        |O_1| = 1, |O_i| = |P_1:P_1\cap P_i| > 1
     \end{gather*}
-    Thus \#orbits
+    Thus \#conjugates
     \begin{gather*}
-        |O_1| + (|O_2|\dots|O_s|)\equiv 1 (mod\;p)
+        |S| = |O_1| + (|O_2|\dots|O_s|)\equiv 1 (mod\;p)
     \end{gather*}
 \end{frame}
 
@@ -132,7 +141,21 @@
     Thus $p$ divides \#orbits$\implies$ contradiction!\\
     \vspace{10mm}
     Since all Sylow $p$-subgroups are conjugates, $S = Syl_p(G)$
+\end{frame}
 
+\begin{frame}
+    \frametitle{Exercises}
+    \begin{enumerate}
+    \item Write a program that given $n$, finds all permissible values of $n_p$
+        for all groups $G$ of odd size $< n$ with $|Syl_p(G)|\neq 1$ for each
+        prime divisor $p$ of group size.
+        \item $P$ normal and $P\in Syl_p(G)\implies$
+        \begin{enumerate}
+            \item $|Syl_p(G)| = 1$
+            \item $P$ characteristic in $G$
+        \end{enumerate}
+    \item $G$ simple and $|G| = 60\implies G\cong A5$
+    \end{enumerate}
 \end{frame}
 
 \end{document}
