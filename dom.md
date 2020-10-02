@@ -59,3 +59,13 @@ button.addEventListener("mousedown", event => {
 * `keyup`, `keydown` - events received on key presses
 * `event.ctrlKey`/`event.shiftKey`/`event.altKey` etc - check whether key is
     being held down
+* `mousedown`/`mouseup` - events that occur on mouse clicks on DOM nodes
+    immediately below the mouse pointer when the event occurs
+* `click` - event fires on the most specific node that contained both the press
+    and the release of the button
+* `dblclick` - event fires when two clicks happen close together
+* `clientX`/`clientY` - refers to coordinates of the place where a mouse event
+    happened relative to top-left corner of the window
+* `mousemove` - event fired each time mouse moves
+* `foo.preventDefault()` - prevent default action for event `foo`
+* `foo.buttons` - refers to mouse buttons being held down
