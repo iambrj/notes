@@ -1,0 +1,178 @@
+\documentclass{beamer}
+\title{Two proofs in the margin}
+\author{Bharathi Ramana Joshi}
+\begin{document}
+\maketitle
+\begin{frame}
+    \frametitle{Infinite descent}
+    Proof by contradiction\\
+    Idea: Proposition $P(x_1,x_2,\dots)$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fermat's Last Theorem}
+    \begin{gather*}
+        a^n+b^n=c^n
+    \end{gather*}
+    \begin{enumerate}
+        \item $a,b,c\in\mathbb{Z}^+$
+        \item $n\in\mathbb{Z}^+,n>2$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fermat's Last Theorem, $n = 4$}
+    \begin{gather}
+        a^4+b^4=c^4\\
+        a^4+b^4=c^2
+    \end{gather}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fermat's Last Theorem, $n = 4$}
+    \framesubtitle{$a^4+b^4=c^2$}
+    \begin{enumerate}
+        \item Coprime
+        \item Both $a$ and $b$ not even
+        \item Both $a$ and $b$ not odd ($\because odd^4\equiv 1 \mod 4$)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fermat's Last Theorem, $n = 4$}
+    \framesubtitle{$a^4+b^4=c^2$}
+    \begin{enumerate}
+        \item Coprime
+        \item Both $a$ and $b$ not even
+        \item Both $a$ and $b$ not odd ($\because odd^4\equiv 1 \mod 4$)
+        \item Only possible case : one even and one odd
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fermat's Last Theorem, $n = 4$}
+    \framesubtitle{a even, b odd}
+    \begin{gather*}
+        (a^2)^2 + (b^2)^2 = c^2
+    \end{gather*}
+
+    Thus $(a^2, b^2, c)$ primitive Pythagorean triplet,
+
+    \begin{gather}
+        a^2 = 2mn\\
+        b^2 = m^2 - n^2\\
+        c = m^2 + n^2
+    \end{gather}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Pythagorean triplet}
+    \framesubtitle{$m^2 = b^2 + n^2$}
+    $b$ odd $\implies n$ even
+    \begin{gather}
+        n = 2xy\\
+        b = x^2 - y^2\\
+        m = x^2 + y^2
+    \end{gather}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Coprimes}
+    \framesubtitle{Equation 1 : $a^2=2mn$\\Equation 6 : $n = 2xy$}
+    \begin{gather}
+        m(n/2) = (a/2)^2
+    \end{gather}
+    Thus both $m$ and $n/2$ squares. From 6,
+    \begin{gather}
+        xy = n/2
+    \end{gather}
+    Thus both $x$ and $y$ squares.\\
+    Put
+    \begin{gather}
+        x = u^2\\
+        y = v^2\\
+        m = w^2
+    \end{gather}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Descent}
+    \framesubtitle{Equation 8 : $m = x^2+ y^2$}
+    From 8,
+    \begin{gather}
+        m = x^2+y^2\\
+        \implies w^2 = u^4 + v^4
+    \end{gather}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternate proof}
+    \framesubtitle{a even, b odd\\ Equation 2 : $a^4+b^4=c^2$}
+    Rewriting 2,
+    \begin{gather}
+        a^4 = c^2 - b^4 = (c - b^2)(c + b^2)
+    \end{gather}
+    Observations
+    \begin{enumerate}
+        \item No odd prime divides both
+        \item Both even (since $a$ even and $b$ odd)
+        \item 4 does not divide both
+    \end{enumerate}
+    Therefore, gcd$(c-b^2, c+b^2)$ = 2\\
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternate proof}
+    \framesubtitle{$a^4 = (c - b^2)(c + b^2)$}
+    Either case \# 1:
+    \begin{gather}
+        c - b^2 = 2x^4(x > 0 \textrm{ (odd)})\\
+        c + b^2 = 8y^4, gcd(x, y) = 1
+    \end{gather}
+    or case \# 2:
+    \begin{align}
+        c - b^2 &= 8y^4\\
+        c + b^2 &= 2x^4,(x > 0 \textrm{ (odd)}, gcd(x, y) = 1)
+    \end{align}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternate proof}
+    \framesubtitle{Case \# 1}
+    \begin{align}
+        c + b^2 &= 8y^4, gcd(x, y) = 1\\
+        c - b^2 &= 2x^4(x > 0 \textrm{ (odd)})
+    \end{align}
+    impossible, since
+    \begin{gather*}
+        (c + b^2) - (c - b^2) = 2b^2 = -2x^4 + 8y^4\\
+        \implies x^2\equiv -1\mod 4
+    \end{gather*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternate proof}
+    \framesubtitle{Descent}
+    Case \#2
+    \begin{align}
+        c + b^2 &= 2x^4,(x > 0 \textrm{ (odd)}, (x, y) = 1)\\
+        c - b^2 &= 8y^4
+    \end{align}
+    \begin{gather*}
+        b^2 = x^4 - 4y^4\implies 4y^4 = (x^2+b)(x^2-b)
+    \end{gather*}
+    By similar argument $gcd(x^2+b, x^2-b) = 2$. Therefore
+    \begin{align}
+        x^2-b &= 2u^4\\
+        x^2+b &= 2v^4\\
+        \implies x^2 &= u^4 + v^4
+    \end{align}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Summary}
+    Show that if one solution exists, smaller solution exists leading to
+    impossible infinite chain
+\end{frame}
+
+\end{document}
