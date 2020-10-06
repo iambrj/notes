@@ -1,0 +1,129 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage{amsmath}
+\usepackage[parfill]{parskip}
+\usepackage{proof}
+
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatletter
+\newcommand\xleftrightarrow[2][]{%
+\ext@arrow 9999{\longleftrightarrowfill@}{#1}{#2}}
+\newcommand\longleftrightarrowfill@{%
+\arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+
+\begin{document}
+
+\title{Term Rewriting and All That\\Chapter  notes}
+
+\author{Bharathi Ramana Joshi}
+
+\date{Compiled: \today}
+
+\newpage
+
+\section{Equivalence and reduction}
+
+\begin{itemize}
+
+  \item\textbf{Abstract reduction system}: pair $(A,\rightarrow)$ such that
+    $\rightarrow\subseteq A\times A$
+
+\end{itemize}
+Some definitons
+
+\begin{center}
+  \begin{tabular}{c c}
+
+    $\xrightarrow{0} := \{(x, x)\mid x\in A\}$ & \textbf{identity}\\
+
+    $\xrightarrow{i+1} := \xrightarrow{i}\circ\rightarrow$ &
+    ($i+1$)-\textbf{fold composition}, $i\ge 0$\\
+
+    $\xrightarrow{+} := \cup_{i\ge 0}\xrightarrow{i}$ & \textbf{transitive
+    closure}]\\
+
+      $\xrightarrow{*} := \xrightarrow{+}\cup\xrightarrow{0}$ &
+      \textbf{reflexive transitive closure}\\
+
+      $\xrightarrow{=} := \rightarrow\cup\xrightarrow{0}$ & \textbf{reflexive
+      closure}\\
+
+        $\xrightarrow{-1} := \{(y, x)\mid x\rightarrow y\}$ & \textbf{inverse}\\
+
+        $\leftarrow := \xrightarrow{-1}$ & \textbf{inverse}\\
+
+        $\leftrightarrow := \rightarrow\cup\leftarrow$ & \textbf{symmetric
+        closure}\\
+
+          $\xleftrightarrow{+} := (\leftrightarrow)^+$ & \textbf{transitive symmetric
+          closure}\\
+
+            $\xleftrightarrow{*} := (\leftrightarrow)^*$ & \textbf{reflexive transitive
+            symmetric closure}
+
+  \end{tabular}
+\end{center}
+
+\begin{itemize}
+
+  \item $x$ is \textbf{reducible} iff there is a $y$ such that $x\rightarrow y$
+
+  \item $x$ is in \textbf{normal form} iff it is not reducible
+
+  \item $y$ is \textbf{a normal form} of $x$ iff $x\xrightarrow{*}y$ and $y$ is
+    in normal form. If $x$ has a uniquely determined normal form, the latter is
+    denoted by $x\downarrow$
+
+  \item $y$ is a \textbf{direct successor} of $x$ iff $x\rightarrow y$
+
+  \item $y$ is a \textbf{successor} of $x$ iff $x\xrightarrow{+}y$
+
+  \item $x$ and $y$ are \textbf{joinable} (written $x\downarrow y$) iff there is a $z$ such that
+    $x\xrightarrow{*}z\xleftarrow{*}y$
+
+\item $x\uparrow y$ iff $\exists z$ such that $z\xrightarrow{*} x$ and
+    $z\xrightarrow{*} y$
+
+\end{itemize}
+
+A reduction $\rightarrow$ is called
+
+\begin{itemize}
+
+  \item\textbf{Church-Rosser} iff $x\xleftrightarrow{*}y\implies x\downarrow y$
+
+  \item\textbf{confluent} iff $x\uparrow y\implies x\downarrow y$
+
+  \item\textbf{semi-confluent} iff $y_1\leftarrow x\xrightarrow{*}y_2\implies
+    y_1\downarrow y_2$
+
+  \item\textbf{terminating} iff there is no infinite descending chain
+    $a_0\rightarrow a_1\rightarrow\dots$
+
+  \item\textbf{normalizing} iff every element has a normal fomr
+
+  \item\textbf{convergent} iff it is both confluent and terminating
+
+\end{itemize}
+\textbf{Theorem.} Church-Rosser, confluence and semi-confluence are equivalent\\
+\textbf{Proof.} Use $1 \implies 2 \implies 3 \implies 1$
+
+\section{Well-founded induction}
+\infer{\forall x\in A. P(x)}{\forall x\in A.(\forall y\in A.x\xrightarrow{+}y\implies P(y))\implies P(x)}
+No base case you say? The premise of WFI subsumes the base case i.e. all terms
+without a successor should be proved individually.
+
+\textbf{Theorem.} $\rightarrow$ terminates iff WFI holds.\\
+\textbf{Proof.} Forward by contradiction and backward by application
+Some more definitons - a relation $\rightarrow$ is called
+\begin{itemize}
+    \item\textbf{finitely branching} if each element has only finitely many
+        direct successors
+    \item\textbf{globally finite} if each element has only finitely many
+        successors
+    \item\textbf{acyclic} if there is no element such that $a\xrightarrow{*}a$
+\end{itemize}
+\textbf{K\"onig's Lemma}: A finitely branching tree is infinite iff it contains
+an infinite path
+\end{document}
+
