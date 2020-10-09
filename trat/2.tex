@@ -2,6 +2,21 @@
 \usepackage{amsmath}
 \usepackage[parfill]{parskip}
 \usepackage{proof}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
 
 \newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
 \makeatletter
@@ -11,15 +26,38 @@
 \arrowfill@\leftarrow\relbar\rightarrow}
 \makeatother
 
+\newtcbtheorem[]{definition}{Definition}%
+{colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+{colback=cyan!5,colframe=cyan!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+{colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
+
 \begin{document}
 
-\title{Term Rewriting and All That\\Chapter  notes}
+\begin{titlepage}
 
-\author{Bharathi Ramana Joshi}
+	\raggedleft
 
-\date{Compiled: \today}
+	\vspace*{\baselineskip}
 
-\newpage
+	{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}}
+
+	\vspace*{0.167\textheight}
+
+	\textbf{\LARGE Notes on}\\[\baselineskip]
+
+	\textbf{\textcolor{teal}{\huge Abstract Reduction Systems}}\\[\baselineskip]
+
+    {\Large \textit{Chapter 1 from Term Rewriting and All That}}
+
+	\vfill
+
+	\vspace*{3\baselineskip}
+
+\end{titlepage}
 
 \section{Equivalence and reduction}
 
@@ -27,8 +65,8 @@
 
   \item\textbf{Abstract reduction system}: pair $(A,\rightarrow)$ such that
     $\rightarrow\subseteq A\times A$
-
 \end{itemize}
+Two ways 
 Some definitons
 
 \begin{center}
@@ -92,7 +130,8 @@ A reduction $\rightarrow$ is called
 
   \item\textbf{Church-Rosser} iff $x\xleftrightarrow{*}y\implies x\downarrow y$
 
-  \item\textbf{confluent} iff $x\uparrow y\implies x\downarrow y$
+  \item\textbf{confluent} iff $y_1\xleftarrow{*} x\xrightarrow{*}
+      y_2\implies y_1\downarrow y_2$
 
   \item\textbf{semi-confluent} iff $y_1\leftarrow x\xrightarrow{*}y_2\implies
     y_1\downarrow y_2$
@@ -100,13 +139,25 @@ A reduction $\rightarrow$ is called
   \item\textbf{terminating} iff there is no infinite descending chain
     $a_0\rightarrow a_1\rightarrow\dots$
 
-  \item\textbf{normalizing} iff every element has a normal fomr
+  \item\textbf{normalizing} iff every element has a normal form
 
   \item\textbf{convergent} iff it is both confluent and terminating
 
 \end{itemize}
 \textbf{Theorem.} Church-Rosser, confluence and semi-confluence are equivalent\\
 \textbf{Proof.} Use $1 \implies 2 \implies 3 \implies 1$
+
+Useful results
+\begin{enumerate}
+    \item If $\rightarrow$ is confluent and $x\xleftrightarrow{*}$ y then
+        \begin{enumerate}
+            \item $x\xrightarrow{*} y$ if $y$ is in normal form
+            \item $x = y$ if both $x$ and $y$ are in normal form
+        \end{enumerate}
+    \item If $\rightarrow$ is confluent then every element has at most normal form
+    \item If $\rightarrow$ is normalizing and confluent, every element has a
+        unique normal form
+\end{enumerate}
 
 \section{Well-founded induction}
 \infer{\forall x\in A. P(x)}{\forall x\in A.(\forall y\in A.x\xrightarrow{+}y\implies P(y))\implies P(x)}
