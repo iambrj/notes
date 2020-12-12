@@ -72,6 +72,11 @@
     \end{enumerate}
 \end{definition}
 
+\textbf{Single axiom:}
+\begin{gather*}
+y \times (z \times (((w \times w^{-1}) \times (x \times z)^{-1}) \times y))^{-1} = x
+\end{gather*}
+
 If $G$ is a group under the operation \ding{72}, then
 \begin{enumerate}
     \item the identity element of $G$ is unique
@@ -116,6 +121,8 @@ If $G$ is a group under the operation \ding{72}, then
   If $H$ is a nonempty subset of $G$ such that $\forall h, k\in H, hk$ and
     $h^{-1}\in H$ then $H$ is called the \textbf{subgroup} of $G$
 \end{definition}
+
+\textbf{Subgroup test:} $H\leq G\iff\forall x, y\in H, xy^{-1}\in H$
 
 \begin{definition}{Dihederal group}{}
     $D_{2n}$, the \textbf{dihederal} group of order $2n$, is the set of
@@ -200,7 +207,7 @@ If $G$ is a group under the operation \ding{72}, then
 
 \begin{proposition}{}{}
 Since disjoint cycles permute numbers which lie in disjoint sets, it
-follows that disjoint sets commute
+follows that disjoint cycles commute
 \end{proposition}
 
 \begin{proposition}{}{}
@@ -356,6 +363,6 @@ Intuitively, it is the ssubgroup of those elements of $G$ that fix $a$.
     $x\}$
 \end{definition}
 Intuitively, the orbit of an element is the set of all those elements that can
-be reached using the group action
+be reached using the group action.
 
 \end{document}
