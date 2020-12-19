@@ -1089,4 +1089,222 @@ possible order, so $Q\cap N_G(P)\leq P$.
 \end{theorem}
 \textbf{Proof sketch:}
 
+\chapter{Introduction to Rings}
+\begin{definition}{Ring}{}
+    A \textbf{ring} $R$ is a set with two binary operations $+$ and $\times$
+    such that
+    \begin{enumerate}
+        \item $(R, +)$ is an abelian group
+        \item $\times$ is associative : $(a\times b)\times c = a\times (b\times
+            c)$
+        \item The following distributive laws hold
+            \begin{enumerate}
+                \item $(a+b)\times c = (a\times c) + (b\times c)$
+                \item $a\times (b+c) = (a\times b) + (a\times c)$
+            \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+A ring is commutative if multiplication is commutative
+
+A ring is said to have an identity if $\exists 1\in R$ such that
+\begin{gather*}
+    1\times a = a\times 1 = a, \forall a\in R
+\end{gather*}
+
+\begin{definition}{Division ring}{}
+    A ring $R$ with an identity element 1 ($\neq 0$) is called a
+    \textbf{division ring/skew field} if inverses exist for all nonzero elements
+    such that $ab=ba=1$
+\end{definition}
+
+A commutative division ring is called a \textbf{field}
+
+\begin{proposition}{}{}
+    If $R$ is a ring then
+    \begin{enumerate}
+        \item $0a=a0=0, \forall a\in R$
+        \item $(-a)b=a(-b)=-(ab), \forall a,b\in R$
+        \item $(-a)(-b) = ab,\forall a,b\in R$
+        \item If $R$ has identity 1, then it is unique and $-a = (-1)a$
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}{Zero divisor, unit}{}
+    \begin{enumerate}
+        \item A nonzero element $a\in R$ is called a \textbf{zero divisor} if
+        $\exists b\neq 0\in R$ such that $ab=0$ or $ba=0$
+        \item If $R$ has an identity $1\neq 0$, then $u\in R$ is called
+        \textbf{unit} in $R$ if $\exists v\in R$ such that $uv=vu=1$. Set of
+        units is denoted by $R^\times$
+    \end{enumerate}
+\end{definition}
+ Note:
+\begin{enumerate}
+    \item The units in a ring $R$ form a group under multiplication
+    \item A zero divisor can never be a unit
+\end{enumerate}
+
+\begin{definition}{Integral domain}{}
+    A commutative ring with identity $1\neq 0$ is called an \textbf{integral
+    domain} if it has no zero divisors
+\end{definition}
+
+\begin{proposition}{}{}
+    If $a,b,c\in R$ and $a$ not a zero divisor, then $ab=ac\implies a = 0 \lor b =
+    c$, equivalent $ab=ac\implies a = 0\lor b = c$
+\end{proposition}
+
+Note that any finite integral domain is a field since for any nonzero $a\in R$.
+$aR$ is a bijective map
+
+\begin{definition}{Subring}{}
+    A \textbf{subring} of a ring $R$ is a subgroup of $R$ closed under
+    multiplication
+\end{definition}
+
+\begin{definition}{Ring homomorphism, kernel}{}
+    If $R$ and $S$ are rings then
+    \begin{enumerate}
+        \item A ring homomorphism is a map $\phi:R\rightarrow S$ such that
+        \begin{enumerate}
+            \item $\phi(a+b) = \phi(a) + \phi(b)$
+            \item $\phi(ab) = \phi(a)\phi(b)$
+        \end{enumerate}
+        \item The kernel of $\phi$, denoted $ker\phi$ is the set of $r\in R$
+            such that $\phi(r) = 0_S$
+        \item A bijective ring homomorphism is called an isomorphism
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}{}{}
+    If $R$ and $S$ are two rings and $\phi:R\rightarrow S$ is a homomorphism,
+    then
+    \begin{enumerate}
+        \item The image of $\phi$, $\phi(R)$ is a subring of $S$
+        \item The kernel of $\phi$, $ker\phi$ is a subring of $R$
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    If $R$ is a ring, $I\subseteq R$ and $r\in R$
+    \begin{enumerate}
+        \item $rI = \{ra|a\in I\}$ and $Ir = \{ar|a\in I\}$
+        \item $I$ is a left ideal if
+            \begin{enumerate}
+                \item $I$ is a subring of $R$
+                \item $I$ is a closed under left multiplication by elements of $R$
+            \end{enumerate}
+        \item $I$ is a right ideal if
+            \begin{enumerate}
+                \item $I$ is a subring of $R$
+                \item $I$ is a closed under right multiplication by elements of $R$
+            \end{enumerate}
+        \item If $I$ is both a left and right ideal, then it is called a
+            two-sided ideal
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}{}{}
+    If $I$ is an ideal of the ring $R$ then the additive quotient group $R/I$ is
+    a ring, called the \textbf{quotient right} under the following binary
+    operations
+    \begin{gather*}
+        (r + I) + (s + I) = (r + s) + I\\
+        (r + I) \times (s + I) = (rs) + I\\
+    \end{gather*}
+\end{proposition}
+
+\begin{theorem}{First Isomorphism Theorem for Rings}{}
+    If $\phi:R\rightarrow S$ is a homomorphism of rings then
+    \begin{enumerate}
+        \item $ker\phi$ is an ideal of $R$
+        \item $\phi(R)$ is isomorphic to a subring of $S$
+        \item $R/ker\phi$ is isomorphic to $\phi(R)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}{}{}
+    If $I$ is any ideal of the ring $R$, then the map
+    \begin{gather*}
+        \phi:R\rightarrow S, r\rightarrow r+I
+    \end{gather*}
+    is a surjective ring homomorphism, called the natural projection of $R$ onto
+    $R/I$
+\end{definition}
+
+\begin{theorem}{Second Isomorphism Theorem for Rings}{}
+    If $S$ is a subring and $I$ is an ideal of a ring $R$ then $\{s + i|s\in S,
+    i\in I\}$ is a subring, $S\cap I$ is an ideal of $S$ and $(S+I)/I\cong
+    S/(S\cap I)$
+\end{theorem}
+
+\begin{theorem}{Third Isomorphism Theorem for Rings}{}
+    If $I$ and $J$ are ideals of the ring $R$ such that $I\subseteq J$ then
+    $J/I$ is an ideal of $R/I$ and $(R/I)/(J/I)\cong R/J$
+\end{theorem}
+
+\begin{theorem}{Fourth Isomorphism Theorem for Rings}{}
+    If $I$ is an ideal of a ring $R$ then the correspondence $A\leftrightarrow
+    R/I$ is an inclusion preserving bijection between set of subrings $A$ of $R$
+    containing $I$ and set of subrings $R/I$
+\end{theorem}
+
+\begin{definition}{}{}
+    Let $A$ be any subset of the ring $R$
+    \begin{enumerate}
+        \item The smallest ideal of $R$ containing $A$ is called the ideal
+            generated by $A$, denoted by $(A)$
+        \item $RA$ denotes the set of all finite sums of elements of the form
+            $ra$ (where $r\in R$) i.e.,
+            \begin{gather*}
+                RA = \{a_1r_1+\dots+a_nr_n | a_i\in A, r_i\in R,
+                n\in\mathbb{Z}^+\}
+            \end{gather*}
+        \item An ideal generated by a single element is called a
+            \textbf{principal ideal}
+        \item An ideal generated by a finite set is called a \textbf{finitely
+            generated ideal}
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}{}{}
+    If $I$ is an ideal of the ring $R$
+    \begin{enumerate}
+        \item $I = R\iff I$ has a unit
+        \item If $R$ is commutative, then $R$ is a field iff its only ideals are
+            $0$ and $R$
+    \end{enumerate}
+\end{proposition}
+
+\textbf{Corollary}: If $R$ is a field then any nonzero ring homomorphism from
+$R$ into another ring is an injection
+
+\begin{definition}{}{}
+    An ideal $M$ in an arbitrary ring $S$ is called \textbf{maximal ideal} if
+    $M\neq S$ and the only ideals containing $M$ are $M$ and $S$
+\end{definition}
+
+\begin{proposition}{}{}
+    In a ring with identity every proper ideal is contained in a maximal ideal
+\end{proposition}
+
+\begin{proposition}{}{}
+    If $R$ is commutative, then an ideal $M$ is maximal iff the quotient ring
+    $R/M$ is a field
+\end{proposition}
+
+\begin{definition}{}{}
+    If $R$ is commutative, an ideal $P$ is called a \textbf{prime ideal} if
+    $P\neq R$ and whenever the product $ab$ of two elements $a, b\in R$ is in
+    $P$, then at least one of $a$ and $b$ is in $P$
+\end{definition}
+
+\begin{proposition}{}{}
+    If $R$ is commutative, then an ideal $P$ is prime in $R$ iff the quotient
+    ring $R/P$ is an integral domain
+\end{proposition}
+
+\textbf{Corollary}: If $R$ is commutative, every maximal ideal of $R$ is prime
+
 \end{document}
