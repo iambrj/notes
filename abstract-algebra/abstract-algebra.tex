@@ -457,12 +457,17 @@ Intuitively, $x^m = 1$ iff $m$ is a multiple of $|x|$
 \end{proposition}
 Proof sketch (2) - The proof is broken down into two parts
 \begin{enumerate}
-    \item For any $y$ in any finite group, only order multiple powers $m =
-        k\times |y|$ can make $y^m = e$. Since $(x^a)^{\frac{n}{(n, a)}} = 1$,
+    \item $|x^a|\mid\frac{n}{(n, a)}$ : for any $y$ in any finite group, only
+        order multiple powers $m = k\times |y|$ can make $y^m = e$. Since
+        $(x^a)^{\frac{n}{(n, a)}} = 1$,
         $\frac{n}{(n, a)}$ must be a multiple of $|x^a|$ 
-    \item For any $m$ is such that $(x^a)^m = e$, $\frac{n}{(n, a)}$ divides
-        $m$, thus making $\frac{n}{(n, a)}$ the smallest multiple i.e. order of
-        $x^a$
+    \item $\frac{n}{(n, a)}\mid|x^a|$
+        \begin{align*}
+                 & n\mid a\times |x^a|\\
+            \iff & (n, a)\times\frac{n}{(n, a)}\mid (n, a)\times\frac{a}{(n, a)}\times|x^a|\\
+            \iff & \frac{n}{(n, a)}\mid \frac{a}{(n, a)}\times|x^a|\\
+            \iff & \frac{n}{(n, a)}\mid|x^a| (\textrm{since coprime})
+        \end{align*}
 \end{enumerate}
 
 \begin{proposition}{}{}
