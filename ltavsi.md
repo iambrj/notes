@@ -104,4 +104,6 @@ author : Bharathi Ramana Joshi
 
 # Rhetoric, Poetics, and Poetry
 
-- 
+- Rhetoric : study of persuasive and expressive resources of the language -
+    techniques to construct strong discourses
+- Poetic : art of imitation/representation
