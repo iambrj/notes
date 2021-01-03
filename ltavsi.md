@@ -149,3 +149,40 @@ author : Bharathi Ramana Joshi
 - Post-structuralists : assert impossibility of poems practising what they
     preach
 - Poetic imagination
+
+# Narrative
+
+- Narrative structure example : calling clock's sound 'tick-tock' i.e. assigning
+  a fictional structure to two physically same sounds
+- Narratology/Theory of narrative : study of narrative structure and how these
+    affect human perception
+
+## Plot
+
+- Feature of narrative capturing notion of development
+- Ending usually related to beginning
+- Plot/story : material presented 
+- Events : plot/story : discourse
+
+## Presentation
+
+- Who speaks? First person, third person etc
+- Who speaks to whom? Narrator's audience is called narratee
+- Who speaks when? During events, after events etc
+- Who speaks what language?
+- Who speaks with what authority? Unreliable narrator, self-conscious narration
+
+## Focalization
+
+- Who sees? Distinct from who speaks!
+    1. Temporal - benefit of hindsight etc
+    2. Distance and speed
+    3. Limitations on knowledge
+
+## What stories do
+
+- Pleasure
+- Desire to know
+- Teach us about the world
+- Increasingly suggest that identity must be sought in personal relations rather
+    than through public action
