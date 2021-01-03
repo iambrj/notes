@@ -186,3 +186,33 @@ author : Bharathi Ramana Joshi
 - Teach us about the world
 - Increasingly suggest that identity must be sought in personal relations rather
     than through public action
+
+# Performative language
+
+- Austin's Constative vs Performative as capturing the extent to which language
+    performs actions rather than merely reporting upon them
+    1. Constative : "The shop sells bananas"
+    2. Performative : "I am going to buy bananas" (may be felicitous or
+       infelicitous)
+
+## Performatives and literature
+
+- Performatives imply that literature can effect the real world, an event/act
+- Derrida's critique : would a performative utterance still work if it were not
+    an iterable form?
+
+## Performativ-constative relations
+
+- Aporia between constative and performative language
+- The argument that the act of stating or describing is in fact performative
+    must take the form of constative statements
+
+## Butler's performatives
+
+- Theory of performative is model for thinking about crucial social processes
+    with the following at stake
+    1. Nature of identity and how it is produced
+    2. Functioning of social norms
+    3. Agency
+    4. Relationship between individual and social change
+- Obligatory repetition produces historical and social realities
