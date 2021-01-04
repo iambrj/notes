@@ -216,3 +216,22 @@ author : Bharathi Ramana Joshi
     3. Agency
     4. Relationship between individual and social change
 - Obligatory repetition produces historical and social realities
+
+# Identity, Identification and the Subject
+
+## The subject
+
+- Key questions about the self
+    1. Is self given or made?
+    2. Is self conceived in individual or in social terms?
+- To be a subject at all is to be *subjected* to various regimes (psycho-social,
+    linguistic, sexual)
+
+## Literature and identity
+
+- Literature tries to answer questions about identity such as "how is identity
+    formed?", implicitly or explicitly
+- Paradox of identity : the identity of a character arises through their
+    actions, but the identity was what caused actions in the first place.
+- Explore how group demands restrict individual possibilities
+- Literature is said to corrupt through mechanisms of identification
