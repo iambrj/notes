@@ -1,0 +1,158 @@
+\documentclass[titlepage, 12pt]{book}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\newtcbtheorem[]{definition}{Definition}%
+{colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+{colback=cyan!5,colframe=cyan!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+{colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
+
+\begin{document}
+
+\title{Notes on high school mathematics}
+\author{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}}
+\maketitle
+
+\tableofcontents
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+I had learnt a lot of useful (and \textit{fun}!) mathematics in my high school,
+but all my notes back then were handwritten. This document is an attempt at
+digitalizing them since I still find some of that math useful and having a
+digital document makes it easier to revisit material.
+
+\chapter{Functions}
+\begin{definition}{Cartesian product}{}
+    If $A$ and $B$ are two sets, then their \textit{Cartesian product} is
+    defined as the set $\{(a, b)\mid a\in A,b\in B\}$ denoted by $A\times B$
+\end{definition}
+
+\begin{definition}{Relation}{}
+    If $A$ and $B$ are two sets, then any subset of $A\times B$ is called a
+    \textit{relation} from $A$ to $B$
+\end{definition}
+
+\begin{definition}{Function}{}
+    If $A$ and $B$ are two sets, then function $f$ from $A$ to $B$ is a relation
+    from $A$ to $B$ such that $\forall a\in A,\exists b\in B$ such that $(a,
+    b)\in f$. It is denoted by $f:A\rightarrow B$, the set $A$ is called the
+    \textit{domain} and $b$ is called the \textit{co-domain} of $f$
+\end{definition}
+
+\begin{definition}{Image, Pre-image}{}
+    If $f:A\rightarrow B$ is a function such that $f(a) = b$, then $b$ is called
+    the \textbf{image} of $a$ under $f$ and $a$ is called the pre-image of $b$
+    under $f$
+\end{definition}
+
+\begin{definition}{Range}{}
+    If $f:A\rightarrow B$ is a function then $f(A)$, the set of all images is
+    called the range of $f$
+\end{definition}
+
+\begin{definition}{Injection}{}
+    A function $f:A\rightarrow B$ is called an
+    \textbf{injection}/\textbf{one-to-one} if distinct elements of $A$ have
+    distinct images in $B$
+\end{definition}
+
+\begin{definition}{Surjection}{}
+    A function $f:A\rightarrow B$ is called an
+    \textbf{surjection}/\textbf{onto} if range is equal to the co-domain
+\end{definition}
+
+\begin{definition}{Bijection}{}
+    A function $f:A\rightarrow B$ is called an \textbf{bijection} if it is both
+    into and onto
+\end{definition}
+
+\begin{definition}{Function equality}{}
+    Two functions $f$ and $g$ are equal, iff
+    \begin{enumerate}
+        \item Both have same domains
+        \item Images of all elements from the domain are the same, i.e. $f(x) =
+            g(x), \forall x\in $ domain
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}{Inverse function}{}
+    If $f:A\rightarrow B$ is a bijection, then the relation $f^{-1} = \{(b,
+    a)\mid f(a) = b\}$ is defined as the inverse function of $f$
+\end{definition}
+
+\begin{definition}{Function composition}{}
+    If $f : A\rightarrow B$ and $g : B\rightarrow C$ are two functions, then
+    their composition function $f\circ g$ is defined as the relation $\{(a,
+    g(f(a)))\mid a\in A\}$
+\end{definition}
+
+\chapter{Matrices}
+
+\begin{definition}{Matrix}{}
+    An ordered rectangular array of elements is called a \textbf{matrix}
+\end{definition}
+
+\begin{definition}{Order of a Matrix}{}
+    A matrix having $m$ rows and $n$ columns is said to be of order $m\times n$,
+    read a s$m$ cross $n$ or $m$ by $n$
+\end{definition}
+
+Some common matrices
+\begin{enumerate}
+    \item\textbf{Square matrix} : $m = n$
+    \item\textbf{Diagonal matrix} : All non-diagonal elements of a square matrix
+        are zeroes
+    \item\textbf{Scalar matrix} : Diagonal matrix where all diagonal elements
+        are equal
+    \item\textbf{Unity/Identity matrix} : Diagonal matrix where all diagonal
+        elements are 1
+    \item\textbf{Null/Zero matrix} : All elements are zeroes
+    \item\textbf{Row/Column matrix} : Matrix with only single row/column
+    \item\textbf{Triangular matrix} : All elements below/above (lower/upper) are
+        zeroes
+\end{enumerate}
+
+\begin{definition}{Equality of matrices}{}
+    Two matrices are equal if they have same order and corresponding elements
+    are equal
+\end{definition}
+
+\begin{definition}{Sum of two matrices}{}
+    If two matrices are of equal order then their sum matrix is defined as sum
+    of corresponding elements
+\end{definition}
+
+\begin{definition}{Scalar multiple of a matrix}{}
+    The scalar multiple of a matrix is defined as the matrix obtained by
+    multiplying each element by fixed scalar
+\end{definition}
+
+\begin{definition}{Product of two matrices}{}
+    If $A = [a_{ik}]_{m\times n}$ and $B = [b_{kj}]_{n\times p}$ are two
+    matrices, then their product $C = [c_{ij}]_{m\times p}$ is defined as
+    $c_{ij} = \sum_{k = 1}^n a_{ik}b_{kj}$
+\end{definition}
+
+\begin{definition}{Transpose of a matrix}{}
+\end{definition}
+\end{document}
+
