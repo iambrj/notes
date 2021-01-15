@@ -85,7 +85,63 @@ title : Lecture notes on Literature, History and Belonging in Hyderabad
 2. Charminar not geometrically center
 3. Bhagmati - no such lady
 
+# 12/01/2021
+
+- No direct access to object of inquiry, always mediated access
+- History is always interpreted from the perspective of the present
+
+- Courtly Hyderabad
+    * Political, social and economic elite
+    * Interested in poetry, painting (art & culture)
+    * Why so much interest in arts & culture? To be remembered, a form of
+        immortality.
+- Salar Jung 1
+    * Active migration policy : mostly English educated men
+    * "Ghaer-mulki" : slur used against "outsiders", North Indian, Mysori
+    * Separates Ghaer-mulki nobility from British Residency
+- Administrative and Economic Reform
+    * Nizam set up Executive Council (EC) to rule on his behalf
+- Religious polarisation
+    * Hindu vs Muslims emerging in 1890s
+    * No government posts
+    * Religious conversions
+- Competing Nationalisms
+    * Hyderabad chapter of the Congress (HSC) : Gandhi asked to be shut down
+    * Gandhi's ideas - civil disobedience, swadeshi
+    * Hindu Mahasabha
+    * Ittehad-ul-Muslimeen
+        + Bahadur Yar Jung, first to push for political Muslim state. "Hyderabad
+            IS Muslim state". Bad.
+- Razakar and Communists
+    * Qasim Razvi forms Razakrs, breaks law and order
+    * Arms young Muslim men and boys with swords, sticks, spears etc
+    * Attack Hindu men and women
+    * Attack anybody who against them
+    * Attack Communists
+    * Communists popular among villages due to feudal exploitation
+- Telangana People's Struggle
+    * Chaityala Ailamma resists exploitation
+    * Andhra Mahasabha
+    * Landlords + armed police
+- Daily Imroze
+- Partition, Nizam disagree with separate Hyderabad, Deccan broken down into
+    Telangana, Karnataka
+- Anne Marrie Shimel, understanding of Dakhni, how different from Urdu
+
+# 15/01/2021
+
+- Dakhni, Hyderabadi, and Urdu
+- Rekhta.org, Rekhta : early name for literary version and specific genres in
+    this langauge, mixture of Persian and Indian languages
+- Dakhni dies out after Bijapur loss
+- Dakhni as point of ridicule
+- Hyderabadi relies more on Persian for grammar and vocabulary and even takes
+    words from English
+- 3 opinions on poems
+
 ## Questions
+
+- The kind of language they speak in Old City
 
 - Books on court life of Qutb Shahs
 - Why is it called Hussain Sagar?
