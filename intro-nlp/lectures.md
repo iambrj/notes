@@ -31,3 +31,22 @@ author : Bharathi Ramana Joshi
 - N-grams : 
 - Zipf's Law : 
 - Foundations of natural language processing, zaraski
+
+# 16/01/2021
+
+- n-gram changes with corpus domain (think wikipedia text vs law text)
+- Reliability vs discrimination, informativeness vs rarity
+    + Larger n : greater discrimination, more information about context
+    + Smaller n : more reliability, more instances in training data better
+          estimate
+- Higher n => need more space to store probabilities
+- Major problems
+    + How to deal with unknown words?
+    + Data sparseness
+- Given some words, what should the next word be?
+- Perplexity & Entropy
+    + Entropy : Given 2 LMs and a corpus, which LM is better watch for the
+        corpus? Always want to choose one with lower entropy
+    + Cross entropy
+    + Perplexity
+- Zipf distribution
