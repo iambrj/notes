@@ -46,3 +46,41 @@ title : "Notes on Beauty : A Very Short Introduction"
     itself from that source
 - Is beauty perrogative : need language, self-consciousness, reason, moral
     judgement
+
+# Human beauty
+
+- Controversy in evolutionary psychologists : group selection vs individual
+    selection
+    * Group selection
+      + Aura around functions necessary for group survival - marriage,
+        festivals, weapons etc to protect from emotional erosion
+      + Collective group need to make special
+      + Falls short to explain what is distinctive of the aesthetic
+- Plato's seventh platitude
+
+> Beauty, in a person, prompts desire
+
+- Hume : beauty spreads itself upon objects
+- Eros : origin of both love of beauty and sexual desire
+- Plato's argument
+    + Soul longs for immortality
+    + Eros seeks to unify with its object and make copies
+    + Base manifestation of eros is erotic love, sexual reproduction
+    + Higher/Abstract manifestation of eros is contemplation and replication in
+      forms world
+    + Beauty achieves immortality through this replication
+- What prompts sexual attraction can be contemplated but never possessed,
+    consummation may temporarily quench it, but what inspires it is always
+    beyond our reach
+- Sexual *drives* vs Eros *choice*
+- Obscenity : deliberate eclipse of a person's embodiment by their body, eclipse
+    of the soul by the body
+- Attract contemplation vs prompt desire
+- Human beauty : face, eyes, mouth and hands
+- Parallels & relations between the sacred and the beautiful
+- Beauty is both an invitation to desire and a call to renounce it
+- Moral objection to the $7^{th}$ platitude : babies and children are also
+    beautiful
+- $7^{th}$ platitude rewritten
+
+> It is a non-accidental feature of human beauty that it prompts desire
