@@ -49,7 +49,6 @@ author : Bharathi Ramana Joshi
         corpus? Always want to choose one with lower entropy
     + Cross entropy
     + Perplexity
-- Zipf distribution
 
 # 23/01/2021
 
@@ -70,7 +69,8 @@ author : Bharathi Ramana Joshi
 
 - Limitations
     1. Distribution of each bigram is binomial
-    2. # of unknown $N_0$ is known
+    2. $\#$ of unknown $N_0$ is known
+
 - Smoothing approaches
     1. Linear regression : $log(N_c) = a + b log(c)$
     2. For large counts, reliability is lost so $c^* = c$
@@ -101,7 +101,7 @@ author : Bharathi Ramana Joshi
 
 - Witten-Bell: how likely is this context to end with new word
 
-    - Intuition: Smoothed probability $P_{WB}(w_i|w_{i-1:i-m}) is higher if
+    - Intuition: Smoothed probability $P_{WB}(w_i|w_{i-1:i-m})$ is higher if
         sequence $w_{i-1:i-m}$ occurs with many different words $w_i$
 
     \begin{align*}
