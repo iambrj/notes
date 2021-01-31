@@ -3,6 +3,15 @@ title: "Notes on : Speech and Language Processing"
 author : Bharathi Ramana Joshi
 ---
 
+# Regular Expressions, Text Normalization, Edit Distance
+
+- Text normalization: converting text to a more convenient, standard form
+- Tokenization : separating out words from running text
+- Lemmatization : determining whether two words have same root
+- Stemming : stripping suffixes
+- Sentence segmentation : breaking at comma, period etc
+- Clitic : contractions marked by apostrophes *what're*
+
 # N-Grams
 
 - Language Models - models that assign probabilities to sequences of words
@@ -63,7 +72,16 @@ Does not work because
 - Smoothing/discounting : removing probability from some high frequence words to
     reassign to words appearing in unseen contexts
 - Laplace smoothing : add 1 to everything to get rid of nonzero grams
-- 
+- Add-k : instead of 1, add some k to all unseen words
+- Backoff : Decrease $n$ and see if there are any apperances
+- Interpolation : add weights instead of compeletly ignoring. For instance, for
+    linear interpolation
+    \begin{align*}
+    P(w_n\mid w_{n - 2}w_{n - 1}) &= \lambda_1(w_{n-2:n-1}P(w_n|w_{n - 2}w_{n - 1})) \\
+                                  &+ \lambda_2(w_{n-2:n-1}P(w_n|w_{n - 1})) \\
+                                  &+ \lambda_3(w_{n-2:n-1}P(w_n))
+    \end{align*}
+    such that $\sum_1^3 \lambda_i = 1$
 
 # Questions
 
