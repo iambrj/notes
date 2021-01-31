@@ -153,6 +153,258 @@ Some common matrices
 \end{definition}
 
 \begin{definition}{Transpose of a matrix}{}
+    The matrix obtained by interchanging the rows and columns is called the
+    transpose matrix. Transpose of a matrix $A$ is denoted by $A^\prime$.
 \end{definition}
+
+\begin{definition}{Symmetric matrix}{}
+    A matrix is Symmetric if it is equal to its transpose, i.e. $A = A^\prime$
+\end{definition}
+
+\begin{definition}{Skew-symmetric matrix}{}
+    A matrix is skew-symmetric if $A^\prime =-A$
+\end{definition}
+
+\begin{definition}{Determinant}{}
+    Since $a_1b_2 - a_2b_1$ determines whether below system of linear equations
+    has unique solution ($\neq 0$) or not (= 0)
+    \begin{align*}
+        a_1x+b_1y = c_1\\
+        a_2x+b_2y = c_2
+    \end{align*}
+\end{definition}
+
+\begin{definition}{Minor}{}
+    For a square matrix, the minor of an element is defined as the determinant
+    of the smaller matrix obtained by deleting the rows and columns of that
+    element.
+\end{definition}
+
+\begin{definition}{Cofactor}{}
+    Cofactor of element $ij$ is defined as the minor multiplied by $-1^{(i +
+    j)}$
+\end{definition}
+
+\begin{definition}{Singular matrix}{}
+    A matrix is singular if its determinant is zero
+\end{definition}
+
+\begin{definition}{Adjoint}{}
+    \begin{align*}
+        \begin{bmatrix}
+            a_1 & b_1 & c_1\\
+            a_2 & b_2 & c_2\\
+            a_3 & b_3 & c_3\\
+        \end{bmatrix}
+        = 
+        \begin{bmatrix}
+            A_1 & A_2 & A_3\\
+            B_1 & B_2 & B_3\\
+            C_1 & C_2 & C_3\\
+        \end{bmatrix}
+    \end{align*}
+    uppercase letters are cofactors of corresponding lowercase letters
+\end{definition}
+
+\begin{definition}{Inverse matrix}{}
+    A matrix $A$ is \textbf{\textit{invertible}} if $|A|\neq 0, A^{-1} =
+    \frac{Adj(A)}{|A|}$
+\end{definition}
+
+\begin{definition}{Rank}{}
+    Rank of a matrix is the maximum order of the non-singular square
+    submatrices.
+\end{definition}
+
+Rank is invariant under
+    \begin{enumerate}
+        \item Interchanging two rows/columns
+        \item Multiplying rows/columns by a non-zero number
+        \item Adding elements of a row/column to the corresponding elements of
+            another row/column
+    \end{enumerate}
+
+\begin{theorem}{Solubility of system of equations}{}
+    A system of three equations in three unknowns $AX = D$ has
+    \begin{enumerate}
+        \item \textbf{\textit{Unique}} solutions if $rank(A) = rank([A\;D]) = 3$
+        \item \textbf{\textit{Infinite}} solutions if $rank(A) = rank([A\;D]) < 3$
+        \item \textbf{\textit{Zero}} solutions if $rank(A)\neq rank([A\; D])$
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}{Cramer's rule}{}
+    \textbf{\textit{Cramer's rule}} states that
+    \begin{align*}
+        \frac{x}{\Delta_1} = \frac{y}{\Delta_2} = \frac{z}{\Delta_2} = \frac{1}{\Delta}
+    \end{align*}
+    where
+    \begin{enumerate}
+        \item 
+            \begin{align*}
+                \Delta =
+                \begin{vmatrix}
+                    a_1 & b_1 & c_1\\
+                    a_2 & b_2 & c_2\\
+                    a_3 & b_3 & c_3\\
+                \end{vmatrix}
+            \end{align*}
+        \item 
+            \begin{align*}
+                \Delta_1 =
+                \begin{vmatrix}
+                    d_1 & b_1 & c_1\\
+                    d_2 & b_2 & c_2\\
+                    d_3 & b_3 & c_3\\
+                \end{vmatrix}
+            \end{align*}
+        \item 
+            \begin{align*}
+                \Delta_2 =
+                \begin{vmatrix}
+                    a_1 & d_1 & c_1\\
+                    a_2 & d_2 & c_2\\
+                    a_3 & d_3 & c_3\\
+                \end{vmatrix}
+            \end{align*}
+        \item 
+            \begin{align*}
+                \Delta_3 =
+                \begin{vmatrix}
+                    a_1 & b_1 & d_1\\
+                    a_2 & b_2 & d_2\\
+                    a_3 & b_3 & d_3\\
+                \end{vmatrix}
+            \end{align*}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}{Matrix inversion method}{}
+    The matrix inversion method to solve the system of equations $AX = D$ is $X
+    = A^{-1}D$
+\end{definition}
+
+\begin{definition}{Gauss-Jordan method}{}
+    To solve a system of equations using Gauss-Jordan method, we transform
+    \begin{align*}
+        \begin{bmatrix}
+            a_1 & b_1 & c_1 & d_1\\
+            a_2 & b_2 & c_2 & d_2\\
+            a_3 & b_3 & c_3 & d_3\\
+            a_4 & b_4 & c_4 & d_4\\
+        \end{bmatrix}
+        \rightarrow 
+        \begin{bmatrix}
+            1 & 0 & 0 & \alpha\\
+            0 & 1 & 0 & \beta\\
+            0 & 0 & 1 & \gamma\\
+        \end{bmatrix}
+    \end{align*}
+    via a series of rank invariant transformations
+\end{definition}
+Note
+\begin{enumerate}
+    \item If matrix can be transformed into above form it has unique solution $x
+        = \alpha, y = \beta, z = \gamma$
+    \item If one entire row is zeroes, then system has infinite solutions
+    \item If row of $A$ is zero, but $D$'s element is non-zero, system has no
+        solutions
+\end{enumerate}
+
+\begin{theorem}{}{}
+    The homogeneous system of equations $AX = O$ has
+    \begin{enumerate}
+        \item only the trivial solution, if $rank(A) = 3$
+        \item infinite solutions, otherwise
+    \end{enumerate}
+\end{theorem}
+
+% TODO : Vectors chapters
+
+\chapter{Trigonometry}
+
+\begin{theorem}{Degrees, gradients and radians}{}
+    \begin{align*}
+    \frac{180}{D} = \frac{200}{G} = \frac{\pi}{R}
+    \end{align*}
+\end{theorem}
+
+\begin{definition}{Trigonometric ratios}{}
+    \begin{enumerate}
+        \item $sin\theta = \frac{O}{H}$
+        \item $cos\theta = \frac{A}{H}$
+        \item $tan\theta = \frac{O}{A}$
+        \item $cosec\theta = \frac{H}{O}$
+        \item $sec\theta = \frac{H}{A}$
+        \item $cot\theta = \frac{A}{O}$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}{Identities}{}
+    \begin{enumerate}
+        \item $cos^2\theta + sin^2\theta = 1$
+        \item $1 + tan^2\theta = sec^2\theta$
+        \item $1 + cot^2\theta = cosec^2\theta$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Common angle values}{}
+
+    \begin{center}
+        \begin{tabular}{ |c|c|c|c|c|c| }
+            \hline
+            Angle/ratio & 0 & 30 & 45 & 60 & 90 \\
+            \hline
+            sin & 0 & $\frac{1}{2}$ & $\frac{1}{\sqrt{2}}$ & $\frac{\sqrt{3}}{2}$ & 1 \\
+            \hline
+            cos & 1 & $\frac{\sqrt{3}}{2}$ & $\frac{1}{\sqrt{2}}$ & $\frac{1}{2}$ & 0 \\
+            \hline
+            tan & 0 & $\frac{1}{\sqrt{3}}$ & 1 & $\sqrt{3}$ & $\infty$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{theorem}
+
+\begin{theorem}{Compound angle identities}{}
+    \begin{enumerate}
+        \item cos (A + B) = cos A cos B - sin A sin B
+        \item sin (A + B) = sin A cos B + cos A sin B
+        \item tan (A + B) = $\frac{tan A + tan B}{1 - tan A tan B}$
+        \item cot (A + B) = $\frac{cot A cot B - 1}{cot A + cot B}$
+        \item sin (A + B) sin (A - B) = sin$^2$ A - sin$^2$ B
+        \item cos (A + B) cos (A - B) = cos$^2$ A - sin$^2$ B
+        \item sin (A + B + C) = ($\Sigma$sin A cos B cos C) - sin A sin B sin C
+        \item cos (A + B + C) = cos A cos B cos C - $\Sigma$ cos A sin B sin C
+        \item tan (A + B + C) = $\frac{\Sigma tan A - \Pi tan A}{1 - \Sigma tan A tan B}$
+        \item cot (A + B + C) = $\frac{\Sigma cot A - \Pi cot A}{1 - \Sigma cot A cot B}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Peak points of an expression}{}
+    The expression $asinx + bcosx + c$ has the maximum value $c +
+    \sqrt{a^2+b^2}$ and minimum value $c - \sqrt{a^2+b^2}$
+\end{theorem}
+
+\begin{theorem}{Multiple angle identities}{}
+    \begin{enumerate}
+        \item sin 2A = 2sin A cos A = $\frac{2tan A}{1 + tan^2A}$
+        \item cos 2A = cos$^2$A - sin$^2$A = $\frac{1 - tan^2 A}{1 + tan^2A}$
+        \item tan 2A = $\frac{2tanA}{1 - tan^2A}$
+        \item sin 3A = 3 sin A - 4 sin$^3$ A
+        \item cos 3A = 4cos$^3$A - 3 cos A
+        \item tan 3A = $\frac{3tanA - tan^3A}{1 - 3 tan^2A}$
+        \item cot 3A = $\frac{3cot A - cot^3 A}{1 - 3 cot^2A}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Sum and product transformations}{}
+    \begin{enumerate}
+        \item 2 sin A cos B = sin (A + B) + sin (A - B)
+        \item 2 cos A sin B = sin (A + B) - sin (A - B)
+        \item 2 cos A cos B = cos (A + B) + cos (A - B)
+        \item 2 sin A sin B = cos (A + B) - cos (A - B)
+    \end{enumerate}
+\end{theorem}
+
 \end{document}
 
