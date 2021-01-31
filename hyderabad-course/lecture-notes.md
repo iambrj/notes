@@ -149,3 +149,16 @@ title : Lecture notes on Literature, History and Belonging in Hyderabad
     Court chronicles, (not Firishta), multidisciplinary approach history, look at
     inscriptions, look at coins, depend heavily on written sources. Look at a
     variety of sources/evidence and asses on based on that. Legend of Bhagmati
+
+# 29/01/20201
+
+- Courtesan vs prostitute
+- Colonial Victorian values, unable to understand local concepts.
+- Honored & privilege life, although not "normal"
+- Do not pollute your evidence to support your conclusions in historical research
+- Singlehood, sexual activity, financial independence : makes society
+    uncomfortable
+- challenge norms
+- Cultural capital : status given to people educated in music, dance etc
+- Essence of masculinity in her poetry
+- Cannot use poetry about transparent sources of information about her life
