@@ -7,7 +7,7 @@ let (ints, strings) = List.unzip [(1, "one"); (2, "two"); (3, "three")];;
 (* lambda functions *)
 (fun x -> x + 1) 5;;
 
-(* let bindings a function *)
+(* let binding a function *)
 let add1 x = x + 1 in (add1 5);;
 (* is just syntactic sugar for *)
 let add1 = (fun x -> x + 1) in (add1 5);;
@@ -19,6 +19,7 @@ and is_odd x =
     if x = 0 then false else is_even (x - 1);;
 
 (* use function to exploit built in pattern matching *)
+(* fun takes any number of arguments, but function takes exactly 1 argument *)
 let head_or_minus1 = function
     | x :: xs -> x
     | [] -> -1;;
