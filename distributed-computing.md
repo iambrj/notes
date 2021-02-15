@@ -137,12 +137,12 @@ Note : each one can simulate the other
     \begin{align*}
     e_i\rightarrow e_j\implies C(e_i) < C(e_j)
     \end{align*}
-- Strongly consisten
+- Strongly consistent
     \begin{align*}
     e_i\rightarrow e_j\iff C(e_i) < C(e_j)
     \end{align*}
 - All clocks with representation for tracking
-    1. Local logical clock
+    1. Logical local clock
     2. Logical global clock
 - Protocols consist of
     1. R1 : how is local logical clock updated by process when it executes an
@@ -153,12 +153,12 @@ Note : each one can simulate the other
 
 - Single integer $C_i$ represents both local logical clock and global time
     1. R1 : Before each event (send/receive/internal), increment
-    \begin[align*]
+    \begin{align*}
     C_i := C_i + d
-    \end[align*]
+    \end{align*}
     Note that $d$ may potentially be different during each instance.
-    2. R2 : When process $p_i$ receives message with timestamp $C_msg$
-        1. $C_i = max(C_i, C_msg)$
+    2. R2 : When process $p_i$ receives message with timestamp $C_{msg}$
+        1. $C_i = max(C_i, C_{msg})$
         2. execute R1
         3. deliver message
 - Properties of scalar time
@@ -171,11 +171,11 @@ Note : each one can simulate the other
 ## Vector time
 
 - Each process maintains a vector of timestamps, where $vt_i[j]$ represents
-    $P_i's$ knowledge of logical time at $P_j$
+    $P_i's$ record of logical time at $P_j$
     1. R1 : Before event, increment local logical time
-    \begin[align*]
+    \begin{align*}
     C_i := C_i + d
-    \end[align*]
+    \end{align*}
     2. R2 : Each message piggybacked with $vt$ of sender
         1. $1\leq k\leq n : vt_i[k] = max(vt_i[k], vt[k])$
         2. execute R1
@@ -196,5 +196,69 @@ Note : each one can simulate the other
        \end{align*}
     2. Strong consistency
     3. Event counting
-    4. Applications : distributed debugging, causal communicatoin etc
+    4. Applications : distributed debugging, causal communication etc
+- Singhal-Kshemkalyani's differential technique : instead of sending entire
+    vectors, just send `{(position, new value)}` for changed timestamps
 
+## Matrix time
+
+- Each process maintains $n\times n$ matrix with following entries
+    1. $m_i[i, i]$ = local logical clock of $p_i$
+    2. $m_i[i, j]$ = $p_i$'s record of $p_j$'s local time
+    3. $m_i[j, k]$ = $p_i$'s record of $p_j$'s record of $p_k$'s local time
+- Update rules are as follows
+    1. R1
+    \begin{align*}
+    m_i[i, i] := m_i[i, i] + d
+    \end{align*}
+    2. R2
+        1. Update $mt_i[i,*]$ with received timestamp
+        2. $mt_i[k,l] = max(mt_i[k, l], mt[k, l])$ for all $1\leq k,l\leq n$
+        3. R1
+        4. Deliver message
+
+# Global state and snapshot recording algorithms
+
+- Messages sent but not yet received are called transit messages. For channel
+    $C_{ij}$
+    \begin{align*}
+    transit(LS_i, LS_j) = \{m_{ij} | send(m_{ij})\in LS_i\land
+    rec(m_{ij})\not\in LS_j\}
+    \end{align*}
+    where $LS$ is local state of respective process. Therefore local state
+    information gives channel information.
+- FIFO channel preserves message order
+- Global state of a distributed system is a collection of the local states of
+    the processes and the channels
+    \begin{align*}
+    GS = \{\cup_i LS_i, \cup_{i, j} SC_{ij}\}
+    \end{align*}
+- A global state is consistent if
+    1. Messages are conserved : $send(m_{ij})\in LS_i\implies m_{ij}\in
+       SC_{ij}\oplus rec(m_{ij})\in LS_j$
+    2. Every effect has a cause : $send(m_{ij})\not\in LS_i\implies
+       m_{ij}\not\in SC_{ij}\land rec(m_{ij})\not\in LS_j$
+- Cut : partitioning the spacetime diagram such that everything to the left of
+    the partition is the past and everything to the right is the future. Since
+    messages can only go from past to future, cuts with messages flowing the
+    other way are called **inconsistent cuts**
+- Two major issues
+    1. Which messages to record and which to not?\
+    From C1 : Any message sent by a process *before* taking its snapshot must be
+    recorded.\
+    From C2 : Any message sent by a process *after* taking its snapshot must *not* be
+    recorded.
+    2. What instance should a process take its snapshot?
+    From C2 : $p_j$ must snapshot before processing $m_{ij}$ sent by $p_i$ after
+    taking its snapshot
+- Chandy-Lamport : send marker token along channels after snapshotting before
+    any other messages are sent.
+    1. Sending rule
+        1. $p_i$ records its state
+        2. Send markers on all outgoing channels before other messages
+    2. Receiving rule : on receiving marker along $C$\
+    if $p_j$ hasn't snapshotted then\
+    record $C$'s message state as empty and execute sending rule\
+    else\
+    record $C$'s message state as those received between $p_j$'s snapshot and
+    marker
