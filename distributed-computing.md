@@ -234,9 +234,9 @@ Note : each one can simulate the other
     GS = \{\cup_i LS_i, \cup_{i, j} SC_{ij}\}
     \end{align*}
 - A global state is consistent if
-    1. Messages are conserved : $send(m_{ij})\in LS_i\implies m_{ij}\in
+    1. (C1) Messages are conserved : $send(m_{ij})\in LS_i\implies m_{ij}\in
        SC_{ij}\oplus rec(m_{ij})\in LS_j$
-    2. Every effect has a cause : $send(m_{ij})\not\in LS_i\implies
+    2. (C2) Every effect has a cause : $send(m_{ij})\not\in LS_i\implies
        m_{ij}\not\in SC_{ij}\land rec(m_{ij})\not\in LS_j$
 - Cut : partitioning the spacetime diagram such that everything to the left of
     the partition is the past and everything to the right is the future. Since
@@ -262,3 +262,162 @@ Note : each one can simulate the other
     else\
     record $C$'s message state as those received between $p_j$'s snapshot and
     marker
+
+    Time complexity - $O(network\ diameter)$
+
+    Space complexity - $O(edge\ count)$
+- Properties
+    1. Recorded global state may not correspond to any global states that occur
+       during computation, as a process can change its state asynchronously
+       before the markers it sent are received by others and they record their
+       states. However, by permuting events occurred during execution, it is
+       possible to reach recorded global state from initial global state
+    2. All recorded process states are mutually logically concurrent
+    3. Rubberband criterion
+- Lai-Yang (Non-FIFO) tag messages sent after snapshot (using color scheme for
+    messages etc) and have all processes maintain message histories across
+    channels to compute channel states
+- Causal order : for any process, order in which it receives messages cannot
+    violate happened-before relation of the corresponding sends
+- For process state, a token is broadcast by an initiator process and all
+    processes reply with their state when they receive the token. This gives
+    process state recording, for channel state recording there are two ways
+- Acharya-Badrinath channel state recording
+    1. Each process, along with local state, replies with arrays $SENT_i[1\dots
+       N]$ and $RECD_i[1\dots N]$
+    2. State channel from $p_i$ to $p_j$ is set of messages with sequence
+       numbers $\{RECD_j[i] + 1,\dots, SENT_i[j]\}$ and all state channels from
+       initiator are empty
+This requires $2n$ messages and $2$ time units for recording and assembling the
+snapshot
+
+- Alagar-Venkatesan :
+
+# Mutual exclusion
+
+- Computation model
+    1. Messages aren't lost, channels don't fail
+    2. Each site has one process
+    3. Processes can make at most one request for CS
+    4. States : requesting CS, executing CS, idle (neither)
+- Requirements of mutual exclusion
+    1. Saftey : at most one process can be executing CS
+    2. Liveness/Progress : no infinite waits; requesting site should get CS in
+       finite time
+    3. Fairness : in order by logical time
+- Complexity measures
+    1. Message complexity : \# of messages required per cs execution by a site
+    2. Synchronization Delay : time between leaving and next process entering CS
+    3. Response time : time between request and exiting CS
+    4. System throughput : 1 / (SD + E); rate of request execution
+- Lamport's mutual exclusion algorithm
+    1. $S_i$ broadcasts $REQUEST(ts_i, i)$ to all sites and places it on
+       $request\_queue_i$ when it wants ot enter CS
+    2. When $S_k$ receives $REQUEST(ts_i, i)$ it places it onto
+       $request\_queue_k$ and it returns a timestamped $REPLY$ message to $S_i$
+
+    $S_i$ enters CS when the following two conditions are met
+
+    1. $S_i$ has received a message with timestamp larger than $ts_i$ from all
+       other sites (need not be reply message)
+    2. $S_i$'s request is a the top of $request\_queue_i$
+
+    On releasing the CS
+
+    1. $S_i$ removes request from top of queue and broadcasts $release_i$
+       message to all sties
+    2. When $S_k$ receives $release_i$ message, it removes $S_i$'s request from
+       its request queue
+Note that this does not work for nonFIFO channels
+- Complexity
+    1. Message complexity : without optimization, needs $3(N - 1)$ messages
+       (request, reply and release each (N - 1))per cs invocation. After
+       optimization, between $3(N - 1)$ and $2(N - 1)$
+    2. Requires channels to be FIFO
+    3. Synchronization delay : max message transmission time for release message
+    4. Requests granted in order of time stamps
+- Ricart-Agarwala
+    1. All processes have reply deferred boolean arrays $RD_i[N]$
+    2. When $P_i$ wants to enter CS, it broadcasts request to all sites.
+    3. When $P_j$ receives request, it replies if
+        1. It is neither requesting nor executing CS
+        2. It is requesting, but its request started after $P_i$'s request
+    4. After $P_i$ exits the CS, it performs all deferred replies
+- Complexity
+    1. (N - 1) request and (N - 1) reply = 2(N - 1) messages
+    2. Does not require FIFO
+    3. Need array space, no heap space
+    4. Sync delay = max message transmission time
+    5. Requests granted in order of increasing timestamps
+- Roucairol-Carvalho : can reenter immediately if reply not sent yet. Message
+    complexity between 0 and $2(N - 1)$
+- Maekawa : instead of requesting from all processes, request from some subset
+    1. Requirements for request set $R_i$ of each process
+        - For all $i, j$, $R_i\cap R_j\neq\phi$
+        - For all $i$, $i\in R_i$
+        - For all $i$, $|R_i| = K$ for some $K$
+        - Each node is contained in exactly $D$ request sets
+
+        One possible value : $K = D = \sqrt{N}$
+    2. Simple version
+        1. For $P_i$ to enter CS, it broadcasts request to all processes in
+           $R_i$
+        2. On receiving request, send reply if no reply has been sent since
+           previous release. Update taht reply has been sent. Otherwise add to
+           queue.
+        3. $P_i$ enters CS if it receives reply from all nodes in $R_i$
+        4. When $P_i$ exits CS, it broadcasts release to all nodes in $R_i$.
+        5. On receiving release, send reply to next node in queue and delete the
+           node (how to select next is not specified).
+        6. If queue is empty, update states to indicate no reply has been sent.
+
+    Complexity
+
+    1. Message complexity is Sublinear $O(\sqrt{N})$ ($3 *\sqrt{N}$)
+    2. However, this may deadlock! To remove deadlock, need $5 * \sqrt{N}$
+       messages by using extra failed, inquire and yield messages
+    3. Sync delay = 2 * (max message transmission time)
+- To avoid deadlocks
+    1. Failed : if reply already given to someone else with higher priority
+    2. Inquire : try to reset queue if higher priority request arrives after
+       reply has been sent
+    3. Yield : Process got failed form some process in the group so it gives up
+       desire to enter cs.
+
+    Complexity
+    1. Same sync delay 2 * (max message transmission time)
+    2. Message complexity $5 * \sqrt{N}$
+    3. Deadlock free
+
+- Suzuki Kasami
+    1. Token has FIFO queue of requesting processes and $LN[1\dots n]$ and each
+       process has $RN_i[1\dots n]$
+    2. For $i$ to request CS, increment $RN_i[i]$ and send $REQUEST(i, RN_i[i])$
+       to all nodes. If it already has token, enter if no pending requests.
+    3. On receiving $REQUEST(i, sn)$, set $RN_j[i] = max(RN_j[i], sn)$ and send
+       to $i$ if token is idle.
+    4. On release, set $LN[i] = RN_i[i]$ and append to queue all those $j$ such
+       that $RN_i[j] = LN[j] + 1$ (i.e. requests that arrived while $i$ was in
+       CS). If queue is nonempty, delete first node and send token.
+- Properties
+    + No starvation
+    + Message complexity : 0 (token with node) or $n$
+    + Synchronization delay : 0 (token with node) or max message delay
+- Raymond's algorithm : nodes arranged in tree with each node having FIFO queue
+    1. If $i$ wants to enter, it places request on $Q_i$. If $i$ doesn't hold
+       the token, it sends REQUEST to its parent
+    2. If $j$ receives REQUEST, then it places it in $Q_j$ and sends REQUEST to
+       its parent if no previous REQUEST has been sent
+    3. When root receives REQUEST, send token to that node and set parent to
+       that node
+    4. When a node receives a token, delete the first queue entry, send token
+       there, update parent and send REQUEST if queue is not empty (since it
+       must be forwarded again)
+    5. If token is received and node's own entry is at the top delete entry and
+       enter CS
+    6. On release, if queue is non-empty, delete first entry from the queue,
+       send token to that node and make that the parent.
+- Properties
+    + Average message complexity $O(log\ n)$
+    + Sync delay = $(T\ log\ n) / 2$ ($T$ = max message delay)
+    + Can cause starvation
