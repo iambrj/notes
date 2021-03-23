@@ -111,8 +111,10 @@ Does not work because
 - Components of a classification ML system
     1. Feature representation : $[x_1,\dots,x_n]$
     2. Classification function : $p(y|x)$ (sigmoid, softmax)
-    3. Objective function : cross-entropy loss function
-    4. Optimizing objective function : stochastic gradient descent
+    3. Objective function : cross-entropy loss function (a measure of how good a
+       particular probability assignment is)
+    4. Optimizing objective function : stochastic gradient descent (an algorithm
+       to optimize 2 based on 3)
 
 ## Sigmoid
 
@@ -120,6 +122,7 @@ Does not work because
 \begin{align*}
     y = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{1}{1 + exp(-z)}
 \end{align*}
+where $z = w\cdot x + b$ (i.e. weights dot features shifted by bias)
 - Graph looks like "S" minimizing at 0 and maximizing at 1
 - Features designed by examining the training set with linguistic intuitions and
     linguistic literature on the domain
@@ -133,9 +136,9 @@ Does not work because
         documents
     + Logistic regression exploits correlations
     + Better suited for larger documents
-- Sigmoid is useful for expression classification probabilities precisely
-    because it sums up to 1. Say, for binary classification, it can used as
-    follows
+- Sigmoid is useful for expressing classification probabilities precisely
+    because its values lie between 0 and 1. Say, for binary classification, it
+    can be used as follows
 
     \begin{align*}
     P(y = 1) &= \sigma(w.x+b)\\
@@ -150,7 +153,7 @@ Does not work because
 - Cross-entropy loss function
 
     \begin{align*}
-    L_{CE}(\hat{y}, y) = -logp(y|x) = -[ylog\hat{h} + (1 - y)log(1 - \hat{y})]
+    L_{CE}(\hat{y}, y) = -logp(y|x) = -[ylog\hat{y} + (1 - y)log(1 - \hat{y})]
     \end{align*}
 
 ## Gradient Descent
@@ -217,6 +220,224 @@ Does not work because
                        &= -log\frac{exp(w_k.x + b_k)}{\sum_{j =
                        1}^{k}exp(w_j.x+b_j)}
     \end{align*}
+
+# Vector Semantics and Embeddings
+
+- Distributional hypothesis : linguistic items with similar distributions have
+    similar meanings
+
+## Lexical semantics
+
+- Lemma : root word which is modified in various contexts (e.g. sing is the
+    lemma for sing, sang, sung)
+- Wordform : the actual word used in a context
+- Propositional meaning : words that are substitutable in a sentence without
+    changing its truth conditions
+- Principle of contrast : difference in linguistic form is always associated
+    with some difference in meaning
+- Similarity : much more relaxed than synonymity, e.g. *cats* and *dogs* aren't
+    synonyms, but are certainly similar
+- Relatedness : *cup* and *coffee* are neither synonyms nor similar, yet related
+    (called associations in psychology)
+- Semantic field : set of words which cover a particular semantic domain and
+    bear structured relations with each other. E.g. some words related by the
+    semantic field hospital are *surgeon*, *scalpel*, *nurse*, *anesthetic*
+- Semantic frame : set of words denoting perspectives or participants in a
+    particular type of event, e.g.
+- Connotation : aspects of a word's meaning related to reader's/writer's
+    emotions, sentiment, opinions, or evaluations
+- Three axes of affective meaning variation
+    + Valence : pleasantness of stimulus
+    + Arousal : intensity of emotion provoked by stimulus
+    + Dominancs : degree of control exerted by the stimulus
+
+## Vector semantics
+
+- Core idea : the meaning of a word is defined by its distribution in language
+    use, i.e. it looks at co-occurrences of words
+- Embeddings : vectors that represent words
+- Vector semantics can be learnt unsupervised
+
+## Words and Vectors
+
+- Term-document matrix :
+    + Rows represent words in vocabularies
+    + Columns represent document in some collection of documents
+- Term-term/word-word matrix : both rows and columns words
+
+## Cosine for measuring similarity
+
+- Take inner/dot product
+    \begin{align*}
+    v\cdot w = \sum_{i = 1}^N v_iw_i
+    \end{align*}
+- Normalized dot product/cosine similarity metric
+    \begin{align*}
+    \frac{v\cdot w}{|v||w|} = \frac{\sum_{i = 1}^N v_iw_i}{\sqrt{\sum_{i = 1}^N v_i^2}\sqrt{\sum_{i = 1}^N w_i^2}}
+    \end{align*}
+
+## TF-IDF
+
+- Document frequency : number of documents a word occurs in
+- Collection frequency : number of times a word occurs in a collection
+- Term frequency : number of times a term occurs in a a particular document
+- TF-IDF considers term frequency (TF) and document frequency via its inverse
+    (IDF)
+\begin{align*}
+    w_{t, d} = tf_{t, f}\times idf_t = log_{10}(count(t, d) + 1)\times
+    log_{10}(\frac{N}{df_t})
+\end{align*}
+
+## Pointwise Mutual Information
+
+- Intuition : how much **more** two words co-occur in our corpus than we should
+    have a priori expected them to appear by chance; derived from mutual
+    information
+    \begin{align*}
+    I(x, y) = log_2\frac{P(x, y)}{P(x)P(y)}\\
+    PMI(w, c) = log_2\frac{P(w, c)}{P(x)P(c)}
+    \end{align*}
+- Numerator tells us how many times a word $(w)$ and a context $(c)$ co-occur
+    and the denominator tells us how many times we expect them to co-occur by
+    chance
+- Since negatives are unreliable unless corpus is enormous, Positive PMI
+    \begin{align*}
+    PPMI(w, c) = max(log_2\frac{P(w, c)}{P(x)P(c)}, 0)
+    \end{align*}
+- PPMI matrix
+    \begin{align*}
+    p_{ij} = \frac{f_{ij}}{\sum_{i = 1}^{W}\sum_{j = 1}^{C}f_{ij}}\\
+    p_{i*} = \frac{\sum_{j = 1}^{C}f_{ij}}{\sum_{i = 1}^{W}\sum_{j = 1}^{C}f_{ij}}\\
+    p_{j*} = \frac{\sum_{i = 1}^{C}f_{ij}}{\sum_{i = 1}^{W}\sum_{j = 1}^{C}f_{ij}}\\
+    PPMI_{ij} = max(log_2\frac{p_{ij}}{p_{i*}p_{j*}}, 0)
+    \end{align*}
+    where $f_ij$ is number of times word $w_i$ occurs in context
+- A slight variant
+    \begin{align*}
+    PPMI_\alpha(w, c) &= max(log_2\frac{P(w, c)}{P(w)P_\alpha(c)}, 0)\\
+    \textrm{where, }P_\alpha(c) &= \frac{count(c)^\alpha}{\sum_c count(c)^\alpha}
+    \end{align*}
+- Laplace smoothing is another possibility
+
+## Word2vec
+
+- Static embedding : method learns one fixed embedding for each word in the
+    vocabulary
+- Self-supervision : avoids hand-labeled supervision signal. Neural language
+    model can just use the next word in running text as its supervision signal
+- Skip-gram with negative sampling (SGNS)
+    1. Treat the target word and a neighboring context word as positive examples
+    2. Randomly sample other words in the lexicon to get negative examples
+    3. Use logistic regression to train a classifier to distinguish those two
+       cases
+    4. Use the learned weights as the embeddings
+- Use positive and negative probabilites
+    \begin{align*}
+    P(+|w,c) + P(-|w,c) = 1\\
+    \end{align*}
+- Intuition to compute probability : two vectors are similar if they have high
+  dot product
+    \begin{align*}
+    Similarity(w,c)\approx c\cdot w
+    \end{align*}
+- Use sigmoid to convert dot product to probability
+    \begin{align*}
+    \sigma(x) = \frac{1}{1 + exp(-x)}
+    \end{align*}
+- Thus, we have
+    \begin{align*}
+    P(+|w,c) = \sigma(c\cdot w) = \frac{1}{1 + exp(-c\cdot w)}
+    \end{align*}
+to sum things up to 1
+    \begin{align*}
+    P(-|w,c) = 1 - P(+|w,c) = \sigma(-c\cdot w) = \frac{1}{1 + exp(c\cdot w)}
+    \end{align*}
+Skip-gram assumes all context words are independent
+    \begin{align*}
+    P(+|w,c_{1:L}) = \Pi_{i = 1}^L\sigma(c_i\cdot w)\\
+    logP(+|w,c_{1:L}) = \sum_{i = 1}^Llog\sigma(c_i\cdot w)\\
+    \end{align*}
+- Weighted probability gives better performance since it gives rare noise words
+    slightly higher probability
+    \begin{gather*}
+    P_\alpha(w) = \frac{count(w)^\alpha}{\sum_{w\prime}count(w\prime)^\alpha}
+    \end{gather*}
+
+## Semantic properties of embeddings
+
+- Small context windows give semantically similar words with same POS, long
+  context windows give words topically related. For +-2 window, words similar to
+  Hogwarts are Sunnydale (school in Buffy the Vampier Slayer) or Evernight
+  (school from Vampire series), but with +-5 window, words similar to Hogwarts
+  ar Dumbledore, Malfoy, half-blood (i.e. topically related)
+- First-order co-occurrence : words that are typically nearby each other
+    (syntagmatic association)
+- Second-order co-occurrence : words that have similar neighbours (paradigmatic
+    association)
+- Parallelogram model to solve simiarity questions like "apples are to trees
+    what grapes are to _". word2vec solves this by taking maximizing distance
+    \begin{align*}
+    a:b::a*:b*\\
+    \hat{b} = argmax_x distance(x, a* - a + b)
+    \end{align*}
+- Embeddings amplify bias
+    + Allocation harm : system allocates resources unfairly to different groups
+    + Representational harm : system demeaning or ignoring some social groups
+- Embeddings to study historical semantics
+
+# Neural Networks and Neural Language Models
+
+- Neural network : network of small computing units each of which takes a vector
+    of input values and produces a single output value
+- Activation : maps weighted sum
+    \begin{align*}
+    z = w.x + b\\
+    y = a = f(z)
+    \end{align*}
+    Some examples of activation functions include sigmoid, tanh, ReLU
+- Sigmoid
+    \begin{align*}
+    y = \sigma(z) = \sigma(w.x + b) = \frac{1}{1+exp(-(w.x+b))}
+    \end{align*}
+    ranges from 0 to 1
+- tanh
+    \begin{align*}
+    y = \frac{e^z - e^{-z}}{e^z + e^{-z}}
+    \end{align*}
+    ranges from -1 to 1
+- ReLU (Rectified Linear Unit)
+    \begin{align*}
+    y = max(x, 0)
+    \end{align*}
+- Unit = weighted sum + activation function
+- Vanishing gradient problem : gradients that are almost 0 cause error signal to
+    get smaller and smaller until it is too small to be used for training
+
+## XOR problem
+
+- XOR is not linearly separable function
+
+## Feed-Forward Neural Networks
+
+- Cycle-free network of units
+- AKA Multi-Layer Perceptrons (MLPs)
+- Hidden units take weighted sum of inputs and apply non-linearity. Each unit
+    takes input the outputs from all the units in the previous layer and there
+    is a link between every pair of units from two adjacent layers
+- Each single hidden unit has parameters $w$ (weights) and $b$ (bias). All units
+    in a layer weights $w_i$ and biases $b_i$ are represented as a weight matrix
+    $W$ and bias matrix $b$. $W_ji$ is weight of input $i$ connected to hidden
+    unit $h_j$
+- Thus output of hidden layer $h$ can be defined as
+    \begin{align*}
+    h = \sigma(Wx+b)
+    \end{align*}
+- Neural network is like logistic regression but
+    1. It has many layers, so it is like layer after layer of logistic
+       regression classifiers
+    2. No feature templates are required, prior layers of the network induce
+       feature representations
+- 
 
 # Sequence Labeling for Parts of Speech and Named Entities
 
