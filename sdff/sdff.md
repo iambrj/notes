@@ -16,5 +16,17 @@ title : "Notes on : Software Design for Flexibility"
 - Degeneracy : have multiple ways to compute something, which can be combined or
     modulated as needed
 - Parti : an abstract plan for the computations to be performed
+- Postel's law : be conservative in what you do, be liberal in what you accept
+    from others
 
 # Domain-Specific Languages
+
+- Use general parts by configuring them dynamically to environment changes
+- Combinators : set of primitive parts + set of means of combining parts such
+    that combined parts have same interface as primitive parts
+- Advantages of organizing a system around combinators
+    + Parts can be arbitrarily mixed and matched, all combinations yield valid
+        programs
+    + Context in which part appears does not change the part's behaviour
+    + Extensible since new parts don't affect existing parts
+- 
