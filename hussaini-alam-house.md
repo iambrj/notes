@@ -5,6 +5,7 @@
   his foster daughter. Reducing a woman's worth to her fertility. Did he really
   love her at all? She refers to him as her husband on her deathbed and asks her
   to "forgive him". 
+- Page 27 : Khalajaan always wipes a tear
 - Bade Pasha's side of the story is never known
 - Bade Pasha's descriptions always have masculine undertones
    + Page 20 : "Bade Pasha was not a conventional Muslim wife."
@@ -21,6 +22,7 @@
     ornament on her face
 - Page 33 : "Stand-in for her mistress on days she was unavailable". Is the role
     of a wife to dance to the sexual whims and wishes of her husband?
+    Objectification of women.
     Interesting how Champa is described "frisky and ugly". What is worse is the
     how casually this is mentioned - "it was the usual arrangement"
 - Page 47 : woman's self-care as a sign of wishing for other men, page 48 "only
@@ -43,6 +45,25 @@
     individuality and how it is suppressed in "normal" households?
 - Page 118 : "Was it because she was a girl or because she was not as good
     looking as the other women around her?"
+- Page 144 : Bawajaan emotional abuse towards mummy since she refused to marry
+    the prick
 - Page 202 : Religion as a tool to oppress women
 - Both literally and subliminally
 - Purdah
+- Money donated to woman in marriage as a token of purchaising her. Contrast
+    this against dowry. Ironic how both are oppressive.
+- 100 coins Bawajaan paid to "buy" Khalajaan
+- Mahr and rules how much to be paid based on intercourse
+- Masculinity is less if a man is more affectionate
+- How men are comfortable with Khalajaan making such a choice, audacity of a
+    woman to speak out against her impotent husband
+- Patriarchy operations
+    + Amma should not speak bad about Khalajaan
+    + Nobody should speak bad about Bawajaan for ruining Khalajaan's life
+- Woman relationships
+    + Amma looking at dying Khalajaan - forgivness for being mean to her or
+        sense of camaraderie
+- Twist patriarchal customs into tools of power
+    + Bade Pasha's purdah as punishment to Bawajaan
+    + Nanima's conditions to ensure autonomy 65
+    + Nanima's strength and resilience
