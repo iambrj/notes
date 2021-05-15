@@ -1,0 +1,123 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\newtcbtheorem[]{definition}{Definition}%
+{colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{proposition}{Proposition}%
+{colback=cyan!5,colframe=cyan!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{theorem}{Theorem}%
+{colback=orange!5,colframe=orange!100!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[]{algorithm}{Algorithm}%
+{colback=violet!5,colframe=violet!100!black,fonttitle=\bfseries}{th}
+
+\begin{document}
+
+\begin{titlepage}
+
+	\raggedleft
+
+	\vspace*{\baselineskip}
+
+	{Bharathi Ramana Joshi\\\url{https://github.com/iambrj/notes}}
+
+	\vspace*{0.167\textheight}
+
+	\textbf{\LARGE Notes on competitive programming}\\[\baselineskip]
+
+	\vfill
+
+	\vspace*{3\baselineskip}
+
+\end{titlepage}
+
+\newpage
+
+\begin{definition}{Binet's formula for Fibonacci numbers}{}
+    \begin{align*}
+        f(n) = \frac{(1 + \sqrt{5}) ^ n - (1 - \sqrt{5}) ^ n}{2^n\sqrt{5}}
+    \end{align*}
+\end{definition}
+
+\begin{definition}{Operations per second}{}
+    Most judges allow $10^8$ operations per second, but all allow $10^7$.
+\end{definition}
+
+\begin{algorithm}{Kadane's algorithm}{}
+    Finds the max subarray in $O(n)$. Idea : for each array element find the max
+    subarray ending at that element. This subarray either
+    \begin{enumerate}
+        \item contains only the element at position $k$
+        \item subarray that ends at $k - 1$ followed by element at $k$
+    \end{enumerate}
+    Implementation
+    \begin{verbatim}
+    int best = 0, sum = 0;
+    for (int k = 0; k < n; k++) {
+        sum = max(array[k], sum + array[k]);
+        best = max(best, sum);
+    }
+    \end{verbatim}
+\end{algorithm}
+
+\begin{definition}{Strategy for Dynamic Programming}{}
+    \begin{enumerate}
+        \item Come up with naive/recursive solution
+        \item Identify overlapping subproblems
+        \item Memoize via table (possibly oversolving, e.g. all Fibonacci less
+            than $i$ are computed to compute Fibonacci $i$)
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}{Berge's lemma}{}
+    \item A \textbf{matching} in an undirected graph is a set of edges without
+        common vertices
+    \item A \textbf{maximum matching} contains largest possible number of edges
+    \item An \textbf{augmenting path} is a path that starts and ends on
+        unmatched vertices, and alternates between edges in and not in the
+        matching
+    \textbf{Berge's lemma} states that a matching $M$ in a graph $G$ is maximum,
+    iff there is no augmenting path with $M$
+\end{theorem}
+\textbf{Backward Proof:}
+If there is an augmenting path $P$ for the matching $M$ in a graph $G$, then
+observe that the symmetric difference of $P$ and $M$ forms a matching with 1
+more than $M$.
+
+\textbf{Forward Proof:}
+Let $M'$ be the matching larger than $M$ in $G$. Let $D$ be the symmetric
+difference of $M$ and $M'$, then $D$ consists of connected components of paths
+and even cycles. This is because
+
+\begin{enumerate}
+    \item Each vertex in $D$ can be incident on at most two edges : one from $M$
+        and one from $M'$, therefore only isolated vertices, cycles and paths
+        are possible.
+    \item Each path/cycle in $D$ must alternate between $M$ and $M'$ edges
+        (since both $M$ and $M'$ themselves are matchings and cannot have two
+        edges incident on same vertex)
+    \item For a cycle to do this, it must have equal number of edges from $M$
+        and $M'$, and therefore be of equal length
+\end{enumerate}
+Since $M'$ is larger than $M$, $D$ has a component with more edges from $M'$
+than $M$. This component is a path that in $G$ that starts and ends with and
+edge from $M'$, so it is an augmenting path.
+
+\end{document}
+
