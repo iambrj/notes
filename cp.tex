@@ -119,5 +119,32 @@ Since $M'$ is larger than $M$, $D$ has a component with more edges from $M'$
 than $M$. This component is a path that in $G$ that starts and ends with and
 edge from $M'$, so it is an augmenting path.
 
+\begin{algorithm}{Prefix sum}{}
+    Prefix sum, as the name suggests, keeps track of the cumulative sum; i.e. if
+    $A =  [x_1,\dots,x_n]$ then prefix sum $P = [x_1, x_1 + x_2,\dots,x_n + x_{n
+    - 1} + \dots x_1]$. It can be used to collapse an extra iteration.
+
+    Some examples
+    \begin{enumerate}
+        \item Finding an index in an array such that sum of left subarray is
+            same as sum of right subarray. The naive solution would run in
+            $O(n^2)$ by calculating left and right subarray sums for each index.
+            Using prefix sum however, this can be done in $O(n)$ in two disjoint
+            iterations in opposite direction.
+        \item Finding if there is a subarray that sums to 0. The naive solution
+            would again take $O(n^2)$, by checking if all possible subarrays are
+            nonzero. Using prefix sum, we can maintain a set of sums that have
+            been so far. If a sum is repeated, it means there is a zero sum
+            subarray. Exact subarray can be located by tracking indices of each
+            sum.
+        \item Integer with maximum frequency, given a list of ranges $[L_i,
+            R_i]$. The naive approach again takes $O(n^2)$ by creating a
+            frequency table for each integer. Instead, if the minimum $L_i$ and
+            maximum $R_i$ are known, we can have an array $A[min(L_i),
+            max(R_i)]$ and increment $A[L_i] += 1$ and decrement $A[R_i] -= 1$
+            for each i, take a prefix sum to get the frequencies in $O(n)$.
+    \end{enumerate}
+\end{algorithm}
+
 \end{document}
 
