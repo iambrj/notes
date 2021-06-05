@@ -1,4 +1,4 @@
-\documentclass[titlepage, 12pt]{article}
+\documentclass[titlepage, 12pt]{book}
 \usepackage[parfill]{parskip}
 \usepackage{amsmath}
 \usepackage{xcolor}
@@ -49,15 +49,25 @@
 
 \newpage
 
+\tableofcontents
+
+\chapter{Performance}
+
+\begin{definition}{Operations per second}{}
+    Most judges allow $10^8$ operations per second, but all allow $10^7$.
+\end{definition}
+
+Always pass arguments by reference when possible.
+
+\chapter{Math}
+
 \begin{definition}{Binet's formula for Fibonacci numbers}{}
     \begin{align*}
         f(n) = \frac{(1 + \sqrt{5}) ^ n - (1 - \sqrt{5}) ^ n}{2^n\sqrt{5}}
     \end{align*}
 \end{definition}
 
-\begin{definition}{Operations per second}{}
-    Most judges allow $10^8$ operations per second, but all allow $10^7$.
-\end{definition}
+\chapter{Arrays}
 
 \begin{algorithm}{Kadane's algorithm}{}
     Finds the max subarray in $O(n)$. Idea : for each array element find the max
@@ -76,14 +86,259 @@
     \end{verbatim}
 \end{algorithm}
 
-\begin{definition}{Strategy for Dynamic Programming}{}
+\begin{algorithm}{Prefix sum}{}
+    Prefix sum, as the name suggests, keeps track of the cumulative sum; i.e. if
+    $A =  [x_1,\dots,x_n]$ then prefix sum $P = [x_1, x_1 + x_2,\dots,x_n + x_{n
+    - 1} + \dots x_1]$. It can be used to collapse an extra iteration.
+
+    Some examples
     \begin{enumerate}
-        \item Come up with naive/recursive solution
-        \item Identify overlapping subproblems
-        \item Memoize via table (possibly oversolving, e.g. all Fibonacci less
-            than $i$ are computed to compute Fibonacci $i$)
+        \item Finding an index in an array such that sum of left subarray is
+            same as sum of right subarray. The naive solution would run in
+            $O(n^2)$ by calculating left and right subarray sums for each index.
+            Using prefix sum however, this can be done in $O(n)$ in two disjoint
+            iterations in opposite direction.
+        \item Finding if there is a subarray that sums to 0. The naive solution
+            would again take $O(n^2)$, by checking if all possible subarrays are
+            nonzero. Using prefix sum, we can maintain a set of sums that have
+            been so far. If a sum is repeated, it means there is a zero sum
+            subarray. Exact subarray can be located by tracking indices of each
+            sum.
+        \item Integer with maximum frequency, given a list of ranges $[L_i,
+            R_i]$. The naive approach again takes $O(n^2)$ by creating a
+            frequency table for each integer. Instead, if the minimum $L_i$ and
+            maximum $R_i$ are known, we can have an array $A[min(L_i),
+            max(R_i)]$ and increment $A[L_i] += 1$ and decrement $A[R_i] -= 1$
+            for each i, take a prefix sum to get the frequencies in $O(n)$.
     \end{enumerate}
-\end{definition}
+\end{algorithm}
+
+\chapter{Graphs}
+
+\section{Fundamental}
+
+\begin{algorithm}{BFS}{}
+    Have a queue, and push neighbours of head of queue in each iteration.
+    \begin{verbatim}
+vector<vector<int>> adj;  // adjacency list representation
+int n; // number of nodes
+int s; // source vertex
+
+queue<int> q;
+vector<bool> used(n);
+vector<int> d(n), p(n);
+
+q.push(s);
+used[s] = true;
+p[s] = -1;
+while (!q.empty()) {
+    int v = q.front();
+    q.pop();
+    for (int u : adj[v]) {
+        if (!used[u]) {
+            used[u] = true;
+            q.push(u);
+            d[u] = d[v] + 1;
+            p[u] = v;
+        }
+    }
+}
+    \end{verbatim}
+
+Complexity $O(|V| + |E|)$
+
+\end{algorithm}
+Applications
+
+\begin{enumerate}
+    \item Single source shortest paths in unweighted graphs.
+    \item Connected components in undirected graph : run BFS repeatedly until
+        all vertices are visited.
+    \item Optimal gameplay : vertices represent states, edges transitions
+        between states. Smallest path is optimal play.
+    \item Shortest cycle 
+\end{enumerate}
+
+\begin{algorithm}{DFS}{}
+    Have a stack, and push neighbours of top of stack in each iteration.
+    \begin{verbatim}
+// graph represented as an adjacency list
+vector<vector<int>> adj;
+int n; // number of vertices
+
+vector<int> color;
+// 0 -> unvisited
+// 1 -> entered
+// 2 -> exited
+
+vector<int> time_in, time_out;
+int dfs_timer = 0;
+
+void dfs(int v) {
+    time_in[v] = dfs_timer++;
+    color[v] = 1;
+    for (int u : adj[v])
+        if (color[u] == 0)
+            dfs(u);
+    color[v] = 2;
+    time_out[v] = dfs_timer++;
+}
+    \end{verbatim}
+
+Complexity $O(|V| + |E|)$
+
+\end{algorithm}
+Applications
+
+\begin{enumerate}
+    \item Single source paths.
+    \item Ancestry checking : check $i$ is $j$'s ancestor iff entry[$i] <$
+        entry[$j$] and exit[$i] >$ exit[$j$].
+    \item Finding lowest common ancestor of two vertices
+    \item Topological sort : run DFS repeatedly until each vertex is visited
+        exactly once, topological sort is descending order of exit time
+    \item Cycle checking : "back" edge in DFS tree indicates cycle. Find DFS
+        tree, then walk this tree.
+    \item Finding SCC : Kosaraju's algorithm
+\end{enumerate}
+
+\begin{algorithm}{Kosaraju's algorithm}{}
+\begin{verbatim}
+vector<vector<int>> adj, adj_rev;
+vector<bool> used;
+vector<int> order, component;
+
+void dfs1(int v) {
+    used[v] = true;
+
+    for (auto u : adj[v])
+        if (!used[u])
+            dfs1(u);
+
+    order.push_back(v);
+}
+
+void dfs2(int v) {
+    used[v] = true;
+    component.push_back(v);
+
+    for (auto u : adj_rev[v])
+        if (!used[u])
+            dfs2(u);
+}
+ 
+int main() {
+    //... read inputs ...
+    used.assign(n, false);
+
+    for (int i = 0; i < n; i++)
+        if (!used[i])
+            dfs1(i);
+
+    used.assign(n, false);
+    reverse(order.begin(), order.end());
+
+    for (auto v : order)
+        if (!used[v]) {
+            dfs2 (v);
+
+            // ... processing next component ...
+
+            component.clear();
+        }
+}
+\end{verbatim}
+\end{algorithm}
+
+\section{Shortest paths}
+
+\begin{algorithm}{Dijkstra}{}
+    Dijkstra spreads like fire
+\begin{verbatim}
+const int INF = 1000000000;
+vector<vector<pair<int, int>>> adj;
+
+void dijkstra(int s, vector<int> & d, vector<int> & p) {
+    int n = adj.size();
+    d.assign(n, INF);
+    p.assign(n, -1);
+    vector<bool> u(n, false);
+
+    d[s] = 0;
+    for (int i = 0; i < n; i++) {
+        int v = -1;
+        for (int j = 0; j < n; j++) {
+            if (!u[j] && (v == -1 || d[j] < d[v]))
+                v = j;
+        }
+
+        if (d[v] == INF)
+            break;
+
+        u[v] = true;
+        for (auto edge : adj[v]) {
+            int to = edge.first;
+            int len = edge.second;
+
+            if (d[v] + len < d[to]) {
+                d[to] = d[v] + len;
+                p[to] = v;
+            }
+        }
+    }
+}
+\end{verbatim}
+
+
+Complexity $O(|V|^2 + |E|)$
+
+\end{algorithm}
+
+\begin{algorithm}{Bellman-Ford}{}
+Perform relaxations $|V|$ times.
+\begin{verbatim}
+struct edge
+{
+    int a, b, cost;
+};
+
+int n, m, v;
+vector<edge> e;
+const int INF = 1000000000;
+
+void solve()
+{
+    vector<int> d (n, INF);
+    d[v] = 0;
+    for (int i=0; i<n-1; ++i)
+        for (int j=0; j<m; ++j)
+            if (d[e[j].a] < INF)
+                d[e[j].b] = min (d[e[j].b],
+                                 d[e[j].a] + e[j].cost);
+}
+\end{verbatim}
+
+Complexity $O(|V| \times |E|)$
+
+\end{algorithm}
+
+\begin{algorithm}{Floyd-Warshall}{}
+Bellman-Ford for all vertices
+\begin{verbatim}
+for (int k = 0; k < n; ++k) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            d[i][j] = min(d[i][j], d[i][k] + d[k][j]); 
+        }
+    }
+}
+\end{verbatim}
+
+Complexity $O(|V|^3)$
+
+\end{algorithm}
+
+\section{Advanced}
 
 \begin{theorem}{Berge's lemma}{}
     \begin{enumerate}
@@ -121,32 +376,16 @@ Since $M'$ is larger than $M$, $D$ has a component with more edges from $M'$
 than $M$. This component is a path that in $G$ that starts and ends with and
 edge from $M'$, so it is an augmenting path.
 
-\begin{algorithm}{Prefix sum}{}
-    Prefix sum, as the name suggests, keeps track of the cumulative sum; i.e. if
-    $A =  [x_1,\dots,x_n]$ then prefix sum $P = [x_1, x_1 + x_2,\dots,x_n + x_{n
-    - 1} + \dots x_1]$. It can be used to collapse an extra iteration.
+\chapter{Dynamic programming}
 
-    Some examples
+\begin{definition}{Strategy for Dynamic Programming}{}
     \begin{enumerate}
-        \item Finding an index in an array such that sum of left subarray is
-            same as sum of right subarray. The naive solution would run in
-            $O(n^2)$ by calculating left and right subarray sums for each index.
-            Using prefix sum however, this can be done in $O(n)$ in two disjoint
-            iterations in opposite direction.
-        \item Finding if there is a subarray that sums to 0. The naive solution
-            would again take $O(n^2)$, by checking if all possible subarrays are
-            nonzero. Using prefix sum, we can maintain a set of sums that have
-            been so far. If a sum is repeated, it means there is a zero sum
-            subarray. Exact subarray can be located by tracking indices of each
-            sum.
-        \item Integer with maximum frequency, given a list of ranges $[L_i,
-            R_i]$. The naive approach again takes $O(n^2)$ by creating a
-            frequency table for each integer. Instead, if the minimum $L_i$ and
-            maximum $R_i$ are known, we can have an array $A[min(L_i),
-            max(R_i)]$ and increment $A[L_i] += 1$ and decrement $A[R_i] -= 1$
-            for each i, take a prefix sum to get the frequencies in $O(n)$.
+        \item Come up with naive/recursive solution
+        \item Identify overlapping subproblems
+        \item Memoize via table (possibly oversolving, e.g. all Fibonacci less
+            than $i$ are computed to compute Fibonacci $i$)
     \end{enumerate}
-\end{algorithm}
+\end{definition}
 
 \end{document}
 
