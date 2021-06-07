@@ -198,7 +198,23 @@ Applications
     \item Topological sort : run DFS repeatedly until each vertex is visited
         exactly once, topological sort is descending order of exit time
     \item Cycle checking : "back" edge in DFS tree indicates cycle. Find DFS
-        tree, then walk this tree.
+        tree, then walk this tree. Use a stack to merge DFS with tree traversal.
+        \begin{verbatim}
+bool cycle(int v) {
+    if(!visited[v]) {
+        visited[v] = true;
+        stk[v] = true; // faking stack push
+        for(auto n : edge[v]) {
+            if(stack[n]) // found back edge
+                return true;
+            if(cycle(n)) // cycle in subgraph
+                return true;
+        }
+        stk[v] = false; // faking stack pop
+    }
+    return false;
+}
+        \end{verbatim}
     \item Finding SCC : Kosaraju's algorithm
 \end{enumerate}
 
