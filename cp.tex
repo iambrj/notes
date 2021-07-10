@@ -89,7 +89,10 @@ Always pass arguments by reference when possible.
 \begin{algorithm}{Prefix sum}{}
     Prefix sum, as the name suggests, keeps track of the cumulative sum; i.e. if
     $A =  [x_1,\dots,x_n]$ then prefix sum $P = [x_1, x_1 + x_2,\dots,x_n + x_{n
-    - 1} + \dots x_1]$. It can be used to collapse an extra iteration.
+    - 1} + \dots x_1]$. It can be used to collapse an extra iteration. Key
+    observation : useful when there is an underlying group structure and
+    inverses are to be calculated repeatedly (e.g. $-(a_1+\dots+a_k) +
+    (a_1+\dots+a_k+\dots+a_n)$).
 
     Some examples
     \begin{enumerate}
@@ -111,6 +114,11 @@ Always pass arguments by reference when possible.
             max(R_i)]$ and increment $A[L_i] += 1$ and decrement $A[R_i] -= 1$
             for each i, take a prefix sum to get the frequencies in $O(n)$.
     \end{enumerate}
+\end{algorithm}
+
+\begin{algorithm}{Two pointers}{}
+    As the name suggests, two pointers are used to traverse the array. This can
+    also be used to collapse $O(n^2)$ to $O(n)$ in some problems.
 \end{algorithm}
 
 \chapter{Graphs}
@@ -162,27 +170,6 @@ Applications
 \begin{algorithm}{DFS}{}
     Have a stack, and push neighbours of top of stack in each iteration.
     \begin{verbatim}
-// graph represented as an adjacency list
-vector<vector<int>> adj;
-int n; // number of vertices
-
-vector<int> color;
-// 0 -> unvisited
-// 1 -> entered
-// 2 -> exited
-
-vector<int> time_in, time_out;
-int dfs_timer = 0;
-
-void dfs(int v) {
-    time_in[v] = dfs_timer++;
-    color[v] = 1;
-    for (int u : adj[v])
-        if (color[u] == 0)
-            dfs(u);
-    color[v] = 2;
-    time_out[v] = dfs_timer++;
-}
     \end{verbatim}
 
 Complexity $O(|V| + |E|)$
@@ -199,63 +186,140 @@ Applications
         exactly once, topological sort is descending order of exit time
     \item Cycle checking : "back" edge in DFS tree indicates cycle. Find DFS
         tree, then walk this tree. Use a stack to merge DFS with tree traversal.
+        For directed graphs,
         \begin{verbatim}
-bool cycle(int v) {
-    if(!visited[v]) {
-        visited[v] = true;
-        stk[v] = true; // faking stack push
-        for(auto n : edge[v]) {
-            if(stack[n]) // found back edge
+// color scheme                                                 
+// 0 -> unvisited
+// 1 -> entered
+// 2 -> exited
+bool dfs(int v) {
+    if(!color[v]) {
+        color[v] = 1;
+        for (auto u : adj[v]) {
+            if (color[u] == 0) {
+                parent[u] = v;
+                if (dfs(u))
+                    return true;
+            } else if (color[u] == 1) {
+                cycle_end = v;
+                cycle_start = u;
                 return true;
-            if(cycle(n)) // cycle in subgraph
-                return true;
+            }
         }
-        stk[v] = false; // faking stack pop
-    }
-    return false;
-}
+        color[v] = 2;
+        return false;
+    }    
+}        
+         
+bool find_cycle() {
+    // initialize color and parent
+    cycle_start = -1;
+         
+    for (int v = 0; v < n; v++) {
+        if (!color[v] && dfs(v))
+            break;
+    }    
+         
+    if (cycle_start == -1) {
+        return false;
+    } else {
+        vector<int> cycle;
+        cycle.push_back(cycle_start);
+        for (int v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+        reverse(cycle.begin(), cycle.end());
+        return cycle;
+    }    
+}                               
         \end{verbatim}
+        And for undirected graphs
+\begin{verbatim}
+bool dfs(int v, int par) { // passing vertex and its parent vertex  
+    if(!vis[v]) {
+        vis[v] = true;          
+        for (auto u : adj[v]) {     
+            if(u == par) continue; // skipping edge to parent vertex
+            if (vis[u]) {       
+                cycle_end = v;      
+                cycle_start = u;    
+                return true;        
+            }                       
+            parent[u] = v;          
+            if (dfs(u, parent[u]))  
+                return true;        
+        }                           
+        return false;               
+    }                               
+}                                   
+                
+void find_cycle() {
+    // initalize visited and parent
+    cycle_start = -1;
+                
+    for (int v = 0; v < n; v++) {
+        if (!vis[v] && dfs(v, parent[v]))
+            break;
+    }           
+                
+    if (cycle_start == -1) {
+        return true;
+    } else {    
+        vector<int> cycle;
+        cycle.push_back(cycle_start);
+        for (int v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+        reverse(cycle.begin(), cycle.end());
+ 
+        cout << "Cycle found: ";
+        for (int v : cycle)
+            cout << v << " ";
+        cout << endl;
+    }           
+}               
+\end{verbatim}
     \item Finding SCC : Kosaraju's algorithm
 \end{enumerate}
 
 \begin{algorithm}{Kosaraju's algorithm}{}
 \begin{verbatim}
 vector<vector<int>> adj, adj_rev;
-vector<bool> used;
+vector<bool> vis;
 vector<int> order, component;
 
 void dfs1(int v) {
-    used[v] = true;
+    vis[v] = true;
 
     for (auto u : adj[v])
-        if (!used[u])
+        if (!vis[u])
             dfs1(u);
 
     order.push_back(v);
 }
 
 void dfs2(int v) {
-    used[v] = true;
+    vis[v] = true;
     component.push_back(v);
 
     for (auto u : adj_rev[v])
-        if (!used[u])
+        if (!vis[u])
             dfs2(u);
 }
  
 int main() {
     //... read inputs ...
-    used.assign(n, false);
+    vis.assign(n, false);
 
     for (int i = 0; i < n; i++)
-        if (!used[i])
+        if (!vis[i])
             dfs1(i);
 
-    used.assign(n, false);
+    vis.assign(n, false);
     reverse(order.begin(), order.end());
 
     for (auto v : order)
-        if (!used[v]) {
+        if (!vis[v]) {
             dfs2 (v);
 
             // ... processing next component ...
@@ -292,9 +356,9 @@ void dijkstra(int s, vector<int> & d, vector<int> & p) {
             break;
 
         u[v] = true;
-        for (auto edge : adj[v]) {
-            int to = edge.first;
-            int len = edge.second;
+        for (auto adj : adj[v]) {
+            int to = adj.first;
+            int len = adj.second;
 
             if (d[v] + len < d[to]) {
                 d[to] = d[v] + len;
