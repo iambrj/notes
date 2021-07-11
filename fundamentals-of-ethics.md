@@ -106,3 +106,21 @@
 - Euthyphro argument : God's judgement does not make a neutral action into an
     immoral one, it is something about the action itself that God recognizes and
     thus declares it immoral
+
+# Natural Law
+
+- Natural law theory : actions are right if they are natural and wrong if they
+    are unnatural. People are good or bad to the extent that they fulfill their
+    nature
+- Promises of natural law theory
+    1. It explains how moral standards should depend on something other than
+       human opinion
+    2. It easily explains why morality is specially suited for human beings (and
+       not animals etc since it is not their nature)
+    3. It has a clear account of origins of morality
+    4. It solves the problem of "how to gain moral knowledge"
+- Natural law theory lets one derive how we ought to be, from how we are
+- The ultimate origins of our impulses are irrelevant to the morality of our
+    actions
+
+# Kantian: Fairness and Justice
