@@ -118,7 +118,15 @@ Always pass arguments by reference when possible.
 
 \begin{algorithm}{Two pointers}{}
     As the name suggests, two pointers are used to traverse the array. This can
-    also be used to collapse $O(n^2)$ to $O(n)$ in some problems.
+    also be used to collapse $O(n^2)$ to $O(n)$ in some problems. The invariant
+    to spot is each element $a_i$ has an associated range $[L_i, R_i]$ such that
+    whenever $i\leq j$, $L_i\leq L_j$.
+
+    Some examples
+    \begin{enumerate}
+        \item Given a sorted array $A$, find indices $i$ and $j$ such that $A[i]
+            + A[j] = x$, for given $x$.
+    \end{enumerate}
 \end{algorithm}
 
 \chapter{Graphs}
@@ -466,6 +474,22 @@ edge from $M'$, so it is an augmenting path.
             than $i$ are computed to compute Fibonacci $i$)
     \end{enumerate}
 \end{definition}
+
+\chapter{Journal}
+
+\section{CSES: Two Sets}
+
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/1092/}
+    \item Idea: if the sum of first $n$ numbers is odd, then it is not possible to
+        divide them into two subsets of equal sum. The solution when the sum is even is
+        to keep picking the largest number from the set of unpicked numbers until the
+        sum hits $n(n+1)/4$ and the set of unpicked numbers. The correctness of this
+        solution is proved by induction. Complexity $O(nlogn)$.
+    \item Faster solution: observe that solution exists only when $n\%4$ is
+        either 3 or 0. Figure out exact elements needed to construct in each
+        case, complexity $O(n)$.
+\end{itemize}
 
 \end{document}
 
