@@ -491,5 +491,46 @@ edge from $M'$, so it is an augmenting path.
         case, complexity $O(n)$.
 \end{itemize}
 
+\section{Nested Ranges Check}
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/2169}
+    \item Idea: $R_1$ is contained in $R_2$ iff
+        \begin{enumerate}
+            \item $R_1$ begins \textit{at least after} $R_2$ begins.
+            \item $R_1$ ends \textit{at most before} $R_2$ ends.
+        \end{enumerate}
+        sort by increasing beginning of ranges, and break ties by decreasing
+        ending of ranges (i.e. $[1, 5]$ comes before $[1, 4]$ and $[2, 6]$ in
+        sorted order). Now range at index $k$ begins \textit{at least} after all
+        the ranges before it, satisfying the first condition.  The second
+        condition will be satisfied if any of the first $k - 1$ ranges end
+        \textit{at least after}. This can be checked by keeping track of the
+        maximum ending and comparing it against $k^{th}$ range's ending. Observe
+        that if $k^{th}$ range ends strictly after this maximum ending, there is
+        no range that containing $k^{th}$ range, as all ranges from $k+1$ begin
+        at least after $k^{th}$ range due to above sort and absence of duplicate
+        ranges.
+\end{itemize}
+
+\section{Factory Machines}
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/1620}
+    \item Idea: instead of finding the minimum time, flip the question around by
+        asking what are the maximum \# of products that can be produced given
+        time $t$? Now the problem reduces to a binary search over $t$. The left
+        limit of the search is 0 (when no items are to be produced) and right
+        limit the time taken by the slowest machine to produce all the products
+        by itself (TODO: is there a more conservative right limit?).
+    \item Interesting to note wholemeal and projective programming lead to the
+        solution directly!
+\end{itemize}
+
+\section{CSES: Coin Piles}
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/1754}
+    \item Idea: WLG, say the two numbers are $x$ and $y$ with $x \leq y$. Then both
+        the piles can be made empty iif $y\%x$ is 0, 1 or 2.
+\end{itemize}
+
 \end{document}
 
