@@ -129,10 +129,22 @@ Always pass arguments by reference when possible.
     \end{enumerate}
 \end{algorithm}
 
-\begin{algorithm}{Lower bound/Upper bound}{}
-    Keep performing binary search even if element is found till \verb|l| is no
-    longer $<$ \verb|r|.
+\begin{algorithm}{Binary search}{}
+    The technique to always get a binary search right is to maintain an
+    \textit{invariant}: a condition that holds throughout the execution of the
+    program. This means that it should hold at:
+    \begin{enumerate}
+        \item The beginning of the loop.
+        \item During each iteration of the loop --- in other words, whatever
+            a single iteration of the loop does to the program state, the
+            invariant should still hold if it holds before the iteration.
+        \item At the end of the loop.
+    \end{enumerate}
+    A useful invariant is $inRange(L, R)$ i.e. the answer we're looking for is
+    in the range the binary search is currently in.
 \end{algorithm}
+As an exercise of the above idea, try to implement \verb|lower_bound| and
+\verb|upper_bound|.
 
 \chapter{Graphs}
 
