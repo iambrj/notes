@@ -24,3 +24,68 @@ title: 'Notes on "Clean Code"'
 - The designer makes it look ridiculously simple like all exceptional designs.
 - Making it easier to read actually makes it easier to write.
 - Leave the campground cleaner than you found it.
+
+# Meaningful names
+
+## Intention-revealing names
+
+- Implicity: the degree to which the context is explicit in the code.
+- Avoid disinformation (e.g. `accounts` instead of `accountsList`).
+- Inconsistent spellings is disinformation.
+- Beware of names that wary in small ways.
+
+## Make meaningful distinctions
+
+- Number series naming (`a1`, `a2`, ...) isn't disinformative, but
+    noninformative.
+- Random renaming to satisfy compiler (e.g. scope conflicts) is ***not***
+    a meaningful distinction.
+- Distinguish names in such a way that the reader knows what the differences
+    offer.
+## Use pronounceable names
+
+- Programming is a social activity.
+
+## Use searchable names
+
+- The length of a name should correspond to the size of its scope.
+
+## Avoid encodings
+
+## Avoid mental mapping
+
+- Programmers are smart people and like to show off their smarts by
+  demonstrating their mental juggling abilities.
+
+## Class names are nouns
+
+## Method names are verbs
+
+## Don't be cute
+
+- Choose clarity over entertainment value.
+- Say what you mean, mean what you say.
+
+## Pick one word per concept
+
+- Have a consistent lexicon (e.g. use `getXXX` across all classes, instead of
+    `getXXX` for one, `retrieveXXX` for another etc).
+
+## Don't pun
+
+- Using same term for two different ideas is a pun.
+- Author not academic, you should make yourself clear it's not the scholar's job
+    to dig the meaning out of the paper.
+
+## Use solution domain names
+
+## Use problem domain names
+
+- Separating solution and problem domain concepts is part of the job of a good
+    programmer and designer.
+
+## Add meaningful context
+
+- Most names are not meaningful in and of themselves.
+
+## Don't add gratuitous context
