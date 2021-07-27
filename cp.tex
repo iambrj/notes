@@ -15,6 +15,9 @@
     urlcolor=blue,
 }
 
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
 \newtcbtheorem[]{definition}{Definition}%
 {colback=magenta!5,colframe=magenta!100!black,fonttitle=\bfseries}{th}
 
@@ -558,6 +561,20 @@ edge from $M'$, so it is an augmenting path.
     \item \url{https://cses.fi/problemset/task/1754}
     \item Idea: WLG, say the two numbers are $x$ and $y$ with $x \leq y$. Then both
         the piles can be made empty iif $y\%x$ is 0, 1 or 2.
+\end{itemize}
+
+\section{CSES: Tasks and Deadlines}
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/1630/}
+    \item Idea: a little algebraic manipulation helps uncover the right sorting:
+        \begin{align*}
+            &\argmax_{i}\sum_i ded_i - [(\sum_{j = 1}^{i - 1}f_j) + dur_i]
+            \textrm{ (where $f_j$ is task $j$'s finish time)}\\
+            = &\sum_{i} [(ded_i - dur_i) - \argmin_{j}(\sum_{j = 1}^{i - 1}f_j)]
+        \end{align*}
+        In other words, the cumulative sum of finish times should be minimum.
+        This can in turn be achieved by choosing first $i - 1$ tasks with
+        smallest duration times (proof by induction)!
 \end{itemize}
 
 \end{document}
