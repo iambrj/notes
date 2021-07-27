@@ -214,3 +214,21 @@ title: 'Notes on "Clean Code"'
 - Too much information.
 - Inobvious connection.
 - Function headers.
+
+# Formatting
+
+- Newspaper metaphor
+- Vertical openness: use empty lines judiciously
+- Concepts that are closely related should be kept vertically close to each
+    other.
+- Variables should be declared as close to their usage as possible.
+- Instance variables should be declared at the top of the class.
+- Dependent functions should be vertically close.
+- Conceptual affinity is inversely proportional to vertical distance.
+- Vertical Ordering: Functions should go from high level to low level.
+- Horizontal limit: reader should never have to scroll to the right (120 at most).
+- Horizontal openness and density.
+- If there are long lists that need to be aligned, the problem is the length of
+    the lists, not the lack of alignment.
+- Indentation.
+- Dummy scopes: avoid them, worst case put the semicolon in its own line.
