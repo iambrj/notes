@@ -89,3 +89,79 @@ title: 'Notes on "Clean Code"'
 - Most names are not meaningful in and of themselves.
 
 ## Don't add gratuitous context
+
+# Functions
+
+## Small!
+
+- ~20 lines in the ***worst*** case.
+- ***Never*** more than one indent level.
+> Functions should do one thing. They should do it well. They should do it only.
+- A function is doing more than One Thing if you can extract another function
+    from it with a name that is not merely a restatement of its implementation.
+- Functions that do One Thing cannot be reasonably divided into sections.
+
+## One level of abstraction per function
+
+## Reading code from top to bottom
+
+- A program is a set of TO paragraphs, each of which is describing the current
+    level of abstraction and referencing subsequent TO paragraphs at the next
+    level down.
+
+## Bury the switches
+
+## Use descriptive names
+
+- A long descriptive name is better than a short enigmatic name.
+- A long descriptive name is better than a long descriptive comment.
+
+## Function arguments
+
+- Ideal number of arguments are no arguments.
+- 0 > 1 > 2 > 3. > 3 => special justification.
+
+## Flag arguments
+
+- ***UGLY***
+- Indicates function does more than One Thing.
+
+## Dyadic functions
+
+- Makes us ignore arguments, and bugs hide in parts of code we ignore!
+
+## Argument objects
+
+- Classes are *for* grouping related objects together!
+
+## Argument lists
+
+## Verbs and keywords
+
+- Function name and argument must form a verb/noun pair.
+
+## Have no side effects
+
+- Functions promise to do One Thing, but side effects mean doing hidden things!
+- Side effects introduce temporal coupling.
+- If a function must change the state of something, have it change the state of
+    its owning object.
+
+## Command Query Separation
+
+- Function should either do something, or answer something but not both!
+
+## Exceptions over error codes
+
+## Extract try/catch blocks
+
+## Error handling is One Thing
+
+## Don't repeat yourself
+
+- Duplication may be the root of all evil in software.
+
+## Dijkstra's Structured Programming
+
+- Every function, and every block within a function, should have one entry and
+    one exit.
