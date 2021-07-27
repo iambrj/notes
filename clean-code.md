@@ -165,3 +165,52 @@ title: 'Notes on "Clean Code"'
 
 - Every function, and every block within a function, should have one entry and
     one exit.
+
+# Comments
+
+- Kernighan:
+> Don't comment bad code --- rewrite it.
+- The proper use of comments is to compensate for our failure to express ourself
+    in code.
+- Comments are always failures.
+- The older a comment is, and the farther away it is from the code it describes,
+    the more likely it is to be just plain wrong.
+- Inaccurate comments are worse than no comments at all.
+- Truth can only be found in one place: the code.
+
+## Comments do not make up for bad code
+
+## Explain yourself in code
+
+## Good Comments
+
+- The only truly good comment is the one that doesn't need to be written.
+
+### Legal comments
+
+### Informative comments
+
+### Explanation of Intent
+
+### Misc.
+
+- TODOs are not an explanation to leave bad code.
+- Warning comments.
+- Amplification comments.
+- Don't use a comment when a variable or a function can be used.
+- Avoid position markers.
+
+## Bad comments
+
+- Mumbling.
+- Misleading comments.
+- Mandated comments.
+- Journal comments.
+- Noise comments.
+- Scary noise.
+- Closing brace comments.
+- Commented out source code.
+- Nonlocal information.
+- Too much information.
+- Inobvious connection.
+- Function headers.
