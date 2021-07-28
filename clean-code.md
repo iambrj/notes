@@ -263,3 +263,23 @@ the above allowed functions.
 ## Data Transfer Objects (DTOs)
 - Classes with only public variables and no member methods.
 ## Active Records
+
+# Error Handling
+
+- Error handling is important, but if it obscures logic, it's wrong.
+
+## Use exceptions rather than return codes
+
+## Write `try-catch-finally` first
+
+## Provide context with exceptions
+
+- Informative error messages.
+
+## Define exception classes by caller's needs
+
+## Define the normal flow
+
+## Don't return null
+
+## Don't pass null
