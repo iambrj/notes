@@ -232,3 +232,34 @@ title: 'Notes on "Clean Code"'
     the lists, not the lack of alignment.
 - Indentation.
 - Dummy scopes: avoid them, worst case put the semicolon in its own line.
+
+# Objects and Data Structures
+
+- Hiding implementation is not about putting a bunch of getters and setters, but
+    about exposing abstract interfaces that allow its users to manipulate the
+    essence of data.
+- We don't what to expose the details of our data, rather we want to express our
+    data in abstract terms.
+- Dichotomy between objects and data structures: procedural code (data
+    structures based code) makes it easy to add new functions without changing
+    the existing data structure. OO code makes it easy to add new classes
+    without changing existing functions.
+- Conversely, procedural code makes it hard to add new data structures (because
+    all the functions must change), OO code makes it hard to add new functions
+    because all the classes must change.
+- Objects expose behaviour and hide data.
+- TLDR: do you need protection from functions, or from types?
+- Law of Demeter: talk to friends, not to strangers. A method `f` of a class `C`
+    should only call methods of:
+    1. `C`.
+    2. An object created by `f`.
+    3. An object passed as an argument to `f`.
+    4. An object held in an instance variable of `C`.
+In particular, `f` should ***not*** invoke methods on objects returned by any of
+the above allowed functions.
+
+## Train wreck
+## Hybrids
+## Data Transfer Objects (DTOs)
+- Classes with only public variables and no member methods.
+## Active Records
