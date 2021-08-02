@@ -30,6 +30,9 @@
 \newtcbtheorem[]{algorithm}{Algorithm}%
 {colback=violet!5,colframe=violet!100!black,fonttitle=\bfseries}{th}
 
+\newtcbtheorem[]{problem}{Problem}%
+{colback=green!5,colframe=green!100!black,fonttitle=\bfseries}{th}
+
 \begin{document}
 
 \begin{titlepage}
@@ -148,6 +151,33 @@ Always pass arguments by reference when possible.
 \end{algorithm}
 As an exercise of the above idea, try to implement \verb|lower_bound| and
 \verb|upper_bound|.
+
+\begin{problem}{3SUM}{}
+    Given an array of numbers, find three elements that sum to zero. Best known
+    time is $O(n^2(loglogn)^{O(1)}/log^2n)$, it is an open problem whether there
+    is any algorithm $O(n^{2 - \epsilon})$.
+\end{problem}
+
+It can be solved in $O(n^2)$ by running 2SUM $n - 2$ times (which can itself be
+solved using two pointers in $O(n)$), or by constructing a hashtable and look it
+up for $- (A[i] + A[j])$ for each $i, j$.
+
+Variants on 3SUM
+
+\begin{enumerate}
+    \item \textbf{Non-zero sum}
+    \item \textbf{3 Different arrays}
+    \item \textbf{Convolution sum}: find $i$ and $j$ such that:
+        \begin{align*}
+            S[i + j] = S[i] + S[j]
+        \end{align*}
+        The way to solve this is to construct the transformed array $T$ as
+        follows:
+        \begin{align*}
+            T[i] = 2nS[i] + i
+        \end{align*}
+        for $i$ in 0 to $n - 1$ and solve 3SUM on this.
+\end{enumerate}
 
 \chapter{Graphs}
 
@@ -622,5 +652,10 @@ edge from $M'$, so it is an augmenting path.
         \end{enumerate}
 \end{itemize}
 
+\section{CSES: Sum of Three Values}
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/1641}
+    \item Just 3SUM.
+\end{itemize}
 \end{document}
 
