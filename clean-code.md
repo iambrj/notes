@@ -283,3 +283,30 @@ the above allowed functions.
 ## Don't return null
 
 ## Don't pass null
+
+# Unit Tests
+
+- The three laws:
+    1. You may not write production code until you have written a failing unit
+       test.
+    2. You may not write more of a unit test than is sufficient to fail, and not
+       compiling is failing.
+    3. You may not write production code than is sufficient to pass the
+       currently failing test.
+- Dirty test code is equivalent to, if not worse than, having no tests. Same
+    standards for code apply for tests as well.
+- Without tests every change is a possible bug.
+- Readability: clarity, simplicity, and density of expression.
+- Tests can be less efficient than production code.
+
+## One Assert per Test
+
+## One Concept per Test
+
+## F.I.R.S.T
+
+- Fast
+- Independent
+- Repeatable
+- Self-Validating
+- Timely
