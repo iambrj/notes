@@ -657,5 +657,13 @@ edge from $M'$, so it is an augmenting path.
     \item \url{https://cses.fi/problemset/task/1641}
     \item Just 3SUM.
 \end{itemize}
+\section{CSES: Subarray Sums II}
+\begin{itemize}
+    \item\url{https://cses.fi/problemset/task/1662}
+    \item Idea: for each index, count number of subarrays ending at that index
+        summing to $x$. Use prefix sum to compute subarrays sums in $O(1)$
+        instead of $O(n)$, by interpreting subarray $[l, r]$ as $[0, r] - [0, l
+        - 1]$.
+\end{itemize}
 \end{document}
 
