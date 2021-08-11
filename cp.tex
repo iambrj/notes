@@ -676,5 +676,13 @@ edge from $M'$, so it is an augmenting path.
         $\binom{freq[0, r]}{2}$ (since a subarray can be formed by choosing 2
         prefix sum indicies).
 \end{itemize}
+
+\section{CSES: Subarray Distinct Values}
+\begin{itemize}
+    \item\url{https://cses.fi/problemset/task/1662}
+    \item Idea: if a subarray $A[i,j]$ has at most $k$ distinct values, then
+        every subarray of $A[i, j]$ also has at most $k$ distinct values. Use
+        two pointers + sliding window by exploiting above invariant.
+\end{itemize}
 \end{document}
 
