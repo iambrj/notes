@@ -665,5 +665,16 @@ edge from $M'$, so it is an augmenting path.
         instead of $O(n)$, by interpreting subarray $[l, r]$ as $[0, r] - [0, l
         - 1]$.
 \end{itemize}
+
+\section{CSES: Subarray Divisibility}
+\begin{itemize}
+    \item\url{https://cses.fi/problemset/task/1662}
+    \item A subarray $A[l, r]$ is divisible by $n$ if $prefix[0, r] = prefix[0,
+        l - 1]$ modulo $n$, where $prefix[0, i]$ is the prefix sum from 0 to
+        $i$. Thus, it suffices to compute, for each reminder $r$ in $[0, n -
+        1]$, frequency of prefix sums with that reminder and then find
+        $\binom{freq[0, r]}{2}$ (since a subarray can be formed by choosing 2
+        prefix sum indicies).
+\end{itemize}
 \end{document}
 
