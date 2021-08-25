@@ -375,7 +375,7 @@ Skip-gram assumes all context words are independent
 - Second-order co-occurrence : words that have similar neighbours (paradigmatic
     association)
 - Parallelogram model to solve simiarity questions like "apples are to trees
-    what grapes are to _". word2vec solves this by taking maximizing distance
+    what grapes are to _" word2vec solves this by taking maximizing distance
     \begin{align*}
     a:b::a*:b*\\
     \hat{b} = argmax_x distance(x, a* - a + b)
@@ -437,7 +437,14 @@ Skip-gram assumes all context words are independent
        regression classifiers
     2. No feature templates are required, prior layers of the network induce
        feature representations
-- 
+
+## Training Neural Nets
+
+- Use cross-entropy loss as loss function
+- Use error backpropogation/reverse differentiation for calculating error
+- Pretraining : relying on another algorithm to have already learned an
+    embedding representation for input words
+- One hot vector : vector with one element equal to 1 and all others zero
 
 # Sequence Labeling for Parts of Speech and Named Entities
 
@@ -547,3 +554,62 @@ i.e. emission $\times$ transition
 
 - Viterbi algorithm : observation sequence $\times (A, B)\rightarrow$ best tag
       sequence, tag sequence prob
+
+# Deep Learning Architectures for Sequence Processing
+
+- Autoregressive generation : randomly samle a word to begin a sequence based on
+    its suitability as the start of a sequence and sample further words
+    conditioned on our previous choices until we reach a pre-determined length
+    or end of sequence token is generated
+
+## Recurrent Neural Networks
+
+- Neural networks with loops
+- Critical difference is that RNNs have a temporal dimension since it does not
+    impose a fixed-length limit on the prior context -- the context embodied in
+    the previouis hidden layer includes information extending back to the
+    beginning of the sequence
+
+## Transformers
+
+- Parallel, unlike RNN which process one word at a time
+### Encoder block
+    - Positional encoder : vector that gives context based on position of word in
+        sentence
+    - Attention : importance of each word when generating the next word
+    - Self attention : how relevant is English word[i] to other words in same sentence
+### Decoder block
+    - Self attention : how relevant is French word[i] to other words in same sentence
+    - Encoder-decoder attention : each vector represents relationship of word
+        with all other words (both English and French)
+    - Generate tokens
+
+- Q, K, V : used to compute attention vectors, each extracts different feature
+    of input word
+
+- BERT : Bidirectional Encoder Representation from Transformers
+
+## Pretraining : What is language? What is context?
+
+- stack of transfomers
+
+- Next Sentence Prediction (NSP) : 
+- Masked Language Modeling (MLM) :
+      Tokens
+      -> Embeddings (Token + Segment + Position)
+      -> NSP + MLM
+      -> softmax + cross entropy loss
+
+## Fine Tuning : How to use langauge for specific task?
+
+- Supervised learning
+
+## ELMO
+
+- Two bidirectional RNNs, tranied to preserve context
+- Forward lawer capture right to left context, backward layer capture right to
+    left context
+- Weighted sum of two context vectors, naive input
+
+CRF : log-linear model assigns probability to entire tag sequence Y, given entire
+input sequence X

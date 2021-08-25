@@ -18,7 +18,7 @@
 - Page 23 : Girls needed "permission" to have and visit friends
 - Page 28 : How having borne a son increases her power
 - Page 31 : Men who appoint themselves God
-- Page 33 : Virginity of a woman so important that she literally has to bear an
+- Page 32 : Virginity of a woman so important that she literally has to bear an
     ornament on her face
 - Page 33 : "Stand-in for her mistress on days she was unavailable". Is the role
     of a wife to dance to the sexual whims and wishes of her husband?
@@ -54,7 +54,6 @@
     this against dowry. Ironic how both are oppressive.
 - 100 coins Bawajaan paid to "buy" Khalajaan
 - Mahr and rules how much to be paid based on intercourse
-- Masculinity is less if a man is more affectionate
 - How men are comfortable with Khalajaan making such a choice, audacity of a
     woman to speak out against her impotent husband
 - Patriarchy operations
@@ -67,3 +66,14 @@
     + Bade Pasha's purdah as punishment to Bawajaan
     + Nanima's conditions to ensure autonomy 65
     + Nanima's strength and resilience
+
+# Nazia questions
+
+- Is it appropriate to include a small note on how I personally feel about the
+    novel?
+- Is Mahr objectification of women?
+- Bade Pasha masculine undertones -- am I reading too much into it?
+- Mustafa Khan preying on elderly women
+- Blaming woman in patriarchal society, being Hindu not as big as the reminders,
+    commentary on class and being nautch girl
+- Have to use secondary readings?
