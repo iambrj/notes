@@ -28,3 +28,28 @@ title: 'Lectures notes for the FPGA based Accelerator Design course, IIIT Hyderb
 
 - Configurable Logic Block (CLB)
 - Heterogeneous architecture
+
+# 25/08/2021
+
+- Automata Processor: graph analysis, pattern matching, statistics
+- Overlay: micro-architecture on top of FPGA
+- Edge vs cloud: edge also collects data real time (e.g. cc camera), but cloud
+  only does something with data (AWS Lambda)
+- Fine grained/compute parallelism (parallel computing, divide chip into bins
+  and assign thread to each bin) vs coarse grained parallelism (OS kinda
+  parallelism).
+- Choice of accelerator
+    + Edge vs cloud
+    + Cost
+    + Profile of program/workload
+    + Scalability
+    + Development time
+    + Portability
+    + Reliability
+- FaaS: FPGAs as a Service
+- Measuring performance
+    + Throughput: amount of work completed per unit time.
+    + Bandwidth: theoretical bounds.
+    + Latency: Time elapsed between initiation and completion of ta task.
+    + Tradeoff between latency and throughput.
+- Host (e.g. x86 CPU) <--- PCIe Link ---> Accelerator
