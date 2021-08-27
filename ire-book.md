@@ -47,3 +47,21 @@ title: 'Notes made while reading "Introduction to Information Retrieval"'
 - Phrase query: "stanford university"
     + Biwords: treat two consecutive words as a phrase.
     + Positional indexes
+
+# Chapter 4
+- Blocked Sort-Based Indexing algorithm (BSBI):
+    1. Segment collection into parts of equal size.
+    2. Sort the termID-docID pairs of each part in memory.
+    3. Store intermediate sorted results on disk.
+    4. Merge all intermediate results into final index.
+- Inversion (i.e. converting set of termID-docID pairs into partial index):
+    1. Sort termID-docID pairs.
+    2. Collect all termID-docID into a postings list, where a posting is a
+       docID.
+    3. Maintain small read buffers for each index block, one write buffer for
+       final index. Process lowest termID not processed yet.
+- Single Pass In Memory Indexing (SPIMI): process the stream, writing one block
+    at a time.
+    1. If term isn't present in the dictionary, add it. If it is, just update
+       its posting list. (Best dictionary to use is a hashtable).
+    2. Double posting list each time it gets full.
