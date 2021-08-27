@@ -37,8 +37,13 @@ title: 'Notes made while reading "Introduction to Information Retrieval"'
     + British/American spellings.
     + Stemming: chop off last few letters.
     + Lemmatization: recover dictionary root word. Produces at most modest
-        benefits for retrieval
+        benefits for retrieval.
 ## Skip pointers
 - Skip pointers: shortcuts that allow us to avoid processing parts of the
     postings list that will not come up in the search results.
-- 
+- Heuristic that works well in practise: place sqrt(P) evenly placed skip
+    pointers for posting list of length P. This heuristic can be improved by
+    exploiting details of distribution of query terms.
+- Phrase query: "stanford university"
+    + Biwords: treat two consecutive words as a phrase.
+    + Positional indexes
