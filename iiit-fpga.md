@@ -53,3 +53,30 @@ title: 'Lectures notes for the FPGA based Accelerator Design course, IIIT Hyderb
     + Latency: Time elapsed between initiation and completion of ta task.
     + Tradeoff between latency and throughput.
 - Host (e.g. x86 CPU) <--- PCIe Link ---> Accelerator
+
+# 28/08/2021
+
+- Hardware vs Software programming paradigms.
+- Framework for:
+    + Setup host and accelerators
+    + Define memory address spaces
+    + Manage communication to and from host and accelerator
+    + Define and schedule tasks
+    + Manage queues
+- Any complicated circuit can be broken down to combinational + sequential
+    components.
+- D-Flip Flop: value of D at falling edge of clock gets latched in the state of
+  the D-flip flop.
+- Register: Similar to D flip flop, except has flag for when input value must be
+    latched into the state of the register.
+- Bottleneck due to long paths in combinational circuits:
+    + Cycle time must be > clock-to-q + longest path + T_su
+- Pipelining a block
+    + Clock?
+    + Area?
+    + Throghput?
+- Optimization to reduce clock cycle length (latency may be same): Split up
+  critical path by dividing combinational circuit into multiple components. E.g.
+  64-bit ripple carry adder has delay of 64 * delay of single adder. Decrease
+  this delay by using two 32-bit adders connected by a register (same latency,
+  but clock cycle is halved).
