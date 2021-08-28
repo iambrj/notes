@@ -406,5 +406,81 @@ Note
     \end{enumerate}
 \end{theorem}
 
+\chapter{Limits and Continuity}
+
+\begin{definition}{Neighbourhood}{}
+    If $a\in\mathbb{R}$ and $\delta\in\mathbb{R}, \delta > 0$, then the interval
+    $(a - \delta, a + \delta)$ is called the $\delta$-neighbourhood of $a$
+\end{definition}
+
+\begin{definition}{Limit point}{}
+    Let $E\subseteq\mathbb{R}$, $f:E\rightarrow\mathbb{R}$ and let $a$ be such
+    that $((a - r, a + r)\\ \{a\})\cap E$ is nonempty for each $r>0$ (i.e. $f$
+    is well defined in the deleted $r$ neighbourhood of $a$). Then, if
+    $\forall\epsilon > 0$, $\exists\delta > 0$ such that $|f(x) - l| <
+    \epsilon$ whenever $|x - a| < \delta$, $l$ is said to be a limit point of
+    $f$ at $a$. This is written as
+    \begin{align*}
+        \lim_{x\rightarrow a} f(x) = l
+    \end{align*}
+\end{definition}
+
+\begin{theorem}{Sandwich theorem}{}
+    Let $E\subset\mathbb{R}$, $f,g,h : E\rightarrow\mathbb{R}$ and
+    $a\in\mathbb{R}$ such that $\lim_{x\rightarrow a}f(x) = l =
+    \lim_{x\rightarrow a} h(x)$ and $f(x)\leq g(x)\leq h(x)$, for all $x\in E$
+    then $\lim_{x\rightarrow a}g(x)$ exists and is equal to $l$
+\end{theorem}
+
+\begin{definition}{Continuity}{}
+    A function $f:E(\subset\mathbb{R})\rightarrow\mathbb{R}$ is continuous at
+    $a$ if for all $\epsilon > 0$ there exists a $\delta > 0$ such that whenever
+    $|x - a| < \delta$, we have $|f(x) -f(a)| < \epsilon$
+\end{definition}
+
+\begin{definition}{Left \& Right Continuity}{}
+    A function $f:E(\subset\mathbb{R})\rightarrow\mathbb{R}$ that is well
+    defined in the deleted $r$ neighbourhood of $a, \forall a in E$ is right
+    continuous at $a$ if $\lim_{x\rightarrow a+}f(x)$ exists and is equal to
+    $f(a)$ and left continuous at $a$ if $\lim_{x\rightarrow a-}f(x)$ exists and
+    is equal to $f(a)$.
+\end{definition}
+
+A few useful results:
+\begin{enumerate}
+    \item If $f$ and $g$ are continuous at $a$, then $f + g$, $f - g$, $fg$, and
+        $cf$ are all also continuous at $a$. Additionally, if $g(a)\neq 0$ then
+        $\frac{f}{g}$ is continuous at $a$.
+    \item If $f:A\rightarrow R$ and $g:B\rightarrow R$ are two continuous
+        functions, then their composition $f\circ g$ is also continuous.
+\end{enumerate}
+
+\chapter{Differentiation}
+If $f:I\rightarrow R$ is a function such that $\lim_{h\rightarrow 0}\frac{f(a +
+h) - f(a)}{h}$ exists, then $f$ is said to be differentiable at $a$ and the
+limit is called the derivative of $f$ at $a$. In other words,
+\begin{align*}
+    f'(a) &= \lim_{h\rightarrow 0}\frac{f(a + h) - f(a)}{h}
+          &= \lim_{x\rightarrow a}\frac{f(x) - f(a)}{x - a}
+\end{align*}
+is the derivative of $f$ at $a$.
+
+\textbf{Note:} If $f$ is differentiable at $a$ (i.e. it is \textit{smooth}),
+then it is continuous at $a$. However, if $f$ is continuous at $a$, it need not
+be continuous at $a$ (e.g. $f(x) = |x|$ is continuous but not differentiable at
+$x = 0$).
+
+\begin{theorem}{Derivative of product of functions}{}
+    $(f(x)g(x))' = f'(x)g(x) + f(x)g'(x)$.
+\end{theorem}
+
+\begin{theorem}{Derivative of quotient of functions}{}
+    $(f(x)g(x))' = f'(x)g(x) + f(x)g'(x)$.
+\end{theorem}
+
+\begin{theorem}{Derivative of composite functions}{}
+    $(f\circ g(x))' = f'(g(x))g'(x)$.
+\end{theorem}
+
 \end{document}
 
