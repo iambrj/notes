@@ -669,10 +669,10 @@ edge from $M'$, so it is an augmenting path.
 \section{CSES: Subarray Divisibility}
 \begin{itemize}
     \item\url{https://cses.fi/problemset/task/1662}
-    \item A subarray $A[l, r]$ is divisible by $n$ if $prefix[0, r] = prefix[0,
-        l - 1]$ modulo $n$, where $prefix[0, i]$ is the prefix sum from 0 to
-        $i$. Thus, it suffices to compute, for each reminder $r$ in $[0, n -
-        1]$, frequency of prefix sums with that reminder and then find
+    \item Idea: A subarray $A[l, r]$ is divisible by $n$ if $prefix[0, r] =
+        prefix[0, l - 1]$ modulo $n$, where $prefix[0, i]$ is the prefix sum
+        from 0 to $i$. Thus, it suffices to compute, for each reminder $r$ in
+        $[0, n - 1]$, frequency of prefix sums with that reminder and then find
         $\binom{freq[0, r]}{2}$ (since a subarray can be formed by choosing 2
         prefix sum indicies).
 \end{itemize}
@@ -684,5 +684,33 @@ edge from $M'$, so it is an augmenting path.
         every subarray of $A[i, j]$ also has at most $k$ distinct values. Use
         sliding window by exploiting above invariant.
 \end{itemize}
+\chapter{Appendix: Curation of algorithms \& data structures}
+\section{Array}
+\begin{enumerate}
+    \item Update element at position : $O(1)$
+    \item Search: $O(n)$ (unsorted), $O(logn)$ (sorted)
+\end{enumerate}
+
+\section{Heap/priority queue}
+\begin{enumerate}
+    \item Get element minimum element : $O(1)$
+    \item Insert $O(logn)$
+    \item Delete $O(logn)$
+\end{enumerate}
+
+\section{Hash table}
+\begin{enumerate}
+    \item Search $O(1)$ average, $O(n)$ worst case
+    \item Insert $O(1)$ average, $O(n)$ worst case
+    \item Delete $O(1)$ average, $O(n)$ worst case
+\end{enumerate}
+
+\section{Hash table}
+\begin{enumerate}
+    \item Search $O(1)$ average, $O(n)$ worst case
+    \item Insert $O(1)$ average, $O(n)$ worst case
+    \item Delete $O(1)$ average, $O(n)$ worst case
+\end{enumerate}
+
 \end{document}
 
