@@ -21,5 +21,27 @@ title: 'Lectures notes for the Data Systems course, IIIT Hyderbad Monsoon 2021'
     + 20-30% class exercises
     + 25-40% quizzes/exams
 
+# Lecture 2
+- Data system needs to manage its own memory, OS's default (general purpose)
+    memory management is not ideal.
+
+# Lecture 3
+- Why? Some examples:
+    1. Flushing dirty pages to disk.
+    2. Prefetching for queries.
+    3. Buffer management.
+    4. Process scheduling.
+- DB is going to manage
+    * DB processes.
+    * Chunk of disk data.
+- Most DBMSs uses OS's file management system, rarely do DBMSs define their own
+    file systems.
+- DBMS page
+    + Corresponding to OS page, fraction of OS page
+- How is a relation stored in pages?
+    + Relation -> File -> Page
+    + Each row as a single unit ("tuple"), store each tuple in a page
+    + Page: Header + tuple
+
 # Tutorial 1, 17/08/2021
 - 
