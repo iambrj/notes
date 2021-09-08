@@ -149,8 +149,9 @@ Always pass arguments by reference when possible.
     A useful invariant is $inRange(L, R)$ i.e. the answer we're looking for is
     in the range the binary search is currently in.
 \end{algorithm}
-As an exercise of the above idea, try to implement \verb|lower_bound| and
-\verb|upper_bound|.
+As an exercise of the above idea, try to implement \verb|lower_bound| (i.e.
+index of first element $\geq$) and \verb|upper_bound| (i.e. index of first
+element $>$).
 
 \begin{problem}{3SUM}{}
     Given an array of numbers, find three elements that sum to zero. Best known
@@ -570,6 +571,14 @@ edge from $M'$, so it is an augmenting path.
         minimum instead of maximum.
 \end{itemize}
 
+\section{CSES: Room Allocation}
+\begin{itemize}
+    \item \url{https://cses.fi/problemset/task/1164}
+    \item Idea: sort by arrival times (breaking ties by smaller departure time
+        coming first) and then use a priority queue (sorted by who leaves first)
+        to track who is staying. Use another container to track rooms being
+        freed so they can be reused.
+\end{itemize}
 \section{CSES: Factory Machines}
 \begin{itemize}
     \item \url{https://cses.fi/problemset/task/1620}
@@ -717,5 +726,13 @@ edge from $M'$, so it is an augmenting path.
     \item Delete $O(1)$ average, $O(n)$ worst case
 \end{enumerate}
 
+\section{Multiset}
+\begin{enumerate}
+    \item 
+\end{enumerate}
+\section{Segment tree}
+\begin{enumerate}
+    \item 
+\end{enumerate}
 \end{document}
 
