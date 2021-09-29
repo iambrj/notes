@@ -155,7 +155,7 @@ element $>$).
 
 \begin{problem}{3SUM}{}
     Given an array of numbers, find three elements that sum to zero. Best known
-    time is $O(n^2(loglogn)^{O(1)}/log^2n)$, it is an open problem whether there
+    time is $O(n^2(\log\log n)^{O(1)}/\log^2 n)$, it is an open problem whether there
     is any algorithm $O(n^{2 - \epsilon})$.
 \end{problem}
 
@@ -536,7 +536,7 @@ edge from $M'$, so it is an augmenting path.
         divide them into two subsets of equal sum. The solution when the sum is even is
         to keep picking the largest number from the set of unpicked numbers until the
         sum hits $n(n+1)/4$ and the set of unpicked numbers. The correctness of this
-        solution is proved by induction. Complexity $O(nlogn)$.
+        solution is proved by induction. Complexity $O(n\log n)$.
     \item Faster solution: observe that solution exists only when $n\%4$ is
         either 3 or 0. Figure out exact elements needed to construct in each
         case, complexity $O(n)$.
@@ -589,8 +589,8 @@ edge from $M'$, so it is an augmenting path.
         limit the time taken by the fastest machine to produce all the products
         by itself. Calculating \# products that can be produced in a fixed time
         $s$ takes $O(n)$ ($\sum_i floor(s/k_i)$) and the binary search iterates
-        for at most $log(min_i(k_i) * t)$ times, making the time complexity
-        $O(n * log(min_i(k_i) * t))$.
+        for at most $\log(min_i(k_i) * t)$ times, making the time complexity
+        $O(n * \log(min_i(k_i) * t))$.
     \item Interesting to note wholemeal and projective programming lead to the
         solution directly!
 \end{itemize}
@@ -698,25 +698,35 @@ edge from $M'$, so it is an augmenting path.
     \item https://cses.fi/problemset/task/1085
     \item Idea: binary search on solution space. Projective programming, yay!
 \end{itemize}
+
+\section{Contests}
+\subsection{Round \#744 Div. 3, 28/09/2021}
+\begin{itemize}
+  \item \url{https://codeforces.com/contest/1579}
+  \item Use library functions for common tasks! Don't waste time rewriting them
+    yourself. Specifcally, learnt about these in this contest:
+    \begin{enumerate}
+      \item \verb|count(Begin iterator, End iterator, Element)| returns
+        frequency
+      \item \verb|min_element(Begin iterator, End iterator)| returns iterator of
+        min element
+      \item \verb|emplace| inserts element at position
+      \item \verb|erase(iterator)| deletes element at iterator position
+      \item \verb|distance(itr1, itr2)| returns distance between iterators
+    \end{enumerate}
+\end{itemize}
 \chapter{Appendix: Curation of algorithms \& data structures}
 \section{Array}
 \begin{enumerate}
     \item Update element at position : $O(1)$
-    \item Search: $O(n)$ (unsorted), $O(logn)$ (sorted)
+    \item Search: $O(n)$ (unsorted), $O(\log n)$ (sorted)
 \end{enumerate}
 
 \section{Heap/priority queue}
 \begin{enumerate}
     \item Get element minimum element : $O(1)$
-    \item Insert $O(logn)$
-    \item Delete $O(logn)$
-\end{enumerate}
-
-\section{Hash table}
-\begin{enumerate}
-    \item Search $O(1)$ average, $O(n)$ worst case
-    \item Insert $O(1)$ average, $O(n)$ worst case
-    \item Delete $O(1)$ average, $O(n)$ worst case
+    \item Insert $O(\log n)$
+    \item Delete $O(\log n)$
 \end{enumerate}
 
 \section{Hash table}
@@ -730,6 +740,15 @@ edge from $M'$, so it is an augmenting path.
 \begin{enumerate}
     \item 
 \end{enumerate}
+
+\section{Fenwick tree}
+For a function invertible function $f$ (e.g. sum), and an array $A$
+\begin{enumerate}
+    \item $f$ applied to a range $[l, r]$ in $O(\log n)$.
+    \item Update element in $O(\log n)$.
+    \item Requires $O(size(A))$.
+\end{enumerate}
+
 \section{Segment tree}
 \begin{enumerate}
     \item 
