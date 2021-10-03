@@ -391,10 +391,12 @@ int main() {
 
 \section{Shortest paths}
 
+Dijkstra spreads like fire.
+
+Can be implemented in $O(|V|^2 + |E|)$ by just using arrays, but $O(|V| log
+|V| + |E|)$ using a priority queue.
+
 \begin{algorithm}{Dijkstra}{}
-    Dijkstra spreads like fire
-    Can be implemented in $O(|V|^2 + |E|)$ by just using arrays, but $O(|V| log
-    |V| + |E|)$ using a priority queue.
     Array implementation:
 \begin{verbatim}
 const int INF = 1000000000;
@@ -430,7 +432,10 @@ void dijkstra(int s, vector<int> & d, vector<int> & p) {
     }
 }
 \end{verbatim}
-    Priority queue implementation:
+\end{algorithm}
+
+Priority queue implementation:
+\begin{algorithm}{Dijkstra}{}
 \begin{verbatim}
 vector<vector<int>> adj;
 vector<vector<int>> weight;
@@ -743,6 +748,14 @@ edge from $M'$, so it is an augmenting path.
         code.
     \end{enumerate}
 \end{itemize}
+
+\section{CSES: Building teams}
+\begin{itemize}
+  \item\url{https://cses.fi/problemset/task/1194}
+  \item Idea: alternately color layers in BFS, if 2 coloring is possible this
+    will give a valid 2 coloring.
+\end{itemize}
+
 \section{Contests}
 \subsection{Round \#744 Div. 3, 28/09/2021}
 \begin{itemize}
