@@ -393,6 +393,9 @@ int main() {
 
 \begin{algorithm}{Dijkstra}{}
     Dijkstra spreads like fire
+    Can be implemented in $O(|V|^2 + |E|)$ by just using arrays, but $O(|V| log
+    |V| + |E|)$ using a priority queue.
+    Array implementation:
 \begin{verbatim}
 const int INF = 1000000000;
 vector<vector<pair<int, int>>> adj;
@@ -423,6 +426,34 @@ void dijkstra(int s, vector<int> & d, vector<int> & p) {
                 d[to] = d[v] + len;
                 p[to] = v;
             }
+        }
+    }
+}
+\end{verbatim}
+    Priority queue implementation:
+\begin{verbatim}
+vector<vector<int>> adj;
+vector<vector<int>> weight;
+vector<int>& d, vector<int>& p
+vector<bool> vis;
+int V;
+void dijkstra(int src) {
+    d.assign(V, INT_MAX);
+    p.assign(V, -1);
+    // tuple = dist, vertex
+    set<tuple<int, int>> pq = {{0, src}};
+    while(!pq.empty()) {
+        auto it = pq.begin();
+        int u = *it;
+        pq.erase(it);
+        if(vis[u]) continue;
+        vis[u] = true;
+        for(auto& v : adj[u]) {
+            if(d[u] + weight[u][v] < d[v]) {
+                d[v] = d[u] + weight[u][v];
+                p[v] = u;
+            }
+            if(!visited[v]) pq.insert({d[v], v});
         }
     }
 }
@@ -699,6 +730,19 @@ edge from $M'$, so it is an augmenting path.
     \item Idea: binary search on solution space. Projective programming, yay!
 \end{itemize}
 
+\section{CSES: Counting rooms}
+\begin{itemize}
+  \item\url{https://cses.fi/problemset/task/1192/}
+  \item Lessons
+    \begin{enumerate}
+      \item Keep the implementation as simple as possible, at the cost of
+        overallocating memory (e.g. always allocating for upper bound on input
+        data).
+      \item 2D dfs --- pass both coordinates and use \verb|dfs(x, y)| rather
+        than doing row major/column major conversion by hand and complicating the
+        code.
+    \end{enumerate}
+\end{itemize}
 \section{Contests}
 \subsection{Round \#744 Div. 3, 28/09/2021}
 \begin{itemize}
