@@ -157,3 +157,87 @@ title: 'Lectures notes for the FPGA based Accelerator Design course, IIIT Hyderb
     1. XC9500XL: 5 volent tolernat IO, important for industrial and automotive
        applications
     2. CoolRunner II: lower power CPLD family
+
+# 01/09/2021
+
+- Clock: `C < P ~ FP`
+- Area: `FP < C < P`
+- Throughput: `FP < C < P`
+
+# 04/09/2021
+
+# 11/09/2021
+
+# 15/09/2021
+
+- Links:
+    + https://github.com/Xilinx/Vitis-Tutorials/tree/2021.1/Hardware_Acceleration/Introduction
+    + https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/kme1569523964461.html
+    + https://www.khronos.org/registry/OpenCL/specs/opencl-1.2.pdf
+- Amdahl's Law [HPC]
+- Gustafson's law [Big data]
+- Compute intensity
+- PCIe bandwidth
+- Checkout: BSP [MIT], Chisel shell [VCB]. Good project would be to see if
+    something that can be done in BSP can also be done in Chisel.
+
+# 18/09/2021
+
+- Roofline analysis (see paper )
+  + What is the peak possible performance?
+  + What is stopping the program from achieving this?
+- This tells us whether it is memory bound (i.e. memory transfer is too slow and
+  processor is not being used as much as it can be) vs compute bound (processor
+  is being used to the maximum of its capabilities, improving memory transfer
+  won't improve performance).
+- Multicore CPU performance model
+  + Floating point operations per second
+  + Memory transfer bandwidth
+  + 
+- Tricks to compute performance:
+  * Instruction level parallelism
+  * Floating-point balance
+- Tricks to memory performance:
+  * Improve spatial locality:
+    + Regular (looping through an array) vs irregular (traversing a tree) memory
+      access.
+    + Unit stride vs > 1 stride
+  * Prefetching
+
+# 22/09/2021
+
+- 
+
+# Roofline analysis
+
+## Wikipedia page
+
+- Work (W): number of operations performed by given kernel/application.
+- Memory traffic (Q): number of bytes of memory transfer during execution of
+  kernel/application.
+- Arithmetic intensity(I) = W / Q
+- Naive roofline: peak performance (pi, calculated from architectural manuals)
+  and peak bandwidth (beta, calculated from benchmarking), plot
+  attainable performance P = min(pi, beta * I).
+- Ridge point: point where diagonal roof (beta * I) and horizontal roof (pi)
+  meet.
+- Naive roofline tells us what the minimum compute intensity is required to
+  achieve peak performance, but does not tell us what is currently stopping the
+  kernel from achieving this performance.
+- More ceilings specific to certain optimizations can be added to guide the
+  programmer:
+  1. Communication/bandwidth ceilings: absence of software prefetching.
+  2. Computation/in-core ceilings: instruction level parallelism, task level
+     parallelism.
+  3. Locality/locality walls: realistically, intensity is not simply a function
+     of the kernel --- if architectural aspects (caches) are taken into account
+
+## Paper
+
+- Operational intensity: operations per byte of DRAM traffic.
+- Total bytes = between caches and memory, NOT processor and caches.
+- 
+
+# Questions
+
+- Can explain what locality walls are?
