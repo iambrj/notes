@@ -779,6 +779,26 @@ edge from $M'$, so it is an augmenting path.
       \item \verb|distance(itr1, itr2)| returns distance between iterators
     \end{enumerate}
 \end{itemize}
+\subsection{Round \#747 Div. 2, 09/10/2021}
+\begin{itemize}
+  \item\url{https://codeforces.com/contest/1594}
+  \item B : use \verb|x & 1| to check if \verb|x| is odd/smallest bit in
+    \verb|x| is 1. Can also use this to iterate through all the bits in
+    \verb|x|.
+  \item C: 
+  \item E1: Use \verb|1ll << k| not just \verb|1 << k|. Man C++ sometimes
+    \verb|-_-|
+\end{itemize}
+
+\subsection{Educational Round \#115 Div. 2, 10/10/2021}
+\begin{itemize}
+  \item\url{https://codeforces.com/contest/1598}
+  \item C: Anti-hashing \verb|unordered_map/set| tests screw up solution. Always
+    use plain \verb|map/set|, or unordered ones with \verb|splitmax64|.
+  \item D: One way of approaching combinatorics problems: calculate total
+    possible solutions and subtract \# invalid ones.
+\end{itemize}
+
 \chapter{Appendix: Curation of algorithms \& data structures}
 \section{Array}
 \begin{enumerate}
