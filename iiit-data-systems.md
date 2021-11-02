@@ -72,5 +72,102 @@ title: 'Lectures notes for the Data Systems course, IIIT Hyderbad Monsoon 2021'
 - Hashing, overflow blocks, chaining, multiple hash functions
 - Dynamic hashing
 
-# Tutorial 1, 17/08/2021
+# Chapter 17 : Indexing Structures
+
+- Indexing field/attribute: field/attribute on which the indexing structure is
+  built
+- Dense index: one index entry per search key value (and hence every record).
+- Nondense/sparse index: index entries only for some of the search values.
+- Primary index: index built from ordering key field of an ordered file
+    + File of fixed length records of size 2: <key value, block address>
+    + One index entry per block: has first record's (called the anchor
+      record/block anchor) key value
+    + Nondense index
+- Clustering index: index built from (nonkey) ordering field, but multiple
+  records may have same ordering field value. Such a data file is called a
+  clustered file.
+  + Nondense index
+  + File of fixed length records of size 2: <key value, block address> to
+    first block in data with that key value.
+- Secondary index: index built from any nonordering field of a file.
+  + Sorted one entry per value <key value, block address>
+  + Dense index, doesn't use block anchors
+  + Takes more space than primary index
 - 
+
+# Chapter 18 : Strategies for Query Processing
+- Query block: single `SELECT-FROM-WHERE` expression, as well as `GROUP BY` and
+  `HAVING` clauses
+- `SEMI-JOIN`(`T1.X S = T2.Y`) : return row of `T1` as soon as `T1.X` finds a
+  match with any value of `T2.Y` without further searching for further matches
+  (unlike inner join, where all possible matches are found).
+- `ANTI-JOIN`(`T1.X A = T2.Y`) : a row of `T1` is rejected as soon as `T1.X`
+  finds a match with any value of `T2.Y` without further searching for further
+  matches. Thus, only those rows from `T1` are selected that do not match
+  against any value in `T2`.
+
+## External/Out-of-core sorting
+- Buffer space divided into *buffers*, where size of one buffer = size of one
+  disk block.
+- # initial runs (nR) = ceil(# blocks (n) / buffer space (nB))
+- Degree of merging (dM) = min(nB - 1, nR)
+- # of merge passes = ceil(logdM(nR))
+- Merge-sort cost = 2 * b + (2 * b * (logdM(nR)))
+
+## Implementing SELECT
+- File/index scan
+1. Linear scan: go through everything and check if each record satisfies the
+   search criteria
+2. Binary search: useful for equality selections
+3. Primary index: can retrieve at most one record by using primary index for
+   equality selections, or if file is sorted on indexing attribute first perform
+   equality then retrieve all subsequent attributes
+4. Hash: can retrieve at most one record by using primary index for
+   equality selections
+5. Clustering index: useful for selections on nonkey attributes
+6. BPTree: leaves are ordered, can be used for equality and range queries
+7. Bitmap index: useful for set of selection values, OR all their bitmaps
+8. Functional index: match is based on function of one or more attributes on
+   which a functional index exists
+- Conjunctive selection
+  1. Try to use index selections for any of the conjunction clauses, then apply
+     rest of the conjunction clauses on these results.
+  2. If composite index exists for conjunction clauses, use that.
+  3. Set intersection: if indexes on multiple clauses pointing records are
+     available, just take intersection
+- Disjunctive selection: take union of clauses, can be sped up for those clauses
+  that have access paths. If no access paths exist, the linear search must be
+  performed.
+- System catalog used to estimate costs contains:
+  + For each relation r:
+    1. # of rows/records rR
+    2. Width of each row R
+    3. # of blocks occupied by relation on disk bR
+    4. Blocking factor bfr, # of tuples per block
+  + For each attribute A in a relation R:
+    1. NDV(A, R): # of distinct values of A in R
+    2. max(A, R) and min(A, R)
+- Selectivity: fraction in [0, 1] estimating how many of the relations are
+  likely to be selected for this conjunction clause.
+- Assuming a distribution (e.g. uniform), various estimates for selectivity can
+  be made using above statistics, e.g.
+  1. Equality on key attribute: 1 / |rR|
+  2. Equality on nonkey attribute (with i distinct values)): 1 / i
+  3. Range: max(A, R) - v / max(A, R) - min(A, R)
+
+## Implementing PROJECT and Set operations
+- To eliminate duplicates in PROJECT,
+  1. Results can be sorted and consecutive kuplicates can be removed
+  2. Hashing and checking if hashed value already exists in bucket
+- Cartesian product is expensive so it must be substituted with some other
+  operation (e.g. join)
+- Union, intersection, and set difference can be implemented via sort-merging
+- Set operations via hashing: 
+- Set difference via anti-join
+
+## Implementing aggregate operations
+- MAX/MIN: search the index (e.g. BPTree keeping following right/left pointers)
+- AVERAGE/SUM/COUNT: can be sped up using dense index, but all records must be
+  fetched for nondense index.
+- Grouping: sorting, hashing to form groups. If clustering index exists, they
+    are already grouped.
