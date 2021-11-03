@@ -78,3 +78,11 @@ header-includes:
 - Key characteristic distinguishing corporation from
   proprietorships/partnerships: separation of ownership and management
 - Goal: maximize shareholder value
+- Hurdle rate/cost of capital: minimum expected rate of return on an investment
+  to make the investment worth it for stockholders. It is an opportunity cost of
+  capital
+- Opportunity cost of capital must be compared at same levels of risk, e.g. a
+  company making a highly risky investment with 5% return is worse than a bank
+  loan with% return.
+- Agency costs: conflicts between managers' and shareholders' interestes in a
+  corporate
