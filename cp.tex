@@ -806,6 +806,33 @@ edge from $M'$, so it is an augmenting path.
     dN[v]$, for all edges $(u, v)$.
 \end{itemize}
 
+\section{CSES: Flight discounts}
+\begin{itemize}
+  \item \url{https://cses.fi/problemset/task/1195}
+  \item Naive solution: try halving every edge, compute shortest distance from 1
+    to $N$ and pick minimum. This would take $O(|E| * (|E| + |V|log|V|))$ if
+    Dijkstra's algorithm is used to compute the shortest distances. However,
+    notice that when edge $e := (u, v)$ is halved, all shortest paths from 0 that
+    don't use $e$ remain unchanged. Similarly, all shortest paths to $N$ that
+    don't use $e$ also remain unchanged. Using this observation, we can avoid
+    recomputing all shortest paths after halving each edge --- compute shortest
+    paths from 0 to every other vertex (call it $d0$) and from every vertex to
+    $N$ (call it $dN$, which can be done by running Dijkstra on the transpose
+    graph with $N$ as the source). Now, just pick min $d0[u] + w[u][v] / 2 +
+    dN[v]$, for all edges $(u, v)$.
+\end{itemize}
+
+\section{CSES: Longest Flight Route}
+\begin{itemize}
+  \item \url{https://cses.fi/problemset/task/1680}
+  \item Naive solution: run dfs repeatedly to find the longest path from all
+    paths starting from 1. Observe that this solution recomputes overlapping
+    longest paths --- making it amenable to be solved by DP! If \verb|dp[u]|
+    represents the longest path from $u$ to $N$, then what we want is
+    \verb|dp[1]|. The table-filling must be done in topological order via the
+    recurrence \verb|dp[u] = max(dp[v]) + 1|, for all children $v$ of $u$.
+\end{itemize}
+
 \section{Contests}
 \subsection{Round \#744 Div. 3, 28/09/2021}
 \begin{itemize}
