@@ -187,7 +187,7 @@ Variants on 3SUM
         for $i$ in 0 to $n - 1$ and solve 3SUM on this.
 \end{enumerate}
 
-\section{Advanced}
+\chapter{Graphs}
 
 \begin{theorem}{Berge's lemma}{}
     \begin{enumerate}
@@ -534,43 +534,19 @@ edge from $M'$, so it is an augmenting path.
     possible solutions and subtract \# invalid ones.
 \end{itemize}
 
-\chapter{Appendix: Curation of algorithms \& data structures}
-\section{Array}
-\begin{enumerate}
-    \item Update element at position : $O(1)$
-    \item Search: $O(n)$ (unsorted), $O(\log n)$ (sorted)
-\end{enumerate}
-
-\section{Heap/priority queue}
-\begin{enumerate}
-    \item Get element minimum element : $O(1)$
-    \item Insert $O(\log n)$
-    \item Delete $O(\log n)$
-\end{enumerate}
-
-\section{Hash table}
-\begin{enumerate}
-    \item Search $O(1)$ average, $O(n)$ worst case
-    \item Insert $O(1)$ average, $O(n)$ worst case
-    \item Delete $O(1)$ average, $O(n)$ worst case
-\end{enumerate}
-
-\section{Multiset}
-\begin{enumerate}
-    \item 
-\end{enumerate}
-
-\section{Fenwick tree}
-For a function invertible function $f$ (e.g. sum), and an array $A$
-\begin{enumerate}
-    \item $f$ applied to a range $[l, r]$ in $O(\log n)$.
-    \item Update element in $O(\log n)$.
-    \item Requires $O(size(A))$.
-\end{enumerate}
-
-\section{Segment tree}
-\begin{enumerate}
-    \item 
-\end{enumerate}
+\subsection{Educational Round \#117 Div. 2, 23/11/2021}
+\begin{itemize}
+  \item\url{https://codeforces.com/contest/1612}
+  \item \{B\} Claim: the permutation $P = [a, n, n - 1, \dots, 1, b]$ is a
+    solution iff there is a solution, i.e. if $P$ is not a solution, then no
+    solution exists. Assume that $P$ is not a solution, i.e. there is some $x$
+    at some position in $[2, n / 2]$ such that $a > x$ or there is some $y$ at some
+    position in $[n / 2 + 1, n - 1]$ such that $b < y$. For the first case, to
+    construct a valid solution, this $x$ must be swapped with some element in
+    $[n / 2 + 1, n - 1]$ (as swapping it with something in $[2, n / 2]$ would
+    still break "$a$ must be minimum condition"). But observe that every number
+    in $[n / 2 + 1, n - 1]$ is less than $x$ by construction of $P$. Thus no
+    solution can be constructed. Similar argument applies for the other case.
+\end{itemize}
 \end{document}
 
