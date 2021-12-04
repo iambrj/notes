@@ -500,7 +500,7 @@ edge from $M'$, so it is an augmenting path.
 
 \section{CSES: Tree distances 2}
 \begin{itemize}
-  \item \url{https://cses.fi/problemset/task/1130}
+  \item \url{https://cses.fi/problemset/task/1133}
   \item Naive solution: run dfs repeatedly on each vertex to calculate the
     answer for each vertex in $O(V)$, resulting in $O(V^2)$ solution. Observe
     that this solution can be optimized using the fact that the answer for a
@@ -512,6 +512,14 @@ edge from $M'$, so it is an augmenting path.
     $j$), where $subtreeSize[x]$ is size of subtree rooted at $x$.
   \item Generalizable technique: can you calculate the answer for a child
     efficiently, given the answer for a parent?
+\end{itemize}
+
+\section{CSES: Tree matching}
+\begin{itemize}
+  \item \url{https://cses.fi/problemset/task/1130}
+  \item Generalizable technique: can you calculate the answer for a parent
+    efficiently, given the answer for all its children? Then arbitrarily root
+    the tree and solve bottom-up.
 \end{itemize}
 
 \section{Contests}
