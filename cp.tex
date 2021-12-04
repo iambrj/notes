@@ -498,6 +498,22 @@ edge from $M'$, so it is an augmenting path.
     recurrence \verb|dp[u] = max(dp[v]) + 1|, for all children $v$ of $u$.
 \end{itemize}
 
+\section{CSES: Tree distances 2}
+\begin{itemize}
+  \item \url{https://cses.fi/problemset/task/1130}
+  \item Naive solution: run dfs repeatedly on each vertex to calculate the
+    answer for each vertex in $O(V)$, resulting in $O(V^2)$ solution. Observe
+    that this solution can be optimized using the fact that the answer for a
+    vertex can be used to calculate the answer for all its neighbours --- if
+    answer for vertex $i$ is known and $j$ is a neighbour, then $answer[j] =
+    answer[i] - subtreeSize[j]$ (depth of all vertices in $j$'s subtree
+    decreases by 1 when rerooting from $i$ to $j$) $+ (V - subtreeSize[j])$
+    (depth of rest of the vertices increases by 1 when rerooting from $i$ to
+    $j$), where $subtreeSize[x]$ is size of subtree rooted at $x$.
+  \item Generalizable technique: can you calculate the answer for a child
+    efficiently, given the answer for a parent?
+\end{itemize}
+
 \section{Contests}
 \subsection{Round \#744 Div. 3, 28/09/2021}
 \begin{itemize}
