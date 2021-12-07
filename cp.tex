@@ -225,17 +225,6 @@ Since $M'$ is larger than $M$, $D$ has a component with more edges from $M'$
 than $M$. This component is a path that in $G$ that starts and ends with and
 edge from $M'$, so it is an augmenting path.
 
-\chapter{Dynamic programming}
-
-\begin{definition}{Strategy for Dynamic Programming}{}
-    \begin{enumerate}
-        \item Come up with naive/recursive solution
-        \item Identify overlapping subproblems
-        \item Memoize via table (possibly oversolving, e.g. all Fibonacci less
-            than $i$ are computed to compute Fibonacci $i$)
-    \end{enumerate}
-\end{definition}
-
 \chapter{Journal}
 
 \section{CSES: Two Sets}
@@ -520,6 +509,39 @@ edge from $M'$, so it is an augmenting path.
   \item Generalizable technique: can you calculate the answer for a parent
     efficiently, given the answer for all its children? Then arbitrarily root
     the tree and solve bottom-up.
+\end{itemize}
+
+\section{CSES: Tree distances 2}
+\begin{itemize}
+  \item \url{https://cses.fi/problemset/task/1133}
+  \item Generalizable technique: can you calculate the answer for a child
+    efficiently, given the answer for its parent? Then arbitrarily root the
+    tree, solve for root, then solve for all other vertices top down.
+\end{itemize}
+
+\section{cf1325d: Ehab the Xorcist}
+\begin{itemize}
+  \item \url{https://codeforces.com/problemset/problem/1325/d}
+  \item Lets rule out some special cases first
+    \begin{enumerate}
+      \item If $u > v$, then there is no answer as sum will always be greater
+        than $v$.
+      \item If $u = v$, then smallest array is just $[u]$.
+      \item The only case left is $u < v$. Now observe that if if $u$ and $v$
+        don't have the same parity, there is no answer. Thus, they must both be
+        odd or both be even. Next observe that there is always a solution of
+        length 3: $[u, (v - u) / 2, (v - u) / 2]$. Thus all that remains is to
+        check if there is a solution of size 2 (as $u\neq v$ there's no solution
+        of size 1). Let $[a, b]$ be the required solution. To check if this
+        exists, we use the fact that $a + b = a\oplus b + 2(a \land b)$ to find
+        $a\land b = (v - u) / 2$. Now there will be a $[a, b]$ if for each 1-bit
+        in $a\land b$, the corresponding bit is 0 in $a\oplus b$ (it doesn't
+        matter what the bit in $a\oplus b$ is if the bit in $a\land b$ is 0). In
+        other words, a size 2 solution will exist only when $(a\oplus b)\land
+        (a\land b) = 0$. If $a$ and $b$ satisfy above conditions then observe
+        that $u = a\oplus b = a + b = v$. Thus one size 2 solution is $[u, u +
+        (u - v) / 2]$.
+    \end{enumerate}
 \end{itemize}
 
 \section{Contests}
