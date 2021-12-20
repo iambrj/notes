@@ -61,3 +61,61 @@ title : "Notes on 'An Introduction to Language'"
 - However, right hemisphere is also involved in language acquisition ---
     children whose right hemispheres are removed do not develop language.
 - 
+
+# Morphology: The Words of Language
+- Content words (aka open class words): words carrying semantic content (e.g.
+  children, anarchism, purple, etc).
+- Function words (aka closed class words): words carrying little/no semantic
+  content, but specify grammatical relations.
+- E.g. of word with no semantic content is it in "it's raining".
+- Brain treats function words and content words differently. E.g. when asked to
+  count the number of Fs in the following:
+
+  FINISHED FILES ARE THE
+  RESULTS OF YEARS OF SCIENTIFIC
+  STUDY COMBINED WITH THE
+  EXPERIENCE OF YEARS
+
+  people usually come up with 3, when the answer is 6 (people forget to count
+  OFs)
+- In slips of tongues, people usually switch content words but rarely
+  function words.
+- They play a different role in language acquisition as well, children tend to
+  omit function words first, e.g. "doggie barking".
+- Morpheme: most elemental unit of grammatical form (e.g. boy, boy + ish, boy +
+  ish + ness). It is an arbitrary unit of sound and meaning, aka linguistic
+  sign.
+- Morphology (morph + ology): science of (word) forms
+- Morphemes may have one or more syllables, e.g. 'a' (single syllable, as in
+  amoral or asexual), 'crocodile'.
+- Meaning of a morpheme must be constant. However, two similar sounding
+  morphemes may have different meanings (e.g. 'er' in 'singer' and 'nicer' mean
+  two different things) and two similar meaning morphemes and sound differently
+  (e.g. 'er' and 'ster' in 'singer' and 'singster' mean the same thing).
+  Emphasis on (sound, meaning) tuple.
+- Discreteness is one of the fundamental properties of human language ---
+  morphemes form words, words form phrases, phrases form sentences.
+- Components of morphological knowledge: what are the individual morphemes, what
+  are the rules for combining them.
+- Free morphemes are words by themselves (boy, cat, shoe) and bound morphemes
+  are not words by themselves, but parts of larger words (prefixes un-, a-, bi
+  and suffixes -ing, -er)
+- Suffixes in one language may be prefixes in another and vice versa
+- Affixes may play different roles in different languages
+- Infix: in-fuckin-credible
+- Circumfixing: both prefixing and suffixing, with possibly parts of the base
+  morpheme chopped off. E.g. German does it.
+- Morphologically complex words are made up of root morpheme + one or more
+  affixes
+- Root may or may not be a word by itself.
+- Root word + affix = stem
+- Base = root word or stem with affix
+- Bound roots: roots that do not occur in isolation and acquire meaning only
+  when used in combination with other morphemes, e.g. 'ceive' in 'conceive',
+  'receive', 'perceive', etc
+- Derivational morpheme: morphemes like -ify and -cation which when added to a
+  base form a new word (called the derived word) with new meaning.
+- Derivational morphemes have semantic content, they may change the grammatical
+  class to which words belong. They may/may not change sounds of other morphemes
+  in the word, e.g. sane/sanity & need/needless.
+- Morphological analysis: essentially pattern matching?
