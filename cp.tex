@@ -6,6 +6,8 @@
 \usepackage{setspace}
 \usepackage{hyperref}
 \usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./bin/} }
 \tcbuselibrary{theorems}
 
 \hypersetup{
@@ -95,6 +97,10 @@ Always pass arguments by reference when possible.
     0     & n \% 4 = 3
   \end{cases}
 \]
+\end{algorithm}
+
+\begin{algorithm}{Minimum xor of pair in array}{}
+  Sort and take min xor of adjacent elements.
 \end{algorithm}
 
 \chapter{C++ wankery}
@@ -215,6 +221,13 @@ Variants on 3SUM
 
 \chapter{Graphs}
 
+Useful observation when dealing with SCC; each SCC is either:
+\begin{enumerate}
+  \item A cycle
+  \item A chain
+  \item A combination of above
+\end{enumerate}
+
 \begin{theorem}{Berge's lemma}{}
     \begin{enumerate}
         \item A \textbf{matching} in an undirected graph is a set of edges without
@@ -251,11 +264,13 @@ Since $M'$ is larger than $M$, $D$ has a component with more edges from $M'$
 than $M$. This component is a path that in $G$ that starts and ends with and
 edge from $M'$, so it is an augmenting path.
 
-\chapter{Weakspots}
+\chapter{Revision list}
 Stuff I tend to forget, keep revisitng regularly.
 \begin{enumerate}
   \item DSU
   \item Hamiltonian path
+  \item Tarjan SCC
+  \item Bridges, articulation points
 \end{enumerate}
 
 \chapter{Journal}
@@ -661,5 +676,15 @@ Stuff I tend to forget, keep revisitng regularly.
     in $[n / 2 + 1, n - 1]$ is less than $x$ by construction of $P$. Thus no
     solution can be constructed. Similar argument applies for the other case.
 \end{itemize}
+
+\subsection{Random CF C/D practise}
+\begin{itemize}
+  \item\url{https://codeforces.com/problemset/problem/448/D}
+  \item The key observation required to solve this problem is that the $k^th$
+    smallest element is same as the largest element $x$ such that $f(x) < k$
+    where $f(x) = \#$ of elements less that x. This is true because:
+    \includegraphics[scale=0.25]{cf448d}
+\end{itemize}
+
 \end{document}
 
