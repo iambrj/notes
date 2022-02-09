@@ -680,10 +680,15 @@ Stuff I tend to forget, keep revisitng regularly.
 \subsection{Random CF C/D practise}
 \begin{itemize}
   \item\url{https://codeforces.com/problemset/problem/448/D}
-  \item The key observation required to solve this problem is that the $k^th$
+    The key observation required to solve this problem is that the $k^th$
     smallest element is same as the largest element $x$ such that $f(x) < k$
     where $f(x) = \#$ of elements less that x. This is true because:
+
     \includegraphics[scale=0.25]{cf448d}
+
+    The important implementation step is to notice that $f(x)$ can be calculated
+    in $O(n)$ by iterating through each row and summing $min(m, (x - 1) / i)$.
+    
 \end{itemize}
 
 \end{document}
