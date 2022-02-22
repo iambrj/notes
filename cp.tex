@@ -107,6 +107,9 @@ Always pass arguments by reference when possible.
 \begin{enumerate}
   \item Negative number \% positive number is negative number!
   \item Use \verb|vector.swap| to swap vectors in constant time
+  \item \verb|vector<bool>| is optimized for memory, so storing $N$ elements
+    actually consumes $N/8$ bytes as opposed to $N$ bytes as it manipulates each
+    bit in a byte internally
   \item Use \verb|cout << setprecision(digit count)| before \verb|cout|ing any
     doubles
   \item \verb|reverse_iterator| and \verb|iterator| are two \textit{different,
@@ -268,13 +271,19 @@ edge from $M'$, so it is an augmenting path.
 \chapter{Revision list}
 Stuff I tend to forget, keep revisitng regularly.
 \begin{enumerate}
+  \item Modular inverse
+  \item Extended Euclidean
   \item DSU
   \item Hamiltonian path
   \item Tarjan SCC
   \item Bridges, articulation points
+  \item Binary jumping (CSES Planet queries: \url{https://cses.fi/problemset/result/3195043/})
+  \item LCA (Errichto tutorial \url{https://youtu.be/dOAxrhAUIhA})
+  \item Segment tree {CSES Dynamic range sum queries: \url{https://cses.fi/problemset/result/3251693/}}
 \end{enumerate}
 
 \section{Standard DP problem list}
+See DP tutorial \url{https://noi.ph/training/weekly/week4.pdf}
 \begin{enumerate}
   \item LCS
   \item LIS
@@ -284,6 +293,13 @@ Stuff I tend to forget, keep revisitng regularly.
   \item Rope/Rod cutting
   \item 0-1 knapsack
   \item Coin change
+\end{enumerate}
+
+\chapter{General tips}
+\begin{enumerate}
+  \item Calculate limits yourself, limits given in the question may be too weak.
+  \item Check edge cases.
+  \item Check if global variables are being reset in multiple case questions.
 \end{enumerate}
 
 \chapter{Journal}
@@ -701,6 +717,9 @@ Stuff I tend to forget, keep revisitng regularly.
 
     The important implementation step is to notice that $f(x)$ can be calculated
     in $O(n)$ by iterating through each row and summing $min(m, (x - 1) / i)$.
+    
+  \item\url{https://codeforces.com/problemset/problem/1363/E}
+    Solving leaves to tree is just modified dfs
     
 \end{itemize}
 
