@@ -114,6 +114,10 @@ Always pass arguments by reference when possible.
     doubles
   \item \verb|reverse_iterator| and \verb|iterator| are two \textit{different,
     incompatible} types.
+  \item For \verb|std::set| and \verb|std::multiset|, use class specific
+    \verb|lower_bound| (i.e. \verb|std::set::lower_bound| and
+    \verb|std::multiset::lower_bound|) instead of \verb|std::lower_bound| as
+    they do not support random acceses iterators
 \end{enumerate}
 
 \chapter{Arrays}
@@ -273,12 +277,16 @@ Stuff I tend to forget, keep revisitng regularly.
 \begin{enumerate}
   \item Modular inverse
   \item Extended Euclidean
-  \item DSU
-  \item Hamiltonian path
-  \item Tarjan SCC
+  \item Eulerian path
+  \item MST
   \item Bridges, articulation points
-  \item Binary jumping (CSES Planet queries: \url{https://cses.fi/problemset/result/3195043/})
-  \item LCA (Errichto tutorial \url{https://youtu.be/dOAxrhAUIhA})
+  \item DSU (\url{https://cp-algorithms.com/data_structures/disjoint_set_union.html})
+  \item SCC (Tarjan \& Kosaraju; Tarjan
+    \url{https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm},
+      CSES Planets and Kingdoms: \url{https://cses.fi/problemset/task/1683})
+  \item Binary jumping (CSES Company queries 1: \url{https://cses.fi/problemset/result/3195043/})
+  \item LCA (CSES Company queries 2 :
+    \url{https://cses.fi/problemset/result/3195141/}, Errichto tutorial \url{https://youtu.be/dOAxrhAUIhA})
   \item Segment tree {CSES Dynamic range sum queries: \url{https://cses.fi/problemset/result/3251693/}}
 \end{enumerate}
 
