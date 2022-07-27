@@ -3,7 +3,7 @@ title: "Notes on : Speech and Language Processing"
 author : Bharathi Ramana Joshi
 ---
 
-# Regular Expressions, Text Normalization, Edit Distance
+# Chapter 1
 
 - Text normalization: converting text to a more convenient, standard form
 - Tokenization : separating out words from running text
@@ -12,7 +12,7 @@ author : Bharathi Ramana Joshi
 - Sentence segmentation : breaking at comma, period etc
 - Clitic : contractions marked by apostrophes *what're*
 
-# N-Grams
+# Chapter 2
 
 - Language Models - models that assign probabilities to sequences of words
 - Naive approach
@@ -101,7 +101,90 @@ Does not work because
     \lambda(\cdot) = \frac{d}{c(.)}|\{w:c(\cdot,w) > 0\}|
     \end{align*}
 
-# Logistic regression
+# Chapter 3
+
+- Bayes' Theorem
+
+\begin{align*}
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+\end{align*}
+
+- Naive Bayes classifier, given a document $d$ and a set of classes $C$,
+  returns the class $\hat{c}$ with maximum posterior probability.
+  \begin{align*}
+  \hat{c} = \arg\max_{c\in C}P(c|d)
+  \end{align*}
+  Applying Bayes' theorem,
+  \begin{align*}
+  \hat{c} = \arg\max_{c\in C}P(c|d) = \arg\max_{c\in C}\frac{P(d|c)P(c)}{P(d)}
+  \end{align*}
+  denominator $P(d)$ is dropped since the document is fixed for all classes,
+  giving us
+  \begin{align*}
+  \hat{c} = \arg\max_{c\in C}P(d|c)P(c)
+  \end{align*}
+  Here,
+  \begin{enumerate}
+    \item $P(d|c)$ is called the likelihood probability.
+    \item $P(c)$ is called the prior probability.
+  \end{enumerate}
+  Reducing the document to a set of features $F = f_1,\dots,f_n$; we have:
+  \begin{align*}
+  \hat{c} = \arg\max_{c\in C}P(f_1,\dots,f_n|c)P(c)
+  \end{align*}
+  Naively assuming independence of features:
+  \begin{align*}
+  \hat{c} = \arg\max_{c\in C}P(c)\prod_{f\in F}P(f|c)
+  \end{align*}
+  In textual context, we can use word positions as features.
+  \begin{align*}
+  \textrm{positions}&\leftarrow \textrm{ all word positions in test document}\\
+  \hat{c} &= \arg\max_{c\in C}P(c)\prod_{i\in positions}P(w_i|c)
+  \end{align*}
+  Because probabilities are small and multiplication is expensive, instead we
+  operate in log-space to avoid underflow and work faster via addition.
+  \begin{align*}
+  \hat{c} = \arg\max_{c\in C}\log{P(c)} + \sum_{i\in positions}\log{P(w_i|c)}
+  \end{align*}
+- To train a Naive Bayes classifier, we take $w_i$ to be the frequency of
+  occurrence of word $i$ in all documents in the class $c$. Thus,
+  \begin{align*}
+  \hat{P(w_i|c)} = \frac{count(w_i, c)}{\sum_{w\in V}count(w, c)}
+  \end{align*}
+  where $V$ is the vocabulary, set of all words occurring in all documents of
+  all classes.
+
+  However, even one count on the RHS being zero makes the probability of the
+  entire class zero. Therefore, we use Laplace smoothing and add 1 everywhere:
+  \begin{align*}
+  \hat{P(w_i|c)} = \frac{count(w_i, c) + 1}{\sum_{w\in V}count(w, c) + 1} = \frac{count(w_i, c) + 1}{|V| + \sum_{w\in V}count(w, c)} 
+  \end{align*}
+  The prior is computed as the relative frequency of the number of documents in
+  a particular class.
+  \begin{align*}
+  P(c) = \frac{P(D_c)}{P(D)}
+  \end{align*}
+- Gold label = human labels.
+- Language tasks with Naive Bayes:
+  1. Spam detection
+  2. Language identification
+  3. Sentiment analysis
+- Accuracy (\% of correct labels) is not a good metric when the goal is to
+  discover something that is rare.
+- Precision is the relative measure of true positives.
+    \begin{center}
+    Precision = $\frac{\textrm{TP}}{\textrm{TP + FP}}$
+    \end{center}
+- Recall is the measure of \% of items actually present in the input correctly
+  identified by the system.
+    \begin{center}
+    Recall = $\frac{\textrm{TP}}{\textrm{TP + FN}}$
+    \end{center}
+- F-measure: weighted harmonic mean of precision and recall
+- Use statistical significance tests to ensure one model is actually performing
+  better than another model, and didn't just get lucky on a particular dataset.
+
+# Chapter 4
 
 - Two approaches given observable $X$ and target $Y$
     + Generative : statistical model of joint probability distribution $P(X,
