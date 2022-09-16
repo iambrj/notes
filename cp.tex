@@ -227,6 +227,23 @@ Variants on 3SUM
         for $i$ in 0 to $n - 1$ and solve 3SUM on this.
 \end{enumerate}
 
+\chapter{Trees}
+
+Standard techniques:
+\begin{enumerate}
+  \item Solve for parent, reuse for child (e.g.
+    \href{https://cses.fi/problemset/task/1133}{CSES Tree Distances 2}).
+  \item Solve for children, reuse for parent (e.g. \href{https://cses.fi/problemset/task/1131}{CSES Tree Diameter}).
+  \item Diameter visualization (e.g.
+    \href{https://cses.fi/problemset/task/1131}{CSES Tree Diameter (duh)},
+    \href{https://cses.fi/problemset/task/1132}{CSES Tree Distances 1})
+  \item LCA (e.g. \href{https://cses.fi/problemset/task/1688}{CSES Company
+    Queries 2}, \href{https://cses.fi/problemset/task/1135}{CSES Distance
+    Queries})
+  \item Flattening into array via dfs tree (e.g.
+    \href{https://cses.fi/problemset/task/1137}{CSES Subtree Queries})
+\end{enumerate}
+
 \chapter{Graphs}
 
 Useful observation when dealing with SCC; each SCC is either:
@@ -272,6 +289,27 @@ Since $M'$ is larger than $M$, $D$ has a component with more edges from $M'$
 than $M$. This component is a path that in $G$ that starts and ends with and
 edge from $M'$, so it is an augmenting path.
 
+\chapter{Misc topics}
+\section{Minimum Excluded Element (MEX)}
+Given an array of $n$ elements, find the smallest positive integer missing from
+the array.
+
+For MEX without updates to the array, build hashset of elements of array and
+iterate through 1 to n looking up each integer in the hashset. The first missing
+number is the MEX.
+
+For MEX with updates (insert/delete) in the array. maintain two data structures:
+\begin{enumerate}
+  \item sorted set of excluded elements;
+  \item frequency table of elements.
+\end{enumerate}
+
+Update the frequency table whenever an element is inserted/deleted. If an
+element's frequency becomes zero put it in the set of excluded elements. If an
+element with zero frequency gets inserted into the array, delete it from the
+set. Updates thus take $O(n)$. For computing MEX, simply return the first
+element of sorted set of excluded elements in $O(1)$ time.
+
 \chapter{Revision list}
 Stuff I tend to forget, keep revisitng regularly.
 \begin{enumerate}
@@ -290,17 +328,14 @@ Stuff I tend to forget, keep revisitng regularly.
   \item Segment tree {CSES Dynamic range sum queries: \url{https://cses.fi/problemset/result/3251693/}}
 \end{enumerate}
 
-\section{Standard DP problem list}
+\section{Tricky DPs}
 See DP tutorial \url{https://noi.ph/training/weekly/week4.pdf}
 \begin{enumerate}
-  \item LCS
   \item LIS
+  \item Coin combinations without repetitions
+  \item CSES elevator rides
   \item LPS
-  \item Edit distance
-  \item Subset sum
   \item Rope/Rod cutting
-  \item 0-1 knapsack
-  \item Coin change
 \end{enumerate}
 
 \chapter{General tips}
@@ -768,6 +803,16 @@ See DP tutorial \url{https://noi.ph/training/weekly/week4.pdf}
     end points belong to different components then query is satisfied otherwise
     query is satisfied iff type of start vertex matches required type.
   \item\url{http://www.usaco.org/index.php?page=viewproblem2&cpid=1062}
+\end{itemize}
+
+\subsection{USACO Gold}
+\begin{itemize}
+  \item\url{https://open.kattis.com/problems/quantumsuperposition}, BFS can also
+    be used to calculate the topological sorting. In fact, BFS is to be
+    preferred when dp toposort transitions in toposort order, and DFS is to be
+    preferred when dp toposort transitions in reverse toposort order. If we only
+    care about tracking the presence/absence of elements, we can use a bitset
+    instead of a set to jump to constant time from logarthmic time.
 \end{itemize}
 
 \section{TODO}
