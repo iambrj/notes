@@ -59,8 +59,26 @@
   + Continuous improvement
   + Well defined service
   + Reusability
-- IPv4 : A.B.C.D
+- IPv4 : Network + host
+  + Network to get to correct network (administrative domain)
+  + Host to get to correct device in network (within administrative domain)
+  + Originally 3 classes of address A, B, C
 - Netmask : bitmask used to determine which address are in the same network,
   which need to go through a router. If first 24 bits are common in the network,
   then 255.255.255.0 is the netmask, if first 22 bits are common then
   255.255.252.0, etc.
+- Longest Prefix Match : algo IP routers use to chose matching entry from
+  forwarding table. Always use the most specific match to forward along.
+- Address Resolution Protocol (ARP) : how network layer discovers the link
+  layers it is connected to
+  + Link layer and network layers are decoupled logically, but are coupled in
+    practise --- each network interface has its own link layer address and
+    network layer (ip) address.
+  + To figure out IP address link address mapping, each device maintains a cache
+    mapping table.
+  + If there is an IP address I whose link address is not known to a device D, D
+    broadcasts an ARP packet to everyone on the network asking what the link
+    address of I is. The device with IP address I, D_I, responds to this packet
+    with a ARP packet containing information about its link address. D_I also
+    updates its cache table to update D's information using the packet it
+    received.
