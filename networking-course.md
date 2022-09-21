@@ -1,6 +1,10 @@
+# meta
+
 - Course link https://www.youtube.com/playlist?list=PL6RdenZrxrw9inR-IJv-erlOKRHjymxMN
 - Slides https://github.com/khanhnamle1994/computer-networking
 - Assignments https://github.com/PrincetonUniversity/COS461-Public
+
+# Unit 1
 
 - Reliable, bidirectional, bytestream
 - Basic network idea:
@@ -82,3 +86,72 @@
     with a ARP packet containing information about its link address. D_I also
     updates its cache table to update D's information using the packet it
     received.
+
+# Unit 2
+
+- Application bytestream -> TCP Segment -> IP Datagram -> Link frame
+- Connection establishment = 3 way handshake : Syn + Ack, Syn + Ack
+- Connection teardown = Fin, Data + Ack, Fin, Ack
+- Services provided:
+  + Reliable byte delivery service
+    - Ack for correct delivery
+    - Checksum to detect data corruption
+    - Seq numbers detect missing data
+    - Flow control prevents overrunning receiver : receiver tells sender how
+      much more buffer space it has to receive stuff
+  + In-sequence delivery
+  + Control congestion
+- TCP Header contains:
+  + Source port
+  + Destination port
+  + Sequence # : position in the bytestream of the first byte in the TCP data
+    field
+  + Ack sequence # : tells what byte is expected next, also tells everything
+    till this byte has been received
+  + Checksum
+  + Header length (how many optional fields are present)
+  + Flags
+    - Ack : all data up until now is ack'd
+    - Syn : Syncronizing used in handshake
+    - Fin : closing of one direction of connect
+    - Psh : send data immediately (e.g. keystroke)
+- Unique TCP ID = Soure port + Destination port + RNG Initial Sequence Number +
+  Source address + Destination address
+- UDP Header contains:
+  + Source port
+  + Destination port
+  + Length
+  + Checksum
+- UDP properties
+  + Connectionless
+  + Packets may show up in any order
+  + No acks
+  + Unreliable
+- Applications use UDP when they want simple and fast service, don't care about
+  reliability (e.g. DNS)
+- ICMP (Internet Control Message Protocol) : used to report error conditions and
+  help diagnose problems
+- ICMP runs in transport layer
+- ICMP returns an unreliable simple datagram with error message
+- End-to-End Principle : the function in question can completely and correctly
+  be implemented only with the knowledge and help of the application standing at
+  the end points of the communication system.
+- Function [reliability, security, etc] may be provided, but end systems may no
+  take it for granted.
+- Strong end-to-end : do NOT implement anything in the middle, only end to end.
+  All network has to do is transfer datagrams.
+- Protocols as FSMs
+- Stop and Wait protocol : at most one packet in flight at any given time
+- Sliding Window : window/bounded number of packets in flight
+- Sliding Window Sender (SWS) behavior:
+  + Keeps track of variables : Send Window Size, Last Ack Received (LAR), Last
+    Segment Sent (LSS)
+  + Invariant to maintain : `(LSS - LSR) <= SWS`
+  + Advance LAR on new ack
+  + Buffer up SWS segments
+- Sliding Window Receiver (SWR) behavior:
+  + Variables: Receive Window Size, Last Acceptable Segment, Last Segment
+    Received
+  + Invariant to maintain : `LAS - LSR <= RWS`
+  + Acks are cumulative
+- Retrasmission : go back n vs selective repeat
