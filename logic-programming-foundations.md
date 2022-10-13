@@ -1,7 +1,8 @@
 # Prelims
 - First order theory:
     1. Alphabet
-    2. First order language (well formed formulas of the theory)
+    2. First order language (well formed formulas of the theory, has both
+       derivable and underivable formulae)
     3. Set of Axioms (designated subset of well formed formulas)
     4. Set of Inference Rules
 - Use axioms and inference rules to derive theorems of theory
@@ -14,12 +15,12 @@
     6. Quantifiers (∀, ∃)
     7. Punctuation symbols ("(", ")", ",")
 - Precedence: (~, ∀, ∃) > (∨) > (∧) > (→, ↔)
-- A term is inductively defined as:
+- A ***term*** is inductively defined as:
     1. A variable is a term.
     2. A constant is a term.
     3. If f is a n-ary function symbol and t1, ..., tn are terms, then
     f(t1, ..., tn) is a term.
-- A well formed formula is inductively defined as:
+- A ***well formed formula*** is inductively defined as:
     1. If p is a n-ary predicate symbol and t1, ...., tn are terms, then
     p(t1, ..., tn) is a formula (aka atom, atomic formula).
     2. If F and G are formulae, so are (~F), (F ∨ G), (F ∧ G), (F → G), (F ↔ G).
@@ -63,23 +64,23 @@
   3. Assignment to each function symbol a mapping over the domain
   4. Assignment to each predicate symbol a relation over the domain
 - Model of a formula = interpretation in which the formula is true
-- Pre-interpretation of a first order language L consists of:
+- ***Pre-interpretation*** of a first order language L consists of:
   1. A non-empty set D, the domain of pre-interpretation.
   2. For each constant in L, the assignment of an element in D.
   3. For each n-ary function symbol in L, the assignment of a mapping from D^n
      to D.
-- An interpretation I of a first order language L consists of a
+- An ***interpretation*** I of a first order language L consists of a
   pre-interpretation J with domain D of L together with:
   1. For each n-ary predicate symbol in L, the assignment of a mapping from D^n
-     to {true, false} (or equivalently, a relation in D^n).
-- If J is a pre-interpretation of a first order language L, a variable
-  assignment (wrt J) is an assignment to each variable in L of an element in the
-  domain of J.
+     to {true, false} (or equivalently, a relation on D^n).
+- If J is a pre-interpretation of a first order language L, a ***variable
+  assignment*** (wrt J) is an assignment to each variable in L of an element
+  in the domain of J.
 - If J is a pre-interpretation of a first order language L, V a variable
-  assignment wrt J then the term assignment (wrt V and J) of the terms in L is
-  defined as follows:
+  assignment wrt J then the ***term assignment*** (wrt V and J) of the terms in
+  L is defined as follows:
   1. Each variable is given its assignment according to V.
-  2. Each variable is given its assignment according to J.
+  2. Each constant is given its assignment according to J.
   3. If t1',...,tn' are the term assignments of t1,...,tn and f' is the
      assignment of the n-ary function symbol f, then f'(t1',...,tn') ∈ D is the
      term assignment of f(t1,...,tn).
@@ -140,6 +141,8 @@
   2. Constants in L are assigned to themselves in U_L.
   3. If f is a n-ary function symbol in L, then the mapping from (U_L)^n into
      U_L defined by (t1...tn) -> f(t1...tn) is assigned to f.
+- An ***Herbrand Interpretation*** is any interpretation whose
+  pre-interpretation is the Herbrand pre-interpretation.
 - Every Herbrand Interpretation is identified by a subset of the Herbrand base.
 - If S is any set of closed formulas of first order language L, an Herbrand
   model for S is an Herbrand interpretation for L which is a model for S.
@@ -150,3 +153,31 @@
 - Note that S is a set of clauses, not arbitrary fomulas --- it is generally not
   possible to show S is unsatisfiable by restricting attention to Herbrand
  interpretations.
+
+
+- A substitution θ is a finite set of the form {v1/t1,...,vn/tn} where each vi
+  is a variable, each ti a term distinct from vi and the variables v1,...,vn are
+  distinct. Each element vi/ti is called a binding for vi. θ is called a ground
+  substitution if the ti are all ground terms. θ is called a variable-pure
+  substitution if the ti are all variables.
+- Expressions (in substitutions context) are either terms, literals,
+  conjunction/disjunction of literals.
+- Expressions E and F are variants if there exist substitutions θ and δ such
+  that E = Fθ and F = Eδ.
+- Let E be an expression and V the set of variables occurring in E. A renaming
+  substitution for E is a variable-pure substitution {x1/y1,...,xn/yn} such that
+  {x1,...,xn} ⊆ V, the yi are distinct and (V \ {x1,...,xn}) ∩ {y1,...,yn} = ∅
+- If S is a finite set of simple (term or atom) expressions, a substitution θ is
+  called a unifier for S if Sθ is a singleton. A unifier θ for S is called a
+  Most General Unifier (MGU) for S if, for each unifier δ of S, there exists a
+  substitution γ such that δ = θγ
+
+
+# Definite programs
+
+- Model Intersection Property: if P is a definite program and {M_i}i\in I a
+  non-empty set of Herbrand models for P, then their intersection is also a
+  Herbrand model for P.
+- Least Herbrand model: intersection of all Herbrand models for P, denoted by
+  M_P.
+- 
