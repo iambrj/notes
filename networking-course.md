@@ -4,7 +4,7 @@
 - Slides https://github.com/khanhnamle1994/computer-networking
 - Assignments https://github.com/PrincetonUniversity/COS461-Public
 
-# Unit 1
+# Unit 1 : Basics
 
 - Reliable, bidirectional, bytestream
 - Basic network idea:
@@ -87,7 +87,7 @@
     updates its cache table to update D's information using the packet it
     received.
 
-# Unit 2
+# Unit 2 : TCP / transport layer
 
 - Application bytestream -> TCP Segment -> IP Datagram -> Link frame
 - Connection establishment = 3 way handshake : Syn + Ack, Syn + Ack
@@ -131,12 +131,13 @@
   reliability (e.g. DNS)
 - ICMP (Internet Control Message Protocol) : used to report error conditions and
   help diagnose problems
-- ICMP runs in transport layer
+- ICMP runs in network layer, but makes of other network layer functionalities
+  as if it were running in transport layer
 - ICMP returns an unreliable simple datagram with error message
 - End-to-End Principle : the function in question can completely and correctly
   be implemented only with the knowledge and help of the application standing at
   the end points of the communication system.
-- Function [reliability, security, etc] may be provided, but end systems may no
+- Function [reliability, security, etc] may be provided, but end systems may not
   take it for granted.
 - Strong end-to-end : do NOT implement anything in the middle, only end to end.
   All network has to do is transfer datagrams.
@@ -155,3 +156,59 @@
   + Invariant to maintain : `LAS - LSR <= RWS`
   + Acks are cumulative
 - Retrasmission : go back n vs selective repeat
+
+# Unit 3 : Packet Switching
+
+- Things needed for long distance network
+  + Codes: WAIT, ERROR, FAILURE, FOG, etc
+  + Flow Control: Stop sender from overwhelming the receiver
+  + Synchronization: to indicate one symbol ended
+  + Error correction and retransmission: when symbols were misunderstood
+  + Encryption: avoid interception
+- Why doesn't internet use circuit switching?
+  1. Computer use tends to happens in bursts
+  2. Different applications need different rates (e.g. video streaming vs SSH)
+  3. Circuit switching addes per-communication state maintenance
+- Packet switching working principles
+  1. Packets are routed individually, by looking up address in router's local
+     table
+  2. All packets share full link capacity
+  3. Routers maintain no per-communication state
+- Packet switches have buffers
+- Why internet uses packet switching?
+  1. Full use of expensive switches
+  2. Many bursty flows can share the same link efficiently
+  3. Resilience to failure of links & routers
+- Propagation delay : time taken by a single bit to travel over a link at
+  propagation speed c
+- Packetization delay: time from when the first to the last bit of a packet is
+  transmitted
+- Queu[e]ing delay: time packet has to wait at some switch for other packets to
+  be forwarded before it can be forwarded
+- End to end delay: time from when the first bit is sent to the last bit is
+  received
+  sum_i(p/ri + li/c + Q_i(t))
+- Real time applications (YouTube, Zoom, etc) need to cope with queuing delay
+- Bucket model of a queue
+- Breaking message into packets allows parallel transmission across all links,
+  reducing end to end delays
+- Properties of queuing:
+  1. 
+- Ethernet switch:
+  1. 
+- Packet switch jobs:
+  1. Lookup addresses in a forwarding table
+  2. Switching to the correct egress port
+- Ternary Content Addressable Memory
+- Output vs Input Queued switches
+- FIFO properties
+  1. Free for all
+  2. 
+- Strict priorities: different queues for different priorities
+- Weighted Fair Queueing (WFQ) : send lowest bit-by-bit finishing time next
+- Guaranteed Delay
+- Invariant to maintain to guarantee no packet loss due to buffer overflow :
+  `A(t + T) - A(t) <= B + R * T`
+- Sigma-Rho regulation
+- Leaky bucket regulation
+- RSVP : populate sigma rho
