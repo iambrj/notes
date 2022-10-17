@@ -85,7 +85,7 @@
      assignment of the n-ary function symbol f, then f'(t1',...,tn') ∈ D is the
      term assignment of f(t1,...,tn).
 - If J is a pre-interpretation of a first order language L, V a variable
-  assignment wrt J, and A an atom say p(t1...tn) and d1...dn wrt are the term
+  assignment wrt J, and A an atom say p(t1...tn) and d1...dn are the term
   assignments of t1...tn. A_{J, V} = p(d1...dn) is called the J-instance of A
   wrt V.
 - If I is an interpretation with domain D of a first order language L and let V
