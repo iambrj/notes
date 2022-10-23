@@ -212,3 +212,56 @@
 - Sigma-Rho regulation
 - Leaky bucket regulation
 - RSVP : populate sigma rho
+
+# Unit 4 : Congestion Control
+
+- Causes of congestion:
+  1. Packet collision at switch
+  2. Senders with high flow, using up all links
+  3. Too many users on a link at peak hour
+- Tradeoff between fairness and total network throughput (penalize some senders
+  to improve net throughput)
+- Max-min fairness: an allocation is max-min fair if you cannot increase the
+  rate of one flow without decreasing the rate of another flow with a lower rate
+- Goals of congestion control
+  1. High throughput: keep links busy, flows fast
+  2. Max-min fairness
+  3. Respond quickly to changing network conditions
+  4. Distributed control
+- Network based congestion notification: piggyback congestion bit onto acks
+- End-host based: check for things like missing acks, dropped packets
+- TCP : vary window size via AIMD
+- Additive Increase, Multiplicative Decrease (AIMD):
+  1. If packet received OK : `W <- W + 1/W` (double the window size when a
+     window worth of packets are ackd)
+  2. If packet dropped : `W <- W/2`
+- Rate at which packets are sent is constant, just the # of unack'd packets are
+  varied. All it does is control the # of outstanding packets.
+- Each flow follows its own independent AIMD
+- Throughput = WinSize / RTT.
+- For multiple flows, RTT is constant thus throughput proportional to WinSize
+- Congestion control in TCP Tahoe:
+- Problems any network need to address:
+  + When should you send new data
+  + When should you send data retransmissions
+  + When should you send acks?
+
+# Unit 5 : Applications
+
+## NATs
+- Box that sits between public internet and your computer rewriting the IP
+  addresses
+- Hiding bunch of machines behind single IP address gives security : makes it
+  difficult for attacker to open connections to individual machines
+- NAT maintains map `{IP Address, Port} -> {IP Address, Port}`
+- Mappings are generated only when packets need to leave the network
+- Full Cone NAT : least restrictive, any outside machines may send packets
+- Restricted Cone NAT : only added addresses from outside may send packets
+- Port Restricted NAT : only added address with specific port may send packets
+- Symmetric NAT : different mappings for different outgoing dests
+- Hairpinning : NAT edgecase for intranetwork communications
+- NAT does not allow connections in. Connection reversal workaround via
+  rendezvous server for single host behind network, relay workaround for both
+- NAT Hole-Punching
+
+## HTTP
