@@ -264,4 +264,18 @@
   rendezvous server for single host behind network, relay workaround for both
 - NAT Hole-Punching
 
-## HTTP
+## Domain Name System
+- Map names to addresses
+- Must be able to handle huge number of records
+- Must have distributed control: people can control their own names
+- Must be robust to individual node failures
+## DHCP
+- Four pieces of information every host needs in a network:
+  1. What is my IP address?
+  2. What is the subnet mask? (i.e. what addresses are inside vs outside)
+  3. What is the gateway router (i.e. how do I communicate with addresses
+     outside)
+  4. What is the DNS server's IP address?
+- DHCP is a protocol that helps a host answer these questions when it joins a
+  network.
+- DHCP works in 5 phases: discover, offer, request, ack, release
