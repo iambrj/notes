@@ -28,7 +28,7 @@
 1. mov 0x42, %rax
 2. add1 %rax
 3. mov %rax 0x42
-4. lock(l)
+4. unlock(l)
 ```
 - Implementation metrics:
   + Does it work correctly?
@@ -53,9 +53,10 @@ void unlock(int l) {
   l = 0;
 }
 ```
-- Compare-and-swap hardware primitive, spinlock
-- Load-linked and store-conditional
-- Fetch-and-add
+- Other hardware primitives:
+  + Compare-and-swap hardware primitive, spinlock
+  + Load-linked and store-conditional
+  + Fetch-and-add
 - Avoid spinlock by yeilding
 - Linux futex : implement in-kernel queue per futex
 - Lock with queue
