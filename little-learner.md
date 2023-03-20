@@ -115,3 +115,23 @@
              (map update Theta (del obj (map deflate Theta))))])
     (map deflate (revise f revs (map inflate theta)))))))
 ```
+
+# Chapter 8
+- Momentum gradient descent: incorporate previous update into current update
+```scheme
+(define momentum-i
+ (lambda (p)
+  (list p (zeros p))))
+
+(define momentum-d
+ (lambda (P)
+  (listref P 0)))
+
+(define momentum-u
+ (lambda (P g)
+  (let ([v (- (* mu (listref P 1)) (* alpha g))])
+   (list (+ (listref P 0) v) v))))
+
+(define momentum-gradient-descent
+ (gradient-descent momentum-i momentum-d momentum-u))
+```
