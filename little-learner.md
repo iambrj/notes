@@ -104,3 +104,14 @@
   [batch-size 4])
  (gradient-descent (sampling-obj (l2-loss target) xs ys) theta))
 ```
+
+# Chapter 7
+- Ultimate gradient descent:
+```scheme
+(define gradient-descent
+ (lambda (inflate deflate update)
+  (lambda (obj theta)
+   (let ([f (lambda (Theta)
+             (map update Theta (del obj (map deflate Theta))))])
+    (map deflate (revise f revs (map inflate theta)))))))
+```
