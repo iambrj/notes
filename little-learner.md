@@ -135,3 +135,12 @@
 (define momentum-gradient-descent
  (gradient-descent momentum-i momentum-d momentum-u))
 ```
+
+# Interlude 4
+- The smooth operator (is shape polymorphic)
+```scheme
+(define smooth
+ (lambda (decay-rate average g)
+  (+ (* decay-rate average) (* (- 1 decay-rate) g))))
+```
+
