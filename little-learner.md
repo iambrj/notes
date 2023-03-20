@@ -7,7 +7,7 @@
 # Chapter 2
 - Rank of a tensor: tells us how deeply nested its elements are. Number of left
   square brackets before the first element.
-- Shape of a tensor: 
+- Shape of a tensor: cross product specifying size of each dimension
 - Tensor invariants
   + Each element has the same shape
   + The rank of a tensor is equal to the length of its shape
@@ -20,6 +20,7 @@
   sum1's to produce a rank (m - 1) tensor
 
 # Chapter 3
+- Target function: function that is being fitted
 - Expectant function: function that expects a dataset
 - Objective function: function that expects a theta
 - Rate of change of loss: change in loss / change in theta
@@ -60,3 +61,46 @@
         (revise f revs theta)))))
 ```
 
+# Interlude 2
+- 
+
+# Chapter 5
+- Devanagari "besan laddoo" what a lovely surprise!
+- The expectant function can be generalized to any nonlinear function
+
+# Interlude 3
+- 
+
+# Chapter 6
+- Since datasets tend to be huge, running gradient descent on entire the dataset
+  tends to be too slow. Instead, gradient descent is run in batches, where each
+  batch is a randomly sampled subset of the dataset.
+```scheme
+(define samples
+ (lambda (n s)
+  (sampled n s (list))))
+
+(define sampled
+ (lambda (n i a)
+  (cond
+   [(zero? i) a]
+   [else (sampled n (sub1 i) (cons (random n) a))])))
+```
+- We can use sampling to turn an objective function into a sampling objective
+  function
+```scheme
+(define sampling-obj
+ (lambda (expectant xs ys)
+  (let ([n (tsize xs)])
+   (lambda (theta)
+    (let ([b (samples n batch-size)])
+     ((expectant (trefs xs b) (trefs ys b)) theta))))))
+```
+- For example, using the above definition, gradient descent can now be invoked
+  as follows
+```scheme
+(with-hypers
+ ([alpha 0.001]
+  [batch-size 4])
+ (gradient-descent (sampling-obj (l2-loss target) xs ys) theta))
+```
