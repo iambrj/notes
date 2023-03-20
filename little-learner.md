@@ -29,4 +29,34 @@
 # Chapter 4
 - A gradient is a way of understanding the rate of change of a parameterized
   function with respect to all its parameters
-- 
+- The `del` operator produces the gradient loss for each parameter given an
+  objective function with resepct to a theta (using automatic differentiation)
+- l2-loss:
+```
+(define l2-loss
+ (lambda (target)
+  (lambda (xs ys)
+   (lambda (theta)
+    (let ([pred-ys ((target xs) theta)])
+     (sum (sqr (- ys pred-ys))))))))
+```
+- Revision function:
+```scheme
+(define revise
+ (lambda (f revs acc)
+  (cond
+   [(zero? revs) acc]
+   [else (revise f (sub1 revs) (f acc))])))
+```
+- Gradient descent:
+```scheme
+(define gradient-descent
+ (lambda (obj theta)
+  (let ([f (lambda (Theta)
+            (map (lambda (p g)
+                  (- p (* alpha g))
+                  Theta
+                  (del obj Theta)))])
+        (revise f revs theta)))))
+```
+
