@@ -118,6 +118,8 @@
 
 # Chapter 8
 - Momentum gradient descent: incorporate previous update into current update
+- Analogy for intuition: baton race, current update should carry momentum from
+  previous updates
 ```scheme
 (define momentum-i
  (lambda (p)
@@ -135,6 +137,7 @@
 (define momentum-gradient-descent
  (gradient-descent momentum-i momentum-d momentum-u))
 ```
+- Intuition behind why it works?
 
 # Interlude 4
 - The smooth operator (is shape polymorphic)
@@ -144,3 +147,17 @@
   (+ (* decay-rate average) (* (- 1 decay-rate) g))))
 ```
 
+# Chapter 9
+- Root Mean Squared Prop (rmsProp) gradient descent
+- Modifier intuition: rate at which the fraction of gradient used at each
+  revision decreases should be less than the rate at which the gradient
+  decreases
+- 
+```scheme
+(define rms-u
+ (lambda (P g)
+  (let ([r (smooth beta (listref P 1) (sqr g))])
+   (let ([D (sqrt r)])
+    (let ([alpha (/ alpha (+ D epsilon))])
+     (list (- (lisref P 0) (* alpha g)) r))))))
+```
