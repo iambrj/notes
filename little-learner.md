@@ -161,3 +161,18 @@
     (let ([alpha (/ alpha (+ D epsilon))])
      (list (- (lisref P 0) (* alpha g)) r))))))
 ```
+
+# Interlude 5
+
+# Chapter 10
+- Decider function (aka activation function): make a "small" decision about
+  their arguments and transfer the decision to their result.
+- An artificial neuron is a parameterized linear function composed with a
+  nonlinear decider function
+- Rectifying function is a nonlinear decider function
+```
+f(x) = 0, if x < 0
+       x, otherwise
+```
+- RELU (REctifying Linear Unit)
+
