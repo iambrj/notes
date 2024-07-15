@@ -15,7 +15,7 @@
   * Fault tolerance
 - Manifest: initial configuration.
 - Cluster -> Node -> Pod -> Container -> Application/microservice.
-- Pod: abstraction over containers to proivde a uniform communication interface
+- Pod: abstraction over containers to provide a uniform communication interface
   irrespective of underlying container (may be docker or something else).
 - Node: physical server/VM on which pods are running.
 - Each pod is assigned an IP address, not each container in the pod.
@@ -25,7 +25,7 @@
 - 1 control plane / master
 - kube-API server: interface to interact with master.
 - etcd: highly available key-value store for shared configuration, service
-  discovey, and scheduler coordination.
+  discovery, and scheduler coordination.
 - kube-scheduler: handles pod creation and management, match/assign any node to
   create and run pods.
 - Controller/manager: responsible for node detection, setting up network
@@ -33,6 +33,12 @@
 - Components of a node:
   * Kubelet: agent running on each node that communicates with master via API
     server. Runs on port 10255.
-  * Container engine: docker etc. Exposing containers on port specified in
+  * Container engine/runtime: docker etc. Exposing containers on port specified in
     manifest.
   * Kube-proxy: assigns an IP address to each pod.
+- Deployment: manages a set of Pods to run an application workload, usually one
+  that doesn't maintain state. A Deployment provides declarative updates for
+  Pods and ReplicaSets. You describe a desired state in a Deployment, and the
+  Deployment Controller changes the actual state to the desired state at a
+  controlled rate
+- 
