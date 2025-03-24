@@ -57,8 +57,15 @@
    + `size` and `isEmpty` are approximate
    + only when application needs to lock Map for exclusive access the
      ConcurrentHashMap is not correct replacement
+- `ConcurrentHashMap` interface:
+   + `putIfAbsent` (atomic check and insert)
 - Copy-on-write collection
 - `BlockingQueue`: blocks threads on queue underflow and overflow.
+- `BlockingQueue` interface:
+   + `add`
+   + `offer`
+   + `take`
+   + `poll`
 - Implementations of `BlockingQueue`:
    + LinkedBlockingQueue
    + ArrayBlockingQueue
@@ -67,14 +74,66 @@
      participate in hand-off from producer; otherwise producer will block
 - Work stealing pattern: consumers can consume from other consumer's queue
 - Deque: double eneded queue used for work stealing pattern
-- `CountDownLatch`: `await` and `countDown`
-- `Semaphore`: `acquire` and `release`. Fair if FIFO is followed in granting
-  the permits.
+- Synchronizer: object used to coordinate control flow of threads based on
+  shared state of syncrhonizer.
+
+- `Latch`: synchronizer used to delay progress of thread until latch reaches
+  terminal state.
+- `CountDownLatch` interface:
+   + `await`
+   + `countDown`
+
+- `CyclicBarrier`: synchronizer that allows a set of threads to all wait for
+  each other to reach a common barrier point repeatedly.
+- `CyclicBarrier` interface:
+   + `await`
+
+- `Semaphore` used to control number of threads that can access a certain
+  resource (e.g. file descriptor) or perform a given action at a time.
+- `Semaphore` controls a set of virtual permits which threads can acquire and
+  release.
+- `Semaphore` interface:
+   + `acquire`
+   + `release`.
+- `Semaphore` is fair if FIFO is followed in granting the permits.
 
 # Chapter 6
-- Executor: separates task submission from task execution.
+- Disadvantages of unbounded thread creation:
+  + Threadlife cycle overhead
+  + Idle thread increase resource consumption (CPU, garbage collection, etc)
+  + JVM has implementation limit on number of allowed threads, will throw
+    `OutOfMemoryError` upon hitting this limit which is hard to recover from
+- `Executor`: separates task submission from task execution.
+- Tasks are wrapped in Runnable or Callable and submitted to an executor.
+- Lifecycle of a task submitted to an executor:
+  1. Created
+  2. Submitted
+  3. Started
+  4. Completed
+- ExecutionException: exception in which a tasks exception gets wrapped when a
+  thread calls task's future.get
 - RejectedExecutionException: exception thrown when a task submitted to an
   executor is not run.
+- `Executor` interface:
+   + `execute(Runnable)`
+
+# Chapter 7
+- Threads in blocked state throw `InterruptedException`, if a thread is not
+  blocked state and gets interrupted, then the thread's interrupted status flag
+  is set but no exception is thrown.
+- Swallowing the `InterruptedException` is bad practise as swallowing makes it
+  not possible for methods up the call stack to interrupt a thread.
+- `Thread.interrupted()` fetch and clear the interruption status flag.
+- `Thread.interrupt()` set the interruption status flag and cause an
+  `InterruptedException` in invoked thread if blocked.
+- Either a thread should propogate the `InterruptedException` or reset the
+  interruption status using `Thread.currentThread().interrupted()`
+- Tasks do not execute in threads they own; they borrow threads owned by a
+  service such as a thread pool. Code that doesn’t own the thread (for a thread
+  pool, any code outside of the thread pool implementation) should be careful
+  to preserve the interrupted status so that the owning code can eventually act
+  on it, even if the “guest” code acts on the interruption as well.
+- You should know a thread’s interruption policy before interrupting it.
 
 # Chapter 14
 - Use `wait`, `notify`, `notifyAll` on any `Object` for conditional variables.

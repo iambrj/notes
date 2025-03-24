@@ -14,6 +14,8 @@
   * Platform (cloud/virtual/physical)
   * Fault tolerance
 - Manifest: initial configuration.
+
+# 101
 - Cluster -> Node -> Pod -> Container -> Application/microservice.
 - Pod: abstraction over containers to provide a uniform communication interface
   irrespective of underlying container (may be docker or something else).
@@ -41,4 +43,8 @@
   Pods and ReplicaSets. You describe a desired state in a Deployment, and the
   Deployment Controller changes the actual state to the desired state at a
   controlled rate
+
+# Networking
+- Each pod gets cluster-wide unique IP address
 - 
+

@@ -1,6 +1,13 @@
 # Chapter 1
 - Dialect: grouping functionality to extend MLIR system by adding new operators,
-  attributes, and types.
+  attributes, and types. A dialect consists of:
+  + A prefix / namespace
+  + A list of custom types, each its C++ class
+  + A list of operations, each its name and C++ class implementation
+    - Verifier for operator invariants (e.g. toy.print must have a single operand)
+    - Semantics (no-side-effects, constant-folding, CSE-allowed)
+  + Passes: analysis, transformations, dialect conversions
+  + Possibly custom parser and assembly printer
 - Operations are defined by
     + Name
     + List of SSA operand values
@@ -10,6 +17,7 @@
     + Source location
     + List of successor blocks
     + List of regions
+- Region: list of basic blocks. Approximately CFG.
 - Traits: mechanism to inject additional behavior (accessors, verification, etc)
   into operators.
 - MLIR allows undefined operations to be manipulated through opaque `Operaton`
