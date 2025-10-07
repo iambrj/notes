@@ -15,6 +15,7 @@
 - A partition is owned by a single broker in the cluster, and that broker is
   called the leader of the partition. All producer and consumer requests for a
   partition go through the partition's leader to ensure consistency.
+- If the owning broker goes down, it's writes not yet replicated will be lost.
 - ZooKeeper is used by Kafka to store metadata about the Kafka cluster and the
   consumer client details.
 - ZooKeeper is a centralized service for maintaining configuration information,
@@ -44,8 +45,8 @@
   `RecordMetadata` object with the topic, partition, and the offset of the
   record within the partition; otherwise the broker returns an error.
 - Three ways to use a producer:
-  1. Fire-and-Forget
-  2. Synchronously: get a future
+  1. Fire-and-Forget:
+  2. Synchronously: get a future 
   3. Asynchronously: pass a callback
 - Producer configurations:
   1. 
@@ -55,3 +56,15 @@
   records from a disjoint subset of partitions.
 - If there are more consumers in a single group with a single topic than we have
   partitions, some of the consumers will be idle and get no messages at all.
+- Consumer configurations:
+
+# Reliable Data Delivery
+- Guarantees:
+    1. Order of messages in a partition: if A was written before B, offset of A
+       will be lesser than B.
+    2. Messages that are committed will not be lost as long as there lives at
+       least one broker having the partition's replica.
+    3. Consumers can only read messages that are committed.
+
+    where a message is *committed* when it is written to all replicas of its
+    partition.

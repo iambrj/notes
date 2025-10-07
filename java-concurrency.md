@@ -60,15 +60,16 @@
 - `ConcurrentHashMap` interface:
    + `putIfAbsent` (atomic check and insert)
 - Copy-on-write collection
+- 
 - `BlockingQueue`: blocks threads on queue underflow and overflow.
 - `BlockingQueue` interface:
-   + `add`
-   + `offer`
-   + `take`
-   + `poll`
+   + `add`: non blocking, exception if full
+   + `offer`: non blocking, true/false
+   + `take`: blocking
+   + `poll`: non blocking, element or null
 - Implementations of `BlockingQueue`:
-   + LinkedBlockingQueue
-   + ArrayBlockingQueue
+   + LinkedBlockingQueue: unbounded, more memory overhead per element, message passing between threads
+   + ArrayBlockingQueue: bounded, less memory overhead per element, fixed size thread pool work queue
    + PriorityBlockingQueue
    + SynchronousQueue: queue of threads, consumer should always be ready to
      participate in hand-off from producer; otherwise producer will block
